@@ -118,6 +118,39 @@ if [[ -z "${TG_BOT_TOKEN:-}" ]] || [[ -z "${TG_CHAT_ID:-}" ]]; then
     exit 0
 fi
 
+# Publish to GitHub Releases
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "Publishing to GitHub Releases"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+TAG="v${VERSION_NAME}-${VARIANT}"
+RELEASE_NAME="WinoPay ${VARIANT} v${VERSION_NAME} (${VERSION_CODE})"
+
+if command -v gh &> /dev/null; then
+    echo "Creating GitHub Release: $TAG"
+
+    # Try to create release, if it exists, just upload the asset
+    gh release create "$TAG" \
+        "$APK_PATH" \
+        --title "$RELEASE_NAME" \
+        --notes "$CAPTION" \
+        --repo paveldovnar/Winopay \
+        --latest=false \
+        2>/dev/null || \
+    gh release upload "$TAG" "$APK_PATH" --clobber --repo paveldovnar/Winopay 2>/dev/null
+
+    if [ $? -eq 0 ]; then
+        echo "✅ Published to GitHub Releases: $TAG"
+    else
+        echo "❌ Failed to publish to GitHub (check gh auth status)"
+        echo "   Run: gh auth login"
+    fi
+else
+    echo "⚠️  gh CLI not found. Install with: brew install gh"
+    echo "   Then run: gh auth login"
+fi
+
 # Publish to Telegram
 echo ""
 ./scripts/publish_telegram.sh "$APK_PATH" "$CAPTION"

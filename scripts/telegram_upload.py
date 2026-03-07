@@ -8,6 +8,33 @@ import urllib.error
 import sys
 import os
 
+def pin_message(bot_token, chat_id, message_id):
+    """Pin a message in Telegram channel."""
+    import urllib.request
+    import urllib.parse
+    import json
+
+    url = f"https://api.telegram.org/bot{bot_token}/pinChatMessage"
+    data = urllib.parse.urlencode({
+        'chat_id': chat_id,
+        'message_id': message_id,
+        'disable_notification': True
+    }).encode()
+
+    try:
+        req = urllib.request.Request(url, data=data)
+        response = urllib.request.urlopen(req, timeout=10)
+        result = json.loads(response.read().decode())
+        if result.get('ok'):
+            print(f"📌 Pinned message {message_id}")
+            return True
+        else:
+            print(f"⚠️  Failed to pin: {result.get('description', 'Unknown error')}")
+            return False
+    except Exception as e:
+        print(f"⚠️  Failed to pin message: {e}")
+        return False
+
 def upload_to_telegram(bot_token, chat_id, file_path, caption=""):
     """Upload file to Telegram via Bot API."""
 
@@ -77,6 +104,10 @@ def upload_to_telegram(bot_token, chat_id, file_path, caption=""):
             chat_title = result['result']['chat'].get('title', 'Unknown')
             print(f"Message ID: {message_id}")
             print(f"Chat: {chat_title}")
+
+            # Pin the message if it's an APK file
+            if file_path.endswith('.apk'):
+                pin_message(bot_token, chat_id, message_id)
 
         return True
 

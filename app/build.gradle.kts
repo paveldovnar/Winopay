@@ -57,8 +57,8 @@ android {
         applicationId = "com.winopay"
         minSdk = 26
         targetSdk = 35
-        versionCode = 2
-        versionName = "1.0.1"
+        versionCode = 6
+        versionName = "1.0.5"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -73,6 +73,12 @@ android {
         // Get from https://cloud.reown.com - set in local.properties or env
         val reownProjectId = getPropertyOrEnv("REOWN_PROJECT_ID") ?: ""
         buildConfigField("String", "REOWN_PROJECT_ID", "\"$reownProjectId\"")
+
+        // Telegram update checker credentials
+        val tgBotToken = getPropertyOrEnv("TG_BOT_TOKEN") ?: ""
+        val tgChatId = getPropertyOrEnv("TG_CHAT_ID") ?: ""
+        buildConfigField("String", "TG_BOT_TOKEN", "\"$tgBotToken\"")
+        buildConfigField("String", "TG_CHAT_ID", "\"$tgChatId\"")
     }
 
     buildTypes {

@@ -2,6 +2,7 @@ package com.winopay.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -192,24 +193,6 @@ fun WinoNavHost(
         // ==================== MAIN APP ====================
 
         composable(Screen.Dashboard.route) {
-            var showUpdateDialog by remember { mutableStateOf(false) }
-            val context = androidx.compose.ui.platform.LocalContext.current
-
-            // Auto-check for updates on Dashboard start (debug builds only)
-            LaunchedEffect(Unit) {
-                if (com.winopay.update.UpdateChecker.isUpdateCheckEnabled()) {
-                    when (val result = com.winopay.update.UpdateChecker.checkForUpdate(context)) {
-                        is com.winopay.update.UpdateChecker.UpdateCheckResult.UpdateAvailable -> {
-                            // Show dialog only if update is available
-                            showUpdateDialog = true
-                        }
-                        else -> {
-                            // Don't show dialog if no update or error
-                        }
-                    }
-                }
-            }
-
             DashboardScreen(
                 onNewPayment = {
                     navController.navigate(Screen.PosFlow.route)
@@ -227,12 +210,8 @@ fun WinoNavHost(
                 }
             )
 
-            // Auto-update dialog (shown only if update available)
-            if (showUpdateDialog) {
-                com.winopay.update.UpdateDialog(
-                    onDismiss = { showUpdateDialog = false }
-                )
-            }
+            // Auto-check for Telegram updates on Dashboard start
+            com.winopay.update.AppUpdateChecker()
         }
 
         // State-driven POS flow
@@ -293,7 +272,11 @@ fun WinoNavHost(
         // ==================== SETTINGS ====================
 
         composable(Screen.Settings.route) {
-            var showUpdateDialog by remember { mutableStateOf(false) }
+            val updateViewModel: com.winopay.update.UpdateViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+            val updateInfo by updateViewModel.updateInfo.collectAsState()
+            val isChecking by updateViewModel.isChecking.collectAsState()
+            val checkError by updateViewModel.checkError.collectAsState()
+            val showNoUpdateDialog by updateViewModel.showNoUpdateDialog.collectAsState()
 
             SettingsScreen(
                 onBack = { navController.popBackStack() },
@@ -304,7 +287,12 @@ fun WinoNavHost(
                 onLanguageClick = { navController.navigate(Screen.SettingsLanguage.route) },
                 onAppearanceClick = { navController.navigate(Screen.SettingsAppearance.route) },
                 onAppInfoClick = { navController.navigate(Screen.SettingsAppInfo.route) },
-                onCheckForUpdatesClick = { showUpdateDialog = true },
+                onCheckForUpdatesClick = {
+                    updateViewModel.checkForUpdates(
+                        botToken = com.winopay.BuildConfig.TG_BOT_TOKEN,
+                        chatUsername = com.winopay.BuildConfig.TG_CHAT_ID
+                    )
+                },
                 onLogout = {
                     navController.navigate(Screen.Welcome.route) {
                         popUpTo(Screen.Dashboard.route) { inclusive = true }
@@ -312,10 +300,21 @@ fun WinoNavHost(
                 }
             )
 
-            // Update dialog
-            if (showUpdateDialog) {
+            // Status dialog (checking / no updates / error)
+            if (isChecking || checkError != null || showNoUpdateDialog) {
+                com.winopay.update.UpdateCheckDialog(
+                    isChecking = isChecking,
+                    error = checkError,
+                    showNoUpdate = showNoUpdateDialog,
+                    onDismiss = { updateViewModel.dismissCheckStatus() }
+                )
+            }
+
+            // Update available dialog
+            updateInfo?.let { info ->
                 com.winopay.update.UpdateDialog(
-                    onDismiss = { showUpdateDialog = false }
+                    updateInfo = info,
+                    onDismiss = { updateViewModel.dismissUpdate() }
                 )
             }
         }

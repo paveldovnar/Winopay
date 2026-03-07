@@ -2,6 +2,7 @@ package com.winopay.ui.screens.settings
 
 import android.net.Uri
 import androidx.compose.foundation.background
+import com.winopay.BuildConfig
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -270,8 +271,8 @@ fun SettingsScreen(
                     onClick = onAppInfoClick
                 )
 
-                // Check for updates — DEBUG builds only
-                if (UpdateChecker.isUpdateCheckEnabled()) {
+                // Check for updates (if Telegram credentials configured)
+                if (BuildConfig.TG_BOT_TOKEN.isNotBlank() && BuildConfig.TG_CHAT_ID.isNotBlank()) {
                     SettingsRow(
                         icon = { PhosphorIcons.ArrowsClockwise(size = 20.dp, color = colors.brandPrimary) },
                         iconBg = colors.bgAccentSoft,
