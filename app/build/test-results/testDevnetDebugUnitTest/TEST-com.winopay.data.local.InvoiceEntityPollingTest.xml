@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.data.local.InvoiceEntityPollingTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="USDC invoice without ATA should throw" classname="com.winopay.data.local.InvoiceEntityPollingTest" time="0.0"/>
+  <testcase name="USDC polling address should not be wallet" classname="com.winopay.data.local.InvoiceEntityPollingTest" time="0.0"/>
+  <testcase name="USDC invoice must have recipientTokenAccount" classname="com.winopay.data.local.InvoiceEntityPollingTest" time="0.0"/>
+  <testcase name="SOL invoice should NOT require ATA polling" classname="com.winopay.data.local.InvoiceEntityPollingTest" time="0.0"/>
+  <testcase name="SOL invoice should poll wallet address" classname="com.winopay.data.local.InvoiceEntityPollingTest" time="0.0"/>
+  <testcase name="USDC invoice should poll ATA address" classname="com.winopay.data.local.InvoiceEntityPollingTest" time="0.0"/>
+  <testcase name="polling address should differ between SOL and USDC" classname="com.winopay.data.local.InvoiceEntityPollingTest" time="0.0"/>
+  <testcase name="SOL invoice can have null recipientTokenAccount" classname="com.winopay.data.local.InvoiceEntityPollingTest" time="0.0"/>
+  <testcase name="USDC invoice should require ATA polling" classname="com.winopay.data.local.InvoiceEntityPollingTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

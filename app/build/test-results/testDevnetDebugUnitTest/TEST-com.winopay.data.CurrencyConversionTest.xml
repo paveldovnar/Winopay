@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.data.CurrencyConversionTest" tests="47" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.024">
+  <properties/>
+  <testcase name="RUB merchant cannot create invoice offline (no rates)" classname="com.winopay.data.CurrencyConversionTest" time="0.002"/>
+  <testcase name="roundUpToOneDecimal 123_41 becomes 123_5" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="RUB 120 rubles converts correctly with slippage and 1-decimal rounding" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="INVARIANT - RUB full pipeline maintains consistency" classname="com.winopay.data.CurrencyConversionTest" time="0.003"/>
+  <testcase name="EUR requires FX rates" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="RUB 76_65 rubles without slippage equals exactly 1 USDC" classname="com.winopay.data.CurrencyConversionTest" time="0.001"/>
+  <testcase name="USD 1 dollar converts to exactly 1_000_000 USDC minor" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="THB requires FX rates" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="RUB 76_65 rubles with slippage rounds to 1_1 USDC" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="1000 RUB must NOT equal 11_14 USDC - original bug test" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="120 RUB must NOT equal 1 USD - original bug test" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="roundUpToOneDecimal integer becomes integer with 1 decimal" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="roundUpToOneDecimal 0_00 stays 0_0" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="RUB 1000 rubles converts correctly with slippage and 1-decimal rounding" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="INVARIANT - formatAmountString rejects non-rounded amounts" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="roundUpToOneDecimal 0_01 becomes 0_1" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="USD merchant can create invoice offline (no rates)" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="roundUpToOneDecimal 123_45 becomes 123_5" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="RUB 100 rubles converts correctly with slippage and 1-decimal rounding" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="USD merchant can create invoice with rates" classname="com.winopay.data.CurrencyConversionTest" time="0.001"/>
+  <testcase name="INVARIANT - detector expectedAmountMinor equals stored amount" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="Zero amount returns zero" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="USD 10 dollars converts to exactly 10_000_000 USDC minor" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="roundUpToOneDecimal 99_99 becomes 100_0" classname="com.winopay.data.CurrencyConversionTest" time="0.001"/>
+  <testcase name="USD validation passes when rates available" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="RUB validation fails when rates unavailable" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="USD does not require FX rates" classname="com.winopay.data.CurrencyConversionTest" time="0.001"/>
+  <testcase name="No currency can create invoice with invalid amount" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="RUB merchant can create invoice when rates available" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="USD cents 1050 produces 10_5 USDC (exact)" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="INVARIANT - URL amount parsed back equals stored minor" classname="com.winopay.data.CurrencyConversionTest" time="0.01"/>
+  <testcase name="roundUpToOneDecimal already 1 decimal stays same" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="USD cents 12341 produces 123_5 USDC" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="CEILING 1-decimal rounding - tiny amounts round to 0_1 USDC" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="EUR validation fails when rates unavailable" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="USD cents 1041 produces 10_5 USDC (not 10_41)" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="USD 1 cent converts to exactly 10_000 USDC minor" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="USD validation passes even when rates unavailable" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="USD cents 1051 produces 10_6 USDC (rounded up)" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="roundUpToOneDecimal 123_50 stays 123_5" classname="com.winopay.data.CurrencyConversionTest" time="0.001"/>
+  <testcase name="INVARIANT - USD full pipeline maintains consistency" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="INVARIANT - usdcMinor must be divisible by 100000 (1 decimal precision)" classname="com.winopay.data.CurrencyConversionTest" time="0.001"/>
+  <testcase name="RUB validation passes when rates available" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="roundUpToOneDecimal 123_49 becomes 123_5" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="RUB requires FX rates" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="roundUpToOneDecimal 123_51 becomes 123_6" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <testcase name="USD 99 cents converts to exactly 990_000 USDC minor" classname="com.winopay.data.CurrencyConversionTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

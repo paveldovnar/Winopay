@@ -1,0 +1,78 @@
+[
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.winopay.app-main-81:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/drawable_ic_spinner.xml.flat",
+        "source": "com.winopay.app-main-81:/drawable/ic_spinner.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.winopay.app-main-81:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/drawable_flag_ae.xml.flat",
+        "source": "com.winopay.app-main-81:/drawable/flag_ae.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/font_albert_sans_semibold.ttf.flat",
+        "source": "com.winopay.app-main-81:/font/albert_sans_semibold.ttf"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/drawable_ic_receipt_x.xml.flat",
+        "source": "com.winopay.app-main-81:/drawable/ic_receipt_x.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/xml_data_extraction_rules.xml.flat",
+        "source": "com.winopay.app-main-81:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.winopay.app-main-81:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/drawable_ic_check_fat.xml.flat",
+        "source": "com.winopay.app-main-81:/drawable/ic_check_fat.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/drawable_flag_us.xml.flat",
+        "source": "com.winopay.app-main-81:/drawable/flag_us.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/xml_backup_rules.xml.flat",
+        "source": "com.winopay.app-main-81:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/drawable_flag_th.xml.flat",
+        "source": "com.winopay.app-main-81:/drawable/flag_th.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/font_albert_sans_bold.ttf.flat",
+        "source": "com.winopay.app-main-81:/font/albert_sans_bold.ttf"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/xml_provider_paths.xml.flat",
+        "source": "com.winopay.app-main-81:/xml/provider_paths.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/font_albert_sans_regular.ttf.flat",
+        "source": "com.winopay.app-main-81:/font/albert_sans_regular.ttf"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/drawable_flag_cn.xml.flat",
+        "source": "com.winopay.app-main-81:/drawable/flag_cn.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/font_albert_sans_medium.ttf.flat",
+        "source": "com.winopay.app-main-81:/font/albert_sans_medium.ttf"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/drawable_flag_hk.xml.flat",
+        "source": "com.winopay.app-main-81:/drawable/flag_hk.xml"
+    },
+    {
+        "merged": "com.winopay.app-devnetDebug-77:/drawable_flag_ru.xml.flat",
+        "source": "com.winopay.app-main-81:/drawable/flag_ru.xml"
+    }
+]

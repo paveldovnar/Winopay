@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.solana.pay.DualStablecoinAcceptanceTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="Dual acceptance disabled when USDT_MINT is empty (devnet)" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="USDT mint is recognized as stablecoin" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="getAllowedMints for USDT returns both stablecoins when dual acceptance enabled" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="Null mint is not stablecoin (SOL payment)" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="Dual acceptance enabled when both mints are valid (mainnet)" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="getAllowedMints for USDC returns only USDC when dual acceptance disabled" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="Random token is not recognized as stablecoin" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="No warning when paid with expected stablecoin" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="getAllowedMints for random token returns only that token" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="getAllowedMints for USDC returns both stablecoins when dual acceptance enabled" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="Warning generated when paid with different stablecoin" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="SOL invoice should poll single wallet address" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.001"/>
+  <testcase name="No warning for non-stablecoin payments" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="Mint not in allowedMints set should fail validation" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="Mint in allowedMints set should pass validation" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="actualMintUsed should be set when validation succeeds with different stablecoin" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="Stablecoin invoice should poll multiple ATAs when dual acceptance enabled" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <testcase name="USDC mint is recognized as stablecoin" classname="com.winopay.solana.pay.DualStablecoinAcceptanceTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

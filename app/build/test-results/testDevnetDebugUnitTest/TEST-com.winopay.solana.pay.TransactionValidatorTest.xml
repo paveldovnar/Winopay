@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.solana.pay.TransactionValidatorTest" tests="31" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.003">
+  <properties/>
+  <testcase name="SPL - ATA created in tx (pre=0) returns Valid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SPL - 1 unit tolerance returns Valid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SPL - wrong mint returns Invalid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="blockTime validation - blockTime after invoiceCreatedAt accepts" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="blockTime validation - invoiceCreatedAt zero rejects" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="Amount tolerance - equal is accepted" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="blockTime validation - invoiceCreatedAt negative rejects" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SPL - 2 units underpay returns Invalid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.001"/>
+  <testcase name="SPL - underpay by more than 1 unit returns Invalid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="Reference not in accountKeys returns false" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="Amount tolerance - exactly 1 unit short is accepted" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SPL - empty balance changes returns Invalid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.001"/>
+  <testcase name="blockTime validation - blockTime equal to invoiceCreatedAt accepts" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="REGRESSION - old code accepted missing transfer - now must fail" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SPL - recipient not found returns Invalid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SOL - no transfer to recipient returns Invalid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="Reference found in accountKeys returns true" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SOL - empty transfers returns Invalid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.001"/>
+  <testcase name="Empty accountKeys returns false" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SOL - overpay returns Valid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SPL - overpay returns Valid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SOL - exact amount returns Valid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="blockTime validation - blockTime zero rejects" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="Amount tolerance - overpay is accepted" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="REGRESSION - old code accepted missing recipient - now must fail" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="blockTime validation - blockTime before invoiceCreatedAt rejects" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="blockTime validation - blockTime negative rejects" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SPL - exact amount returns Valid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SPL - existing balance increased returns Valid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="SOL - underpay returns Invalid" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <testcase name="Amount tolerance - 2 units short is rejected" classname="com.winopay.solana.pay.TransactionValidatorTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.wallet.AddressNormalizerTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="isValid tron rejects invalid addresses" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="normalize unknown rail returns address as-is" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="normalize evm preserves lowercase" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="isValid evm accepts valid addresses" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="isValid evm rejects invalid addresses" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="normalize solana keeps valid base58 address unchanged" classname="com.winopay.wallet.AddressNormalizerTest" time="0.001"/>
+  <testcase name="isValid unknown rail returns false" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="normalize tron keeps valid address unchanged" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="normalize evm handles 0X prefix" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="shorten with custom lengths" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="isValid solana rejects invalid addresses" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="shorten with default params" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="normalize evm converts to lowercase" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="normalize solana trims whitespace" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="isValid tron accepts valid T-prefix addresses" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="shorten returns full address if too short" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <testcase name="isValid solana accepts valid addresses" classname="com.winopay.wallet.AddressNormalizerTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,23 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:viewportWidth="36"
+    android:viewportHeight="36">
+    <!-- UAE flag: Green-White-Black horizontal with Red vertical on left -->
+    <!-- White background/middle -->
+    <path
+        android:fillColor="#F5FBFF"
+        android:pathData="M0,0h36v36h-36z"/>
+    <!-- Green top stripe -->
+    <path
+        android:fillColor="#5DAA22"
+        android:pathData="M0,0h36v12h-36z"/>
+    <!-- Black bottom stripe -->
+    <path
+        android:fillColor="#262626"
+        android:pathData="M0,24h36v12h-36z"/>
+    <!-- Red left vertical band -->
+    <path
+        android:fillColor="#E31C1C"
+        android:pathData="M0,0h11.25v36h-11.25z"/>
+</vector>

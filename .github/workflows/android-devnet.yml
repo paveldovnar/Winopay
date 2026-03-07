@@ -1,0 +1,168 @@
+name: Android Devnet Build
+
+on:
+  # Trigger on push to main branch
+  push:
+    branches:
+      - main
+    paths:
+      - 'app/**'
+      - 'gradle/**'
+      - '*.gradle.kts'
+      - 'gradle.properties'
+
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      variant:
+        description: 'Build variant'
+        required: true
+        default: 'devnetDebug'
+        type: choice
+        options:
+          - devnetDebug
+          - devnetRelease
+
+jobs:
+  build:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for git info
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Determine build variant
+        id: variant
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            VARIANT="${{ github.event.inputs.variant }}"
+          else
+            VARIANT="devnetDebug"
+          fi
+          echo "variant=$VARIANT" >> $GITHUB_OUTPUT
+          echo "Building variant: $VARIANT"
+
+      - name: Build APK
+        env:
+          REOWN_PROJECT_ID: ${{ secrets.REOWN_PROJECT_ID }}
+        run: |
+          case "${{ steps.variant.outputs.variant }}" in
+            devnetDebug)
+              ./gradlew assembleDevnetDebug
+              ;;
+            devnetRelease)
+              ./gradlew assembleDevnetRelease
+              ;;
+            mainnetDebug)
+              ./gradlew assembleMainnetDebug
+              ;;
+            mainnetRelease)
+              # For release builds, set signing config
+              export WINOPAY_KEYSTORE_FILE=${{ secrets.KEYSTORE_FILE }}
+              export WINOPAY_KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}
+              export WINOPAY_KEY_ALIAS=${{ secrets.KEY_ALIAS }}
+              export WINOPAY_KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}
+              ./gradlew assembleMainnetRelease
+              ;;
+          esac
+
+      - name: Find APK
+        id: apk
+        run: |
+          VARIANT="${{ steps.variant.outputs.variant }}"
+          case "$VARIANT" in
+            devnetDebug)
+              APK_PATH="app/build/outputs/apk/devnet/debug/app-devnet-debug.apk"
+              ;;
+            devnetRelease)
+              APK_PATH="app/build/outputs/apk/devnet/release/app-devnet-release.apk"
+              ;;
+            mainnetDebug)
+              APK_PATH="app/build/outputs/apk/mainnet/debug/app-mainnet-debug.apk"
+              ;;
+            mainnetRelease)
+              APK_PATH="app/build/outputs/apk/mainnet/release/app-mainnet-release.apk"
+              ;;
+          esac
+
+          if [[ ! -f "$APK_PATH" ]]; then
+            echo "ERROR: APK not found at $APK_PATH"
+            exit 1
+          fi
+
+          echo "apk_path=$APK_PATH" >> $GITHUB_OUTPUT
+          echo "APK found: $APK_PATH ($(du -h "$APK_PATH" | cut -f1))"
+
+      - name: Extract version info
+        id: version
+        run: |
+          VERSION_NAME=$(grep 'versionName = ' app/build.gradle.kts | head -1 | sed 's/.*versionName = "\(.*\)".*/\1/')
+          VERSION_CODE=$(grep 'versionCode = ' app/build.gradle.kts | head -1 | sed 's/.*versionCode = \(.*\)/\1/')
+          GIT_SHA=$(git rev-parse --short HEAD)
+          GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M:%S UTC')
+
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+          echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
+          echo "git_sha=$GIT_SHA" >> $GITHUB_OUTPUT
+          echo "git_branch=$GIT_BRANCH" >> $GITHUB_OUTPUT
+          echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
+
+          echo "Version: v$VERSION_NAME ($VERSION_CODE)"
+          echo "Git: $GIT_SHA ($GIT_BRANCH)"
+          echo "Built: $TIMESTAMP"
+
+      - name: Publish to Telegram
+        if: success()
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: |
+          VARIANT="${{ steps.variant.outputs.variant }}"
+          APK_PATH="${{ steps.apk.outputs.apk_path }}"
+          VERSION_NAME="${{ steps.version.outputs.version_name }}"
+          VERSION_CODE="${{ steps.version.outputs.version_code }}"
+          GIT_SHA="${{ steps.version.outputs.git_sha }}"
+          GIT_BRANCH="${{ steps.version.outputs.git_branch }}"
+          TIMESTAMP="${{ steps.version.outputs.timestamp }}"
+
+          CAPTION="WinoPay $VARIANT v$VERSION_NAME ($VERSION_CODE)
+          Git: $GIT_SHA ($GIT_BRANCH)
+          Built: $TIMESTAMP
+
+          GitHub Actions #${{ github.run_number }}"
+
+          chmod +x scripts/publish_telegram.sh
+          ./scripts/publish_telegram.sh "$APK_PATH" "$CAPTION"
+
+      - name: Upload APK artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk-${{ steps.variant.outputs.variant }}-${{ steps.version.outputs.version_name }}-${{ steps.version.outputs.git_sha }}
+          path: ${{ steps.apk.outputs.apk_path }}
+          retention-days: 30

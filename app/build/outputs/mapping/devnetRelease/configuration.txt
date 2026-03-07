@@ -1,0 +1,2457 @@
+# The proguard configuration file for the following section is /Users/dovnar/WinoPay/app/build/intermediates/aapt_proguard_file/devnetRelease/processDevnetReleaseResources/aapt_rules.txt
+-keep class androidx.core.app.CoreComponentFactory { <init>(); }
+-keep class androidx.core.content.FileProvider { <init>(); }
+-keep class androidx.profileinstaller.ProfileInstallReceiver { <init>(); }
+-keep class androidx.room.MultiInstanceInvalidationService { <init>(); }
+-keep class androidx.startup.InitializationProvider { <init>(); }
+-keep class androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity { <init>(); }
+-keep class androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity { <init>(); }
+-keep class androidx.test.core.app.InstrumentationActivityInvoker$EmptyFloatingActivity { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.RescheduleReceiver { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.SystemAlarmService { <init>(); }
+-keep class androidx.work.impl.background.systemjob.SystemJobService { <init>(); }
+-keep class androidx.work.impl.diagnostics.DiagnosticsReceiver { <init>(); }
+-keep class androidx.work.impl.foreground.SystemForegroundService { <init>(); }
+-keep class androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver { <init>(); }
+-keep class com.google.android.datatransport.runtime.backends.TransportBackendDiscovery { <init>(); }
+-keep class com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver { <init>(); }
+-keep class com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService { <init>(); }
+-keep class com.google.android.gms.common.api.GoogleApiActivity { <init>(); }
+-keep class com.google.firebase.components.ComponentDiscoveryService { <init>(); }
+-keep class com.google.firebase.iid.FirebaseInstanceIdReceiver { <init>(); }
+-keep class com.google.firebase.messaging.FirebaseMessagingService { <init>(); }
+-keep class com.google.firebase.provider.FirebaseInitProvider { <init>(); }
+-keep class com.winopay.MainActivity { <init>(); }
+-keep class com.winopay.WinoPayApplication { <init>(); }
+-keep class android.widget.Space { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.app.AlertController$RecycleListView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.view.menu.ActionMenuItemView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.view.menu.ExpandedMenuView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.view.menu.ListMenuItemView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActionBarContainer { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActionBarContextView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActionBarOverlayLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActionMenuView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActivityChooserView$InnerLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.AlertDialogLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ButtonBarLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ContentFrameLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.DialogTitle { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.FitWindowsFrameLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.FitWindowsLinearLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.SearchView$SearchAutoComplete { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.Toolbar { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ViewStubCompat { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.core.widget.NestedScrollView { <init>(android.content.Context, android.util.AttributeSet); }
+
+
+# End of content from /Users/dovnar/WinoPay/app/build/intermediates/aapt_proguard_file/devnetRelease/processDevnetReleaseResources/aapt_rules.txt
+# The proguard configuration file for the following section is /Users/dovnar/WinoPay/app/build/intermediates/default_proguard_files/global/proguard-android-optimize.txt-8.7.3
+# This is a configuration file for ProGuard.
+# http://proguard.sourceforge.net/index.html#manual/usage.html
+#
+# Starting with version 2.2 of the Android plugin for Gradle, this file is distributed together with
+# the plugin and unpacked at build-time. The files in $ANDROID_HOME are no longer maintained and
+# will be ignored by new version of the Android plugin for Gradle.
+
+# Optimizations: If you don't want to optimize, use the proguard-android.txt configuration file
+# instead of this one, which turns off the optimization flags.
+-allowaccessmodification
+
+# Preserve some attributes that may be required for reflection.
+-keepattributes AnnotationDefault,
+                EnclosingMethod,
+                InnerClasses,
+                RuntimeVisibleAnnotations,
+                RuntimeVisibleParameterAnnotations,
+                RuntimeVisibleTypeAnnotations,
+                Signature
+
+-keep public class com.google.vending.licensing.ILicensingService
+-keep public class com.android.vending.licensing.ILicensingService
+-keep public class com.google.android.vending.licensing.ILicensingService
+-dontnote com.android.vending.licensing.ILicensingService
+-dontnote com.google.vending.licensing.ILicensingService
+-dontnote com.google.android.vending.licensing.ILicensingService
+
+# For native methods, see https://www.guardsquare.com/manual/configuration/examples#native
+-keepclasseswithmembernames,includedescriptorclasses class * {
+    native <methods>;
+}
+
+# Keep setters in Views so that animations can still work.
+-keepclassmembers public class * extends android.view.View {
+    void set*(***);
+    *** get*();
+}
+
+# We want to keep methods in Activity that could be used in the XML attribute onClick.
+-keepclassmembers class * extends android.app.Activity {
+    public void *(android.view.View);
+}
+
+# For enumeration classes, see https://www.guardsquare.com/manual/configuration/examples#enumerations
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+-keepclassmembers class * implements android.os.Parcelable {
+    public static final ** CREATOR;
+}
+
+# Preserve annotated Javascript interface methods.
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+
+# The support libraries contains references to newer platform versions.
+# Don't warn about those in case this app is linking against an older
+# platform version. We know about them, and they are safe.
+-dontnote android.support.**
+-dontnote androidx.**
+-dontwarn android.support.**
+-dontwarn androidx.**
+
+# Understand the @Keep support annotation.
+-keep class android.support.annotation.Keep
+
+-keep @android.support.annotation.Keep class * {*;}
+
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <methods>;
+}
+
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <fields>;
+}
+
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <init>(...);
+}
+
+# These classes are duplicated between android.jar and org.apache.http.legacy.jar.
+-dontnote org.apache.http.**
+-dontnote android.net.http.**
+
+# These classes are duplicated between android.jar and core-lambda-stubs.jar.
+-dontnote java.lang.invoke.**
+
+# End of content from /Users/dovnar/WinoPay/app/build/intermediates/default_proguard_files/global/proguard-android-optimize.txt-8.7.3
+# The proguard configuration file for the following section is /Users/dovnar/WinoPay/app/proguard-rules.pro
+# ═══════════════════════════════════════════════════════════════════
+# WinoPay ProGuard Rules
+# ═══════════════════════════════════════════════════════════════════
+
+# ─────────────────────────────────────────────────────────────────────
+# ROOM DATABASE
+# ─────────────────────────────────────────────────────────────────────
+# Keep Room entities and DAOs
+-keep class * extends androidx.room.RoomDatabase { *; }
+-keep @androidx.room.Entity class * { *; }
+-keep @androidx.room.Dao interface * { *; }
+
+# Keep migration classes (critical for data integrity)
+-keep class * extends androidx.room.migration.Migration { *; }
+
+# ─────────────────────────────────────────────────────────────────────
+# SOLANA / MOBILE WALLET ADAPTER
+# ─────────────────────────────────────────────────────────────────────
+-keep class org.sol4k.** { *; }
+-keep class com.funkatronics.** { *; }
+-keep class com.solana.mobilewalletadapter.** { *; }
+
+# ─────────────────────────────────────────────────────────────────────
+# ZXING (QR CODE)
+# ─────────────────────────────────────────────────────────────────────
+-keep class com.google.zxing.** { *; }
+
+# ─────────────────────────────────────────────────────────────────────
+# COIL (IMAGE LOADING)
+# ─────────────────────────────────────────────────────────────────────
+-keep class coil.** { *; }
+
+# ─────────────────────────────────────────────────────────────────────
+# KOTLIN COROUTINES
+# ─────────────────────────────────────────────────────────────────────
+-keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
+-keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
+-keepclassmembers class kotlinx.coroutines.** {
+    volatile <fields>;
+}
+
+# ─────────────────────────────────────────────────────────────────────
+# DATASTORE
+# ─────────────────────────────────────────────────────────────────────
+-keep class androidx.datastore.** { *; }
+
+# ─────────────────────────────────────────────────────────────────────
+# WORKMANAGER
+# ─────────────────────────────────────────────────────────────────────
+-keep class * extends androidx.work.Worker { *; }
+-keep class * extends androidx.work.ListenableWorker { *; }
+
+# ─────────────────────────────────────────────────────────────────────
+# JSON PARSING (org.json used in RPC calls)
+# ─────────────────────────────────────────────────────────────────────
+-keep class org.json.** { *; }
+
+# ─────────────────────────────────────────────────────────────────────
+# WINOPAY DATA CLASSES (for reflection/serialization safety)
+# ─────────────────────────────────────────────────────────────────────
+-keep class com.winopay.data.local.** { *; }
+-keep class com.winopay.payments.** { *; }
+
+# End of content from /Users/dovnar/WinoPay/app/proguard-rules.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/1090d189873e81b179a7a55e0443c66e/transformed/mobile-wallet-adapter-clientlib-ktx-2.0.3/proguard.txt
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/1090d189873e81b179a7a55e0443c66e/transformed/mobile-wallet-adapter-clientlib-ktx-2.0.3/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/a8ba59ec91ce4d128d13681bacab2501/transformed/work-runtime-2.9.1/proguard.txt
+-keep class * extends androidx.work.Worker
+-keep class * extends androidx.work.InputMerger
+# Keep all constructors on ListenableWorker, Worker
+-keep public class * extends androidx.work.ListenableWorker {
+    public <init>(...);
+}
+# We need to keep WorkerParameters for the ListenableWorker constructor
+-keep class androidx.work.WorkerParameters
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/a8ba59ec91ce4d128d13681bacab2501/transformed/work-runtime-2.9.1/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/0724cf6c28b42a9f0ee2c6cd5ae0a109/transformed/sign-1.6.8/proguard.txt
+-keepnames class com.reown.sign.common.model.vo.clientsync.common.PayloadParams
+-if class com.reown.sign.common.model.vo.clientsync.common.PayloadParams
+-keep class com.reown.sign.common.model.vo.clientsync.common.PayloadParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.common.model.vo.clientsync.common.PayloadParams
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.common.model.vo.clientsync.common.PayloadParams {
+    public synthetic <init>(java.lang.String,java.util.List,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List,java.util.Map,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.common.ProposalRequests
+-if class com.reown.sign.common.model.vo.clientsync.common.ProposalRequests
+-keep class com.reown.sign.common.model.vo.clientsync.common.ProposalRequestsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.common.ProposalRequestsResponses
+-if class com.reown.sign.common.model.vo.clientsync.common.ProposalRequestsResponses
+-keep class com.reown.sign.common.model.vo.clientsync.common.ProposalRequestsResponsesJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.common.Requester
+-if class com.reown.sign.common.model.vo.clientsync.common.Requester
+-keep class com.reown.sign.common.model.vo.clientsync.common.RequesterJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.common.SessionParticipant
+-if class com.reown.sign.common.model.vo.clientsync.common.SessionParticipant
+-keep class com.reown.sign.common.model.vo.clientsync.common.SessionParticipantJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionAuthenticate
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionAuthenticate
+-keep class com.reown.sign.common.model.vo.clientsync.session.SignRpc_SessionAuthenticateJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionAuthenticate
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionAuthenticate {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.sign.common.model.vo.clientsync.session.params.SignParams$SessionAuthenticateParams,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionDelete
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionDelete
+-keep class com.reown.sign.common.model.vo.clientsync.session.SignRpc_SessionDeleteJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionDelete
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionDelete {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.sign.common.model.vo.clientsync.session.params.SignParams$DeleteParams,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionEvent
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionEvent
+-keep class com.reown.sign.common.model.vo.clientsync.session.SignRpc_SessionEventJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionEvent
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionEvent {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.sign.common.model.vo.clientsync.session.params.SignParams$EventParams,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionExtend
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionExtend
+-keep class com.reown.sign.common.model.vo.clientsync.session.SignRpc_SessionExtendJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionExtend
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionExtend {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.sign.common.model.vo.clientsync.session.params.SignParams$ExtendParams,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionPing
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionPing
+-keep class com.reown.sign.common.model.vo.clientsync.session.SignRpc_SessionPingJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionPing
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionPing {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.sign.common.model.vo.clientsync.session.params.SignParams$PingParams,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionPropose
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionPropose
+-keep class com.reown.sign.common.model.vo.clientsync.session.SignRpc_SessionProposeJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionPropose
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionPropose {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.sign.common.model.vo.clientsync.session.params.SignParams$SessionProposeParams,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionRequest
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionRequest
+-keep class com.reown.sign.common.model.vo.clientsync.session.SignRpc_SessionRequestJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionRequest
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionRequest {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.sign.common.model.vo.clientsync.session.params.SignParams$SessionRequestParams,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionSettle
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionSettle
+-keep class com.reown.sign.common.model.vo.clientsync.session.SignRpc_SessionSettleJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionSettle
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionSettle {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.sign.common.model.vo.clientsync.session.params.SignParams$SessionSettleParams,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionUpdate
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionUpdate
+-keep class com.reown.sign.common.model.vo.clientsync.session.SignRpc_SessionUpdateJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionUpdate
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.common.model.vo.clientsync.session.SignRpc$SessionUpdate {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.sign.common.model.vo.clientsync.session.params.SignParams$UpdateNamespacesParams,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$DeleteParams
+-if class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$DeleteParams
+-keep class com.reown.sign.common.model.vo.clientsync.session.params.SignParams_DeleteParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$DeleteParams
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$DeleteParams {
+    public synthetic <init>(int,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$EventParams
+-if class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$EventParams
+-keep class com.reown.sign.common.model.vo.clientsync.session.params.SignParams_EventParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$ExtendParams
+-if class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$ExtendParams
+-keep class com.reown.sign.common.model.vo.clientsync.session.params.SignParams_ExtendParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$SessionAuthenticateParams
+-if class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$SessionAuthenticateParams
+-keep class com.reown.sign.common.model.vo.clientsync.session.params.SignParams_SessionAuthenticateParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$SessionProposeParams
+-if class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$SessionProposeParams
+-keep class com.reown.sign.common.model.vo.clientsync.session.params.SignParams_SessionProposeParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$SessionRequestParams
+-if class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$SessionRequestParams
+-keep class com.reown.sign.common.model.vo.clientsync.session.params.SignParams_SessionRequestParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$SessionSettleParams
+-if class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$SessionSettleParams
+-keep class com.reown.sign.common.model.vo.clientsync.session.params.SignParams_SessionSettleParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$UpdateNamespacesParams
+-if class com.reown.sign.common.model.vo.clientsync.session.params.SignParams$UpdateNamespacesParams
+-keep class com.reown.sign.common.model.vo.clientsync.session.params.SignParams_UpdateNamespacesParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.EngineDO$JsonRpcResponse$JsonRpcError
+-if class com.reown.sign.engine.model.EngineDO$JsonRpcResponse$JsonRpcError
+-keep class com.reown.sign.engine.model.EngineDO_JsonRpcResponse_JsonRpcErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.engine.model.EngineDO$JsonRpcResponse$JsonRpcError
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.engine.model.EngineDO$JsonRpcResponse$JsonRpcError {
+    public synthetic <init>(long,java.lang.String,com.reown.sign.engine.model.EngineDO$JsonRpcResponse$Error,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.engine.model.EngineDO$JsonRpcResponse$JsonRpcResult
+-if class com.reown.sign.engine.model.EngineDO$JsonRpcResponse$JsonRpcResult
+-keep class com.reown.sign.engine.model.EngineDO_JsonRpcResponse_JsonRpcResultJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.engine.model.EngineDO$JsonRpcResponse$JsonRpcResult
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.engine.model.EngineDO$JsonRpcResponse$JsonRpcResult {
+    public synthetic <init>(long,java.lang.String,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.BitcoinTransactionResult
+-if class com.reown.sign.engine.model.tvf.BitcoinTransactionResult
+-keep class com.reown.sign.engine.model.tvf.BitcoinTransactionResultJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.CAIP345
+-if class com.reown.sign.engine.model.tvf.CAIP345
+-keep class com.reown.sign.engine.model.tvf.CAIP345JsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.Contract
+-if class com.reown.sign.engine.model.tvf.Contract
+-keep class com.reown.sign.engine.model.tvf.ContractJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.ContractValue
+-if class com.reown.sign.engine.model.tvf.ContractValue
+-keep class com.reown.sign.engine.model.tvf.ContractValueJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.CosmosSignDirect$PubKey
+-if class com.reown.sign.engine.model.tvf.CosmosSignDirect$PubKey
+-keep class com.reown.sign.engine.model.tvf.CosmosSignDirect_PubKeyJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.CosmosSignDirect$Signature
+-if class com.reown.sign.engine.model.tvf.CosmosSignDirect$Signature
+-keep class com.reown.sign.engine.model.tvf.CosmosSignDirect_SignatureJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.CosmosSignDirect$SignatureData
+-if class com.reown.sign.engine.model.tvf.CosmosSignDirect$SignatureData
+-keep class com.reown.sign.engine.model.tvf.CosmosSignDirect_SignatureDataJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.CosmosSignDirect$Signed
+-if class com.reown.sign.engine.model.tvf.CosmosSignDirect$Signed
+-keep class com.reown.sign.engine.model.tvf.CosmosSignDirect_SignedJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.EthSendTransaction
+-if class com.reown.sign.engine.model.tvf.EthSendTransaction
+-keep class com.reown.sign.engine.model.tvf.EthSendTransactionJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.HederaSignAndExecuteTransactionResult
+-if class com.reown.sign.engine.model.tvf.HederaSignAndExecuteTransactionResult
+-keep class com.reown.sign.engine.model.tvf.HederaSignAndExecuteTransactionResultJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.NearSignTransaction$BufferData
+-if class com.reown.sign.engine.model.tvf.NearSignTransaction$BufferData
+-keep class com.reown.sign.engine.model.tvf.NearSignTransaction_BufferDataJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.Parameter
+-if class com.reown.sign.engine.model.tvf.Parameter
+-keep class com.reown.sign.engine.model.tvf.ParameterJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.PolkadotSignTransaction$RequestParams
+-if class com.reown.sign.engine.model.tvf.PolkadotSignTransaction$RequestParams
+-keep class com.reown.sign.engine.model.tvf.PolkadotSignTransaction_RequestParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.PolkadotSignTransaction$SignatureResponse
+-if class com.reown.sign.engine.model.tvf.PolkadotSignTransaction$SignatureResponse
+-keep class com.reown.sign.engine.model.tvf.PolkadotSignTransaction_SignatureResponseJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.PolkadotSignTransaction$TransactionPayload
+-if class com.reown.sign.engine.model.tvf.PolkadotSignTransaction$TransactionPayload
+-keep class com.reown.sign.engine.model.tvf.PolkadotSignTransaction_TransactionPayloadJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.engine.model.tvf.PolkadotSignTransaction$TransactionPayload
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.engine.model.tvf.PolkadotSignTransaction$TransactionPayload {
+    public synthetic <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Integer,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.RawData
+-if class com.reown.sign.engine.model.tvf.RawData
+-keep class com.reown.sign.engine.model.tvf.RawDataJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.SignAndExecute$CoinBalanceChange
+-if class com.reown.sign.engine.model.tvf.SignAndExecute$CoinBalanceChange
+-keep class com.reown.sign.engine.model.tvf.SignAndExecute_CoinBalanceChangeJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.SignAndExecute$Effects
+-if class com.reown.sign.engine.model.tvf.SignAndExecute$Effects
+-keep class com.reown.sign.engine.model.tvf.SignAndExecute_EffectsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.SignAndExecute$Event
+-if class com.reown.sign.engine.model.tvf.SignAndExecute$Event
+-keep class com.reown.sign.engine.model.tvf.SignAndExecute_EventJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.SignAndExecute$GasUsed
+-if class com.reown.sign.engine.model.tvf.SignAndExecute$GasUsed
+-keep class com.reown.sign.engine.model.tvf.SignAndExecute_GasUsedJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.SignAndExecute$ObjectChange
+-if class com.reown.sign.engine.model.tvf.SignAndExecute$ObjectChange
+-keep class com.reown.sign.engine.model.tvf.SignAndExecute_ObjectChangeJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.SignAndExecute$Status
+-if class com.reown.sign.engine.model.tvf.SignAndExecute$Status
+-keep class com.reown.sign.engine.model.tvf.SignAndExecute_StatusJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.SignAndExecute$SuiTransactionResponse
+-if class com.reown.sign.engine.model.tvf.SignAndExecute$SuiTransactionResponse
+-keep class com.reown.sign.engine.model.tvf.SignAndExecute_SuiTransactionResponseJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.SignTransaction$SignatureResult
+-if class com.reown.sign.engine.model.tvf.SignTransaction$SignatureResult
+-keep class com.reown.sign.engine.model.tvf.SignTransaction_SignatureResultJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.SolanaSignAllTransactionsResult
+-if class com.reown.sign.engine.model.tvf.SolanaSignAllTransactionsResult
+-keep class com.reown.sign.engine.model.tvf.SolanaSignAllTransactionsResultJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.SolanaSignAndSendTransactionResult
+-if class com.reown.sign.engine.model.tvf.SolanaSignAndSendTransactionResult
+-keep class com.reown.sign.engine.model.tvf.SolanaSignAndSendTransactionResultJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.SolanaSignTransactionResult
+-if class com.reown.sign.engine.model.tvf.SolanaSignTransactionResult
+-keep class com.reown.sign.engine.model.tvf.SolanaSignTransactionResultJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.sign.engine.model.tvf.SolanaSignTransactionResult
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.sign.engine.model.tvf.SolanaSignTransactionResult {
+    public synthetic <init>(java.lang.String,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.StacksTransactionData
+-if class com.reown.sign.engine.model.tvf.StacksTransactionData
+-keep class com.reown.sign.engine.model.tvf.StacksTransactionDataJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.TransactionResponse
+-if class com.reown.sign.engine.model.tvf.TransactionResponse
+-keep class com.reown.sign.engine.model.tvf.TransactionResponseJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.TransactionResult
+-if class com.reown.sign.engine.model.tvf.TransactionResult
+-keep class com.reown.sign.engine.model.tvf.TransactionResultJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.Wallet
+-if class com.reown.sign.engine.model.tvf.Wallet
+-keep class com.reown.sign.engine.model.tvf.WalletJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.WalletCapabilities
+-if class com.reown.sign.engine.model.tvf.WalletCapabilities
+-keep class com.reown.sign.engine.model.tvf.WalletCapabilitiesJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.XRPLSignTransaction$TakerPays
+-if class com.reown.sign.engine.model.tvf.XRPLSignTransaction$TakerPays
+-keep class com.reown.sign.engine.model.tvf.XRPLSignTransaction_TakerPaysJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.XRPLSignTransaction$TransactionJson
+-if class com.reown.sign.engine.model.tvf.XRPLSignTransaction$TransactionJson
+-keep class com.reown.sign.engine.model.tvf.XRPLSignTransaction_TransactionJsonJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.XRPLSignTransaction$TransactionWrapper
+-if class com.reown.sign.engine.model.tvf.XRPLSignTransaction$TransactionWrapper
+-keep class com.reown.sign.engine.model.tvf.XRPLSignTransaction_TransactionWrapperJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.XRPLSignTransactionFor$Signer
+-if class com.reown.sign.engine.model.tvf.XRPLSignTransactionFor$Signer
+-keep class com.reown.sign.engine.model.tvf.XRPLSignTransactionFor_SignerJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.XRPLSignTransactionFor$SignerWrapper
+-if class com.reown.sign.engine.model.tvf.XRPLSignTransactionFor$SignerWrapper
+-keep class com.reown.sign.engine.model.tvf.XRPLSignTransactionFor_SignerWrapperJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.XRPLSignTransactionFor$TransactionJson
+-if class com.reown.sign.engine.model.tvf.XRPLSignTransactionFor$TransactionJson
+-keep class com.reown.sign.engine.model.tvf.XRPLSignTransactionFor_TransactionJsonJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.sign.engine.model.tvf.XRPLSignTransactionFor$TransactionWrapper
+-if class com.reown.sign.engine.model.tvf.XRPLSignTransactionFor$TransactionWrapper
+-keep class com.reown.sign.engine.model.tvf.XRPLSignTransactionFor_TransactionWrapperJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/0724cf6c28b42a9f0ee2c6cd5ae0a109/transformed/sign-1.6.8/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/926d369f51a26659b27f26e1e0e2bced/transformed/android-core-1.6.8/proguard.txt
+-keep class com.squareup.moshi.** { *; }
+
+# JSR 305 annotations are for embedding nullability information.
+-dontwarn javax.annotation.**
+-adaptresourcefilenames okhttp3/internal/publicsuffix/PublicSuffixDatabase.gz
+-dontwarn org.codehaus.mojo.animal_sniffer.*
+
+-keepclasseswithmembers class * {
+    @com.squareup.moshi.* <methods>;
+}
+
+-keep @com.squareup.moshi.JsonQualifier @interface *
+
+# Enum field names are used by the integrated EnumJsonAdapter.
+# values() is synthesized by the Kotlin compiler and is used by EnumJsonAdapter indirectly
+# Annotate enums with @JsonClass(generateAdapter = false) to use them with Moshi.
+#noinspection ShrinkerUnresolvedReference
+-keepclassmembers @com.squareup.moshi.JsonClass class * extends java.lang.Enum {
+    <fields>;
+    **[] values();
+}
+
+# Keep helper method to avoid R8 optimisation that would keep all Kotlin Metadata when unwanted
+#noinspection ShrinkerUnresolvedReference
+-keepclassmembers class com.squareup.moshi.internal.Util {
+    private static java.lang.String getKotlinMetadataClassName();
+}
+
+# Keep ToJson/FromJson-annotated methods
+-keepclassmembers class * {
+  #noinspection ShrinkerUnresolvedReference
+  @com.squareup.moshi.FromJson <methods>;
+  #noinspection ShrinkerUnresolvedReference
+  @com.squareup.moshi.ToJson <methods>;
+}
+-keep class com.reown.android.** { *; }
+-keep interface com.walletconnect.** { *; }
+-keep interface com.reown.** { *; }
+-keep class kotlinx.coroutines.** { *; }
+
+-dontwarn kotlinx.coroutines.**
+-dontwarn org.conscrypt.**
+-dontwarn org.bouncycastle.**
+-dontwarn org.openjsse.**
+-dontwarn okhttp3.internal.platform.**
+
+-dontwarn groovy.lang.GroovyShell
+
+-keep,includedescriptorclasses class net.sqlcipher.** { *; }
+-keep,includedescriptorclasses interface net.sqlcipher.** { *; }
+-if interface * { @com.tinder.scarlet.ws.* <methods>; }
+-keep,allowobfuscation interface <1>
+
+-keepclassmembers,allowshrinking,allowobfuscation interface * {
+    @com.tinder.scarlet.ws.* <methods>;
+}
+-keepnames class com.reown.android.internal.Proposal$Extension
+-if class com.reown.android.internal.Proposal$Extension
+-keep class com.reown.android.internal.Proposal_ExtensionJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.Proposal
+-if class com.reown.android.internal.Proposal
+-keep class com.reown.android.internal.ProposalJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.JsonRpcResponse$Error
+-if class com.reown.android.internal.common.JsonRpcResponse$Error
+-keep class com.reown.android.internal.common.JsonRpcResponse_ErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.JsonRpcResponse$JsonRpcError
+-if class com.reown.android.internal.common.JsonRpcResponse$JsonRpcError
+-keep class com.reown.android.internal.common.JsonRpcResponse_JsonRpcErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.internal.common.JsonRpcResponse$JsonRpcError
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.internal.common.JsonRpcResponse$JsonRpcError {
+    public synthetic <init>(long,java.lang.String,com.reown.android.internal.common.JsonRpcResponse$Error,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.AppDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.AppDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.AppDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.ColorsDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.ColorsDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.ColorsDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.DappListingsDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.DappListingsDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.DappListingsDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.DesktopDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.DesktopDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.DesktopDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.ImageUrlDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.ImageUrlDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.ImageUrlDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.InjectedDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.InjectedDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.InjectedDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.ListingDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.ListingDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.ListingDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.MetadataDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.MetadataDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.MetadataDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.MobileDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.MobileDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.MobileDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.NotificationTypeDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.NotificationTypeDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.NotificationTypeDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.NotifyConfigDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.NotifyConfigDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.NotifyConfigDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.NotifyConfigDataDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.NotifyConfigDataDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.NotifyConfigDataDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.ProjectDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.ProjectDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.ProjectDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.ProjectListingDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.ProjectListingDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.ProjectListingDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.SupportedStandardDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.SupportedStandardDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.SupportedStandardDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.explorer.data.network.model.WalletDTO
+-if class com.reown.android.internal.common.explorer.data.network.model.WalletDTO
+-keep class com.reown.android.internal.common.explorer.data.network.model.WalletDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.jwt.did.EncodeIdentityKeyDidJwtPayloadUseCase$IdentityKey
+-if class com.reown.android.internal.common.jwt.did.EncodeIdentityKeyDidJwtPayloadUseCase$IdentityKey
+-keep class com.reown.android.internal.common.jwt.did.EncodeIdentityKeyDidJwtPayloadUseCase_IdentityKeyJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.internal.common.jwt.did.EncodeIdentityKeyDidJwtPayloadUseCase$IdentityKey
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.internal.common.jwt.did.EncodeIdentityKeyDidJwtPayloadUseCase$IdentityKey {
+    public synthetic <init>(java.lang.String,java.lang.String,long,long,java.lang.String,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.internal.common.modal.data.network.model.WalletDTO
+-if class com.reown.android.internal.common.modal.data.network.model.WalletDTO
+-keep class com.reown.android.internal.common.modal.data.network.model.WalletDTOJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.AppMetaData
+-if class com.reown.android.internal.common.model.AppMetaData
+-keep class com.reown.android.internal.common.model.AppMetaDataJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.internal.common.model.AppMetaData
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.internal.common.model.AppMetaData {
+    public synthetic <init>(java.lang.String,java.lang.String,java.util.List,java.lang.String,com.reown.android.internal.common.model.Redirect,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.internal.common.model.Namespace$Proposal
+-if class com.reown.android.internal.common.model.Namespace$Proposal
+-keep class com.reown.android.internal.common.model.Namespace_ProposalJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.internal.common.model.Namespace$Proposal
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.internal.common.model.Namespace$Proposal {
+    public synthetic <init>(java.util.List,java.util.List,java.util.List,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.internal.common.model.Namespace$Session
+-if class com.reown.android.internal.common.model.Namespace$Session
+-keep class com.reown.android.internal.common.model.Namespace_SessionJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.internal.common.model.Namespace$Session
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.internal.common.model.Namespace$Session {
+    public synthetic <init>(java.util.List,java.util.List,java.util.List,java.util.List,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.internal.common.model.Participant
+-if class com.reown.android.internal.common.model.Participant
+-keep class com.reown.android.internal.common.model.ParticipantJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.Redirect
+-if class com.reown.android.internal.common.model.Redirect
+-keep class com.reown.android.internal.common.model.RedirectJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.internal.common.model.Redirect
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.internal.common.model.Redirect {
+    public synthetic <init>(java.lang.String,java.lang.String,boolean,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.internal.common.model.RelayProtocolOptions
+-if class com.reown.android.internal.common.model.RelayProtocolOptions
+-keep class com.reown.android.internal.common.model.RelayProtocolOptionsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.internal.common.model.RelayProtocolOptions
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.internal.common.model.RelayProtocolOptions {
+    public synthetic <init>(java.lang.String,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.internal.common.model.SessionProposer
+-if class com.reown.android.internal.common.model.SessionProposer
+-keep class com.reown.android.internal.common.model.SessionProposerJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.params.ChatNotifyResponseAuthParams$Auth
+-if class com.reown.android.internal.common.model.params.ChatNotifyResponseAuthParams$Auth
+-keep class com.reown.android.internal.common.model.params.ChatNotifyResponseAuthParams_AuthJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.params.ChatNotifyResponseAuthParams$ResponseAuth
+-if class com.reown.android.internal.common.model.params.ChatNotifyResponseAuthParams$ResponseAuth
+-keep class com.reown.android.internal.common.model.params.ChatNotifyResponseAuthParams_ResponseAuthJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.params.CoreChatParams$ReceiptParams
+-if class com.reown.android.internal.common.model.params.CoreChatParams$ReceiptParams
+-keep class com.reown.android.internal.common.model.params.CoreChatParams_ReceiptParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.params.CoreNotifyParams$DeleteParams
+-if class com.reown.android.internal.common.model.params.CoreNotifyParams$DeleteParams
+-keep class com.reown.android.internal.common.model.params.CoreNotifyParams_DeleteParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.params.CoreNotifyParams$GetNotificationsParams
+-if class com.reown.android.internal.common.model.params.CoreNotifyParams$GetNotificationsParams
+-keep class com.reown.android.internal.common.model.params.CoreNotifyParams_GetNotificationsParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.params.CoreNotifyParams$MessageParams
+-if class com.reown.android.internal.common.model.params.CoreNotifyParams$MessageParams
+-keep class com.reown.android.internal.common.model.params.CoreNotifyParams_MessageParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.params.CoreNotifyParams$SubscribeParams
+-if class com.reown.android.internal.common.model.params.CoreNotifyParams$SubscribeParams
+-keep class com.reown.android.internal.common.model.params.CoreNotifyParams_SubscribeParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.params.CoreNotifyParams$SubscriptionsChangedParams
+-if class com.reown.android.internal.common.model.params.CoreNotifyParams$SubscriptionsChangedParams
+-keep class com.reown.android.internal.common.model.params.CoreNotifyParams_SubscriptionsChangedParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.params.CoreNotifyParams$UpdateParams
+-if class com.reown.android.internal.common.model.params.CoreNotifyParams$UpdateParams
+-keep class com.reown.android.internal.common.model.params.CoreNotifyParams_UpdateParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.params.CoreNotifyParams$WatchSubscriptionsParams
+-if class com.reown.android.internal.common.model.params.CoreNotifyParams$WatchSubscriptionsParams
+-keep class com.reown.android.internal.common.model.params.CoreNotifyParams_WatchSubscriptionsParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.params.CoreSignParams$ApprovalParams
+-if class com.reown.android.internal.common.model.params.CoreSignParams$ApprovalParams
+-keep class com.reown.android.internal.common.model.params.CoreSignParams_ApprovalParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.params.CoreSignParams$SessionAuthenticateApproveParams
+-if class com.reown.android.internal.common.model.params.CoreSignParams$SessionAuthenticateApproveParams
+-keep class com.reown.android.internal.common.model.params.CoreSignParams_SessionAuthenticateApproveParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.model.sync.ClientJsonRpc
+-if class com.reown.android.internal.common.model.sync.ClientJsonRpc
+-keep class com.reown.android.internal.common.model.sync.ClientJsonRpcJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.signing.cacao.Cacao$Header
+-if class com.reown.android.internal.common.signing.cacao.Cacao$Header
+-keep class com.reown.android.internal.common.signing.cacao.Cacao_HeaderJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.signing.cacao.Cacao$Payload
+-if class com.reown.android.internal.common.signing.cacao.Cacao$Payload
+-keep class com.reown.android.internal.common.signing.cacao.Cacao_PayloadJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.internal.common.signing.cacao.Cacao$Signature
+-if class com.reown.android.internal.common.signing.cacao.Cacao$Signature
+-keep class com.reown.android.internal.common.signing.cacao.Cacao_SignatureJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.internal.common.signing.cacao.Cacao$Signature
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.internal.common.signing.cacao.Cacao$Signature {
+    public synthetic <init>(java.lang.String,java.lang.String,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.internal.common.signing.cacao.Cacao
+-if class com.reown.android.internal.common.signing.cacao.Cacao
+-keep class com.reown.android.internal.common.signing.cacao.CacaoJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerBody$RegisterIdentity
+-if class com.reown.android.keyserver.model.KeyServerBody$RegisterIdentity
+-keep class com.reown.android.keyserver.model.KeyServerBody_RegisterIdentityJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerBody$RegisterInvite
+-if class com.reown.android.keyserver.model.KeyServerBody$RegisterInvite
+-keep class com.reown.android.keyserver.model.KeyServerBody_RegisterInviteJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerBody$UnregisterIdentity
+-if class com.reown.android.keyserver.model.KeyServerBody$UnregisterIdentity
+-keep class com.reown.android.keyserver.model.KeyServerBody_UnregisterIdentityJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerBody$UnregisterInvite
+-if class com.reown.android.keyserver.model.KeyServerBody$UnregisterInvite
+-keep class com.reown.android.keyserver.model.KeyServerBody_UnregisterInviteJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerHttpResponse$Error
+-if class com.reown.android.keyserver.model.KeyServerHttpResponse$Error
+-keep class com.reown.android.keyserver.model.KeyServerHttpResponse_ErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerHttpResponse$RegisterIdentity
+-if class com.reown.android.keyserver.model.KeyServerHttpResponse$RegisterIdentity
+-keep class com.reown.android.keyserver.model.KeyServerHttpResponse_RegisterIdentityJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerHttpResponse$RegisterInvite
+-if class com.reown.android.keyserver.model.KeyServerHttpResponse$RegisterInvite
+-keep class com.reown.android.keyserver.model.KeyServerHttpResponse_RegisterInviteJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerHttpResponse$ResolveIdentity
+-if class com.reown.android.keyserver.model.KeyServerHttpResponse$ResolveIdentity
+-keep class com.reown.android.keyserver.model.KeyServerHttpResponse_ResolveIdentityJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerHttpResponse$ResolveInvite
+-if class com.reown.android.keyserver.model.KeyServerHttpResponse$ResolveInvite
+-keep class com.reown.android.keyserver.model.KeyServerHttpResponse_ResolveInviteJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerHttpResponse$UnregisterIdentity
+-if class com.reown.android.keyserver.model.KeyServerHttpResponse$UnregisterIdentity
+-keep class com.reown.android.keyserver.model.KeyServerHttpResponse_UnregisterIdentityJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerHttpResponse$UnregisterInvite
+-if class com.reown.android.keyserver.model.KeyServerHttpResponse$UnregisterInvite
+-keep class com.reown.android.keyserver.model.KeyServerHttpResponse_UnregisterInviteJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerResponse$ResolveIdentity
+-if class com.reown.android.keyserver.model.KeyServerResponse$ResolveIdentity
+-keep class com.reown.android.keyserver.model.KeyServerResponse_ResolveIdentityJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.keyserver.model.KeyServerResponse$ResolveInvite
+-if class com.reown.android.keyserver.model.KeyServerResponse$ResolveInvite
+-keep class com.reown.android.keyserver.model.KeyServerResponse_ResolveInviteJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.pairing.model.PairingParams$DeleteParams
+-if class com.reown.android.pairing.model.PairingParams$DeleteParams
+-keep class com.reown.android.pairing.model.PairingParams_DeleteParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.pairing.model.PairingParams$DeleteParams
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.pairing.model.PairingParams$DeleteParams {
+    public synthetic <init>(int,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.pairing.model.PairingRpc$PairingDelete
+-if class com.reown.android.pairing.model.PairingRpc$PairingDelete
+-keep class com.reown.android.pairing.model.PairingRpc_PairingDeleteJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.pairing.model.PairingRpc$PairingDelete
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.pairing.model.PairingRpc$PairingDelete {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.android.pairing.model.PairingParams$DeleteParams,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.pairing.model.PairingRpc$PairingPing
+-if class com.reown.android.pairing.model.PairingRpc$PairingPing
+-keep class com.reown.android.pairing.model.PairingRpc_PairingPingJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.pairing.model.PairingRpc$PairingPing
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.pairing.model.PairingRpc$PairingPing {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.android.pairing.model.PairingParams$PingParams,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.pulse.model.Event
+-if class com.reown.android.pulse.model.Event
+-keep class com.reown.android.pulse.model.EventJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.pulse.model.Event
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.pulse.model.Event {
+    public synthetic <init>(long,java.lang.String,long,com.reown.android.pulse.model.properties.Props,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.pulse.model.properties.Properties
+-if class com.reown.android.pulse.model.properties.Properties
+-keep class com.reown.android.pulse.model.properties.PropertiesJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.pulse.model.properties.Properties
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.pulse.model.properties.Properties {
+    public synthetic <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.Boolean,java.lang.String,java.lang.String,java.util.List,java.lang.String,java.lang.Long,java.lang.String,java.lang.String,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.push.network.model.PushBody
+-if class com.reown.android.push.network.model.PushBody
+-keep class com.reown.android.push.network.model.PushBodyJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.android.push.network.model.PushBody
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.android.push.network.model.PushBody {
+    public synthetic <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.Boolean,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+-keepnames class com.reown.android.push.network.model.PushResponse$Error
+-if class com.reown.android.push.network.model.PushResponse$Error
+-keep class com.reown.android.push.network.model.PushResponse_ErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.push.network.model.PushResponse$Field
+-if class com.reown.android.push.network.model.PushResponse$Field
+-keep class com.reown.android.push.network.model.PushResponse_FieldJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.push.network.model.PushResponse
+-if class com.reown.android.push.network.model.PushResponse
+-keep class com.reown.android.push.network.model.PushResponseJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.verify.model.JWK
+-if class com.reown.android.verify.model.JWK
+-keep class com.reown.android.verify.model.JWKJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.verify.model.Origin
+-if class com.reown.android.verify.model.Origin
+-keep class com.reown.android.verify.model.OriginJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.verify.model.RegisterAttestationBody
+-if class com.reown.android.verify.model.RegisterAttestationBody
+-keep class com.reown.android.verify.model.RegisterAttestationBodyJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.verify.model.VerifyClaims
+-if class com.reown.android.verify.model.VerifyClaims
+-keep class com.reown.android.verify.model.VerifyClaimsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.verify.model.VerifyServerPublicKey
+-if class com.reown.android.verify.model.VerifyServerPublicKey
+-keep class com.reown.android.verify.model.VerifyServerPublicKeyJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.verify.model.VerifyServerResponse$Error
+-if class com.reown.android.verify.model.VerifyServerResponse$Error
+-keep class com.reown.android.verify.model.VerifyServerResponse_ErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.verify.model.VerifyServerResponse$RegisterAttestation
+-if class com.reown.android.verify.model.VerifyServerResponse$RegisterAttestation
+-keep class com.reown.android.verify.model.VerifyServerResponse_RegisterAttestationJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+-keepnames class com.reown.android.verify.model.VerifyServerResponse$ResolveAttestation
+-if class com.reown.android.verify.model.VerifyServerResponse$ResolveAttestation
+-keep class com.reown.android.verify.model.VerifyServerResponse_ResolveAttestationJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/926d369f51a26659b27f26e1e0e2bced/transformed/android-core-1.6.8/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/d630c647ddba10cfed6af968098f2cd7/transformed/appcompat-1.7.1/proguard.txt
+# Copyright (C) 2018 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Never inline methods, but allow shrinking and obfuscation.
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.appcompat.widget.AppCompatTextViewAutoSizeHelper$Impl* {
+  <methods>;
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/d630c647ddba10cfed6af968098f2cd7/transformed/appcompat-1.7.1/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/deeb987cd54a79f6a9b4e313d2cb54f6/transformed/navigation-common-2.8.5/proguard.txt
+# Copyright (C) 2019 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# NavArgsLazy creates NavArgs instances using reflection
+-if public class ** implements androidx.navigation.NavArgs
+-keepclassmembers public class <1> {
+    ** fromBundle(android.os.Bundle);
+}
+
+# Retain the @Navigator.Name annotation on each subclass of Navigator.
+# R8 full mode only retains annotations on items matched by a -keep rule,
+# hence the extra -keep rule for the subclasses of Navigator.
+#
+# A -keep rule for the Navigator.Name annotation class is not required
+# since the annotation is referenced from the code.
+-keepattributes RuntimeVisibleAnnotations
+-keep,allowobfuscation,allowshrinking class * extends androidx.navigation.Navigator
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/deeb987cd54a79f6a9b4e313d2cb54f6/transformed/navigation-common-2.8.5/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/8f31ff1645d91807d78dd5a05fa42af8/transformed/play-services-base-18.0.1/proguard.txt
+# b/35135904 Ensure that proguard will not strip the mResultGuardian.
+-keepclassmembers class com.google.android.gms.common.api.internal.BasePendingResult {
+  com.google.android.gms.common.api.internal.BasePendingResult$ReleasableResultGuardian mResultGuardian;
+}
+
+
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/8f31ff1645d91807d78dd5a05fa42af8/transformed/play-services-base-18.0.1/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/b33965b374597016d4fbd9bca2afd3b1/transformed/firebase-common-21.0.0/proguard.txt
+-dontwarn com.google.firebase.platforminfo.KotlinDetector
+-dontwarn com.google.auto.value.AutoValue
+-dontwarn com.google.auto.value.AutoValue$Builder
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/b33965b374597016d4fbd9bca2afd3b1/transformed/firebase-common-21.0.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/2b5ffc4cc55226eee6416c9703e4c3b6/transformed/room-runtime/proguard.txt
+-keep class * extends androidx.room.RoomDatabase { void <init>(); }
+-dontwarn androidx.room.paging.**
+-dontwarn androidx.lifecycle.LiveData
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/2b5ffc4cc55226eee6416c9703e4c3b6/transformed/room-runtime/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/4006a6e1650124aa9d5a41f061183d4a/transformed/room-ktx-2.8.4/proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/4006a6e1650124aa9d5a41f061183d4a/transformed/room-ktx-2.8.4/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/f7b7b9ac90607f881be290a5a0dbab88/transformed/lifecycle-viewmodel-savedstate-release/proguard.txt
+-keepclassmembers,allowobfuscation class * extends androidx.lifecycle.ViewModel {
+    <init>(androidx.lifecycle.SavedStateHandle);
+}
+
+-keepclassmembers,allowobfuscation class * extends androidx.lifecycle.AndroidViewModel {
+    <init>(android.app.Application,androidx.lifecycle.SavedStateHandle);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/f7b7b9ac90607f881be290a5a0dbab88/transformed/lifecycle-viewmodel-savedstate-release/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/3f692b328cb9e8c68cc1ec75397b450f/transformed/lifecycle-viewmodel-compose-release/proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/3f692b328cb9e8c68cc1ec75397b450f/transformed/lifecycle-viewmodel-compose-release/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/dc4e91515c81025755748023f66647f9/transformed/lifecycle-runtime-compose-release/proguard.txt
+# Workaround for https://issuetracker.google.com/issues/346808608
+#
+# `androidx.lifecycle.compose.LocalLifecycleOwner` will reflectively lookup for
+# `androidx.compose.ui.platform.LocalLifecycleOwner` to ensure backward compatibility
+# when using Lifecycle 2.8+ with Compose 1.6.
+#
+# We need to keep the getter if the code using this is included.
+#
+# We need to suppress `ShrinkerUnresolvedReference` because the `LocalComposition` is in a
+# different module.
+#
+#noinspection ShrinkerUnresolvedReference
+-if public class androidx.compose.ui.platform.AndroidCompositionLocals_androidKt {
+    public static *** getLocalLifecycleOwner();
+}
+-keep public class androidx.compose.ui.platform.AndroidCompositionLocals_androidKt {
+    public static *** getLocalLifecycleOwner();
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/dc4e91515c81025755748023f66647f9/transformed/lifecycle-runtime-compose-release/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/b09ead3438e3abe50347ca76b6b30f11/transformed/lifecycle-runtime-release/proguard.txt
+-keepattributes AnnotationDefault,
+                RuntimeVisibleAnnotations,
+                RuntimeVisibleParameterAnnotations,
+                RuntimeVisibleTypeAnnotations
+
+-keepclassmembers enum androidx.lifecycle.Lifecycle$Event {
+    <fields>;
+}
+
+-keep class * implements androidx.lifecycle.GeneratedAdapter {
+    <init>(...);
+}
+
+-keepclassmembers class ** {
+    @androidx.lifecycle.OnLifecycleEvent *;
+}
+
+# The deprecated `android.app.Fragment` creates `Fragment` instances using reflection.
+# See: b/338958225, b/341537875
+-keepclasseswithmembers,allowobfuscation public class androidx.lifecycle.ReportFragment {
+    public <init>();
+}
+
+# this rule is need to work properly when app is compiled with api 28, see b/142778206
+# Also this rule prevents registerIn from being inlined.
+-keepclassmembers class androidx.lifecycle.ReportFragment$LifecycleCallbacks { *; }
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/b09ead3438e3abe50347ca76b6b30f11/transformed/lifecycle-runtime-release/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/96a80e4c6c04974422429baebfa76a81/transformed/lifecycle-livedata-core-ktx-2.9.0/proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/96a80e4c6c04974422429baebfa76a81/transformed/lifecycle-livedata-core-ktx-2.9.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/a6e0eacac34adf11247d831ab1b49dcb/transformed/lifecycle-process-2.9.0/proguard.txt
+# this rule is need to work properly when app is compiled with api 28, see b/142778206
+-keepclassmembers class * extends androidx.lifecycle.EmptyActivityLifecycleCallbacks { *; }
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/a6e0eacac34adf11247d831ab1b49dcb/transformed/lifecycle-process-2.9.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/8f11cb07bbd0f3bb56a82c97d5d6d034/transformed/savedstate-ktx-1.3.0/proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/8f11cb07bbd0f3bb56a82c97d5d6d034/transformed/savedstate-ktx-1.3.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/c3d553559a7aa14c84825dc62941b82f/transformed/savedstate-release/proguard.txt
+# Copyright (C) 2019 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+-keepclassmembers,allowobfuscation class * implements androidx.savedstate.SavedStateRegistry$AutoRecreated {
+    <init>();
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/c3d553559a7aa14c84825dc62941b82f/transformed/savedstate-release/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/caf6ba40512ef7e83114ad5fde8f0897/transformed/lifecycle-viewmodel-release/proguard.txt
+-keepclassmembers,allowobfuscation class * extends androidx.lifecycle.ViewModel {
+    <init>();
+}
+
+-keepclassmembers,allowobfuscation class * extends androidx.lifecycle.AndroidViewModel {
+    <init>(android.app.Application);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/caf6ba40512ef7e83114ad5fde8f0897/transformed/lifecycle-viewmodel-release/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/c38e28c3b29f5deaaaeb94b273d81615/transformed/lifecycle-service-2.9.0/proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/c38e28c3b29f5deaaaeb94b273d81615/transformed/lifecycle-service-2.9.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/01e1b486e190543c617afc26beac3035/transformed/lifecycle-livedata-core-2.9.0/proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/01e1b486e190543c617afc26beac3035/transformed/lifecycle-livedata-core-2.9.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/9523fc9efa0918420d40b76b5a39a90b/transformed/lifecycle-livedata-2.9.0/proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/9523fc9efa0918420d40b76b5a39a90b/transformed/lifecycle-livedata-2.9.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/7ac2eda1e000e4437a9625112e74679a/transformed/rules/lib/META-INF/proguard/androidx-lifecycle-lifecycle-common-java8.pro
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/7ac2eda1e000e4437a9625112e74679a/transformed/rules/lib/META-INF/proguard/androidx-lifecycle-lifecycle-common-java8.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/afedc8e7f04505aae792eaf287f016d1/transformed/lifecycle-viewmodel-ktx-2.9.0/proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/afedc8e7f04505aae792eaf287f016d1/transformed/lifecycle-viewmodel-ktx-2.9.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/d1885d37496cd64f0017b506c30f128d/transformed/runtime-release/proguard.txt
+-assumenosideeffects public class androidx.compose.runtime.ComposerKt {
+    void sourceInformation(androidx.compose.runtime.Composer,java.lang.String);
+    void sourceInformationMarkerStart(androidx.compose.runtime.Composer,int,java.lang.String);
+    void sourceInformationMarkerEnd(androidx.compose.runtime.Composer);
+}
+
+# Composer's class initializer doesn't do anything but create an EMPTY object. Marking the
+# initializers as having no side effects can help encourage shrinkers to merge/devirtualize Composer
+# with ComposerImpl.
+-assumenosideeffects public class androidx.compose.runtime.Composer {
+    void <clinit>();
+}
+-assumenosideeffects public class androidx.compose.runtime.ComposerImpl {
+    void <clinit>();
+}
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/d1885d37496cd64f0017b506c30f128d/transformed/runtime-release/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/148b6c0490c7b6cddb89cd3e705850e0/transformed/rules/lib/META-INF/com.android.tools/r8-from-1.6.0/coroutines.pro
+# Allow R8 to optimize away the FastServiceLoader.
+# Together with ServiceLoader optimization in R8
+# this results in direct instantiation when loading Dispatchers.Main
+-assumenosideeffects class kotlinx.coroutines.internal.MainDispatcherLoader {
+    boolean FAST_SERVICE_LOADER_ENABLED return false;
+}
+
+-assumenosideeffects class kotlinx.coroutines.internal.FastServiceLoaderKt {
+    boolean ANDROID_DETECTED return true;
+}
+
+# Disable support for "Missing Main Dispatcher", since we always have Android main dispatcher
+-assumenosideeffects class kotlinx.coroutines.internal.MainDispatchersKt {
+    boolean SUPPORT_MISSING return false;
+}
+
+# Statically turn off all debugging facilities and assertions
+-assumenosideeffects class kotlinx.coroutines.DebugKt {
+    boolean getASSERTIONS_ENABLED() return false;
+    boolean getDEBUG() return false;
+    boolean getRECOVER_STACK_TRACES() return false;
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/148b6c0490c7b6cddb89cd3e705850e0/transformed/rules/lib/META-INF/com.android.tools/r8-from-1.6.0/coroutines.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/b7078a43534458621969ce0550ace984/transformed/rules/lib/META-INF/proguard/androidx.datastore_datastore-preferences-core.pro
+-keepclassmembers class * extends androidx.datastore.preferences.protobuf.GeneratedMessageLite {
+    <fields>;
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/b7078a43534458621969ce0550ace984/transformed/rules/lib/META-INF/proguard/androidx.datastore_datastore-preferences-core.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.crypto.data.repository.model.IrnJwtClaims.pro
+-keepnames class com.reown.foundation.crypto.data.repository.model.IrnJwtClaims
+-if class com.reown.foundation.crypto.data.repository.model.IrnJwtClaims
+-keep class com.reown.foundation.crypto.data.repository.model.IrnJwtClaimsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.crypto.data.repository.model.IrnJwtClaims.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscription.Request.Params.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Subscription$Request$Params
+-if class com.reown.foundation.network.model.RelayDTO$Subscription$Request$Params
+-keep class com.reown.foundation.network.model.RelayDTO_Subscription_Request_ParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscription.Request.Params.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ApproveSession.Request.Params.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$ApproveSession$Request$Params
+-if class com.reown.foundation.network.model.RelayDTO$ApproveSession$Request$Params
+-keep class com.reown.foundation.network.model.RelayDTO_ApproveSession_Request_ParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ApproveSession.Request.Params.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscribe.Result.Acknowledgement.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Subscribe$Result$Acknowledgement
+-if class com.reown.foundation.network.model.RelayDTO$Subscribe$Result$Acknowledgement
+-keep class com.reown.foundation.network.model.RelayDTO_Subscribe_Result_AcknowledgementJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$Subscribe$Result$Acknowledgement
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$Subscribe$Result$Acknowledgement {
+    public synthetic <init>(long,java.lang.String,com.reown.foundation.common.model.SubscriptionId,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscribe.Result.Acknowledgement.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.BatchSubscribe.Request.Params.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Request$Params
+-if class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Request$Params
+-keep class com.reown.foundation.network.model.RelayDTO_BatchSubscribe_Request_ParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.BatchSubscribe.Request.Params.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscription.Request.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Subscription$Request
+-if class com.reown.foundation.network.model.RelayDTO$Subscription$Request
+-keep class com.reown.foundation.network.model.RelayDTO_Subscription_RequestJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$Subscription$Request
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$Subscription$Request {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.foundation.network.model.RelayDTO$Subscription$Request$Params,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscription.Request.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ProposeSession.Result.JsonRpcError.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$ProposeSession$Result$JsonRpcError
+-if class com.reown.foundation.network.model.RelayDTO$ProposeSession$Result$JsonRpcError
+-keep class com.reown.foundation.network.model.RelayDTO_ProposeSession_Result_JsonRpcErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$ProposeSession$Result$JsonRpcError
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$ProposeSession$Result$JsonRpcError {
+    public synthetic <init>(java.lang.String,com.reown.foundation.network.model.RelayDTO$Error,long,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ProposeSession.Result.JsonRpcError.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ApproveSession.Result.Acknowledgement.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$ApproveSession$Result$Acknowledgement
+-if class com.reown.foundation.network.model.RelayDTO$ApproveSession$Result$Acknowledgement
+-keep class com.reown.foundation.network.model.RelayDTO_ApproveSession_Result_AcknowledgementJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$ApproveSession$Result$Acknowledgement
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$ApproveSession$Result$Acknowledgement {
+    public synthetic <init>(long,java.lang.String,boolean,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ApproveSession.Result.Acknowledgement.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ApproveSession.Result.JsonRpcError.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$ApproveSession$Result$JsonRpcError
+-if class com.reown.foundation.network.model.RelayDTO$ApproveSession$Result$JsonRpcError
+-keep class com.reown.foundation.network.model.RelayDTO_ApproveSession_Result_JsonRpcErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$ApproveSession$Result$JsonRpcError
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$ApproveSession$Result$JsonRpcError {
+    public synthetic <init>(java.lang.String,com.reown.foundation.network.model.RelayDTO$Error,long,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ApproveSession.Result.JsonRpcError.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Unsubscribe.Request.Params.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Request$Params
+-if class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Request$Params
+-keep class com.reown.foundation.network.model.RelayDTO_Unsubscribe_Request_ParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Unsubscribe.Request.Params.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.BatchSubscribe.Result.Acknowledgement.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Result$Acknowledgement
+-if class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Result$Acknowledgement
+-keep class com.reown.foundation.network.model.RelayDTO_BatchSubscribe_Result_AcknowledgementJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Result$Acknowledgement
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Result$Acknowledgement {
+    public synthetic <init>(long,java.lang.String,java.util.List,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.BatchSubscribe.Result.Acknowledgement.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.BatchSubscribe.Request.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Request
+-if class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Request
+-keep class com.reown.foundation.network.model.RelayDTO_BatchSubscribe_RequestJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Request
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Request {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Request$Params,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.BatchSubscribe.Request.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.BatchSubscribe.Result.JsonRpcError.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Result$JsonRpcError
+-if class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Result$JsonRpcError
+-keep class com.reown.foundation.network.model.RelayDTO_BatchSubscribe_Result_JsonRpcErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Result$JsonRpcError
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$BatchSubscribe$Result$JsonRpcError {
+    public synthetic <init>(java.lang.String,com.reown.foundation.network.model.RelayDTO$Error,long,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.BatchSubscribe.Result.JsonRpcError.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscription.Request.Params.SubscriptionData.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Subscription$Request$Params$SubscriptionData
+-if class com.reown.foundation.network.model.RelayDTO$Subscription$Request$Params$SubscriptionData
+-keep class com.reown.foundation.network.model.RelayDTO_Subscription_Request_Params_SubscriptionDataJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscription.Request.Params.SubscriptionData.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Unsubscribe.Result.Acknowledgement.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Result$Acknowledgement
+-if class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Result$Acknowledgement
+-keep class com.reown.foundation.network.model.RelayDTO_Unsubscribe_Result_AcknowledgementJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Result$Acknowledgement
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Result$Acknowledgement {
+    public synthetic <init>(long,java.lang.String,boolean,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Unsubscribe.Result.Acknowledgement.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscription.Result.Acknowledgement.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Subscription$Result$Acknowledgement
+-if class com.reown.foundation.network.model.RelayDTO$Subscription$Result$Acknowledgement
+-keep class com.reown.foundation.network.model.RelayDTO_Subscription_Result_AcknowledgementJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$Subscription$Result$Acknowledgement
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$Subscription$Result$Acknowledgement {
+    public synthetic <init>(long,java.lang.String,boolean,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscription.Result.Acknowledgement.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ApproveSession.Request.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$ApproveSession$Request
+-if class com.reown.foundation.network.model.RelayDTO$ApproveSession$Request
+-keep class com.reown.foundation.network.model.RelayDTO_ApproveSession_RequestJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$ApproveSession$Request
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$ApproveSession$Request {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.foundation.network.model.RelayDTO$ApproveSession$Request$Params,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ApproveSession.Request.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Error.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Error
+-if class com.reown.foundation.network.model.RelayDTO$Error
+-keep class com.reown.foundation.network.model.RelayDTO_ErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Error.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Publish.Request.Params.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Publish$Request$Params
+-if class com.reown.foundation.network.model.RelayDTO$Publish$Request$Params
+-keep class com.reown.foundation.network.model.RelayDTO_Publish_Request_ParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Publish.Request.Params.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Publish.Request.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Publish$Request
+-if class com.reown.foundation.network.model.RelayDTO$Publish$Request
+-keep class com.reown.foundation.network.model.RelayDTO_Publish_RequestJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$Publish$Request
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$Publish$Request {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.foundation.network.model.RelayDTO$Publish$Request$Params,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Publish.Request.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ProposeSession.Result.Acknowledgement.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$ProposeSession$Result$Acknowledgement
+-if class com.reown.foundation.network.model.RelayDTO$ProposeSession$Result$Acknowledgement
+-keep class com.reown.foundation.network.model.RelayDTO_ProposeSession_Result_AcknowledgementJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$ProposeSession$Result$Acknowledgement
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$ProposeSession$Result$Acknowledgement {
+    public synthetic <init>(long,java.lang.String,boolean,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ProposeSession.Result.Acknowledgement.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscription.Result.JsonRpcError.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Subscription$Result$JsonRpcError
+-if class com.reown.foundation.network.model.RelayDTO$Subscription$Result$JsonRpcError
+-keep class com.reown.foundation.network.model.RelayDTO_Subscription_Result_JsonRpcErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$Subscription$Result$JsonRpcError
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$Subscription$Result$JsonRpcError {
+    public synthetic <init>(java.lang.String,com.reown.foundation.network.model.RelayDTO$Error,long,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscription.Result.JsonRpcError.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ProposeSession.Request.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$ProposeSession$Request
+-if class com.reown.foundation.network.model.RelayDTO$ProposeSession$Request
+-keep class com.reown.foundation.network.model.RelayDTO_ProposeSession_RequestJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$ProposeSession$Request
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$ProposeSession$Request {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.foundation.network.model.RelayDTO$ProposeSession$Request$Params,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ProposeSession.Request.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscribe.Request.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Subscribe$Request
+-if class com.reown.foundation.network.model.RelayDTO$Subscribe$Request
+-keep class com.reown.foundation.network.model.RelayDTO_Subscribe_RequestJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$Subscribe$Request
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$Subscribe$Request {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.foundation.network.model.RelayDTO$Subscribe$Request$Params,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscribe.Request.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscribe.Result.JsonRpcError.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Subscribe$Result$JsonRpcError
+-if class com.reown.foundation.network.model.RelayDTO$Subscribe$Result$JsonRpcError
+-keep class com.reown.foundation.network.model.RelayDTO_Subscribe_Result_JsonRpcErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$Subscribe$Result$JsonRpcError
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$Subscribe$Result$JsonRpcError {
+    public synthetic <init>(java.lang.String,com.reown.foundation.network.model.RelayDTO$Error,long,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscribe.Result.JsonRpcError.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Publish.Result.JsonRpcError.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Publish$Result$JsonRpcError
+-if class com.reown.foundation.network.model.RelayDTO$Publish$Result$JsonRpcError
+-keep class com.reown.foundation.network.model.RelayDTO_Publish_Result_JsonRpcErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$Publish$Result$JsonRpcError
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$Publish$Result$JsonRpcError {
+    public synthetic <init>(java.lang.String,com.reown.foundation.network.model.RelayDTO$Error,long,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Publish.Result.JsonRpcError.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Publish.Result.Acknowledgement.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Publish$Result$Acknowledgement
+-if class com.reown.foundation.network.model.RelayDTO$Publish$Result$Acknowledgement
+-keep class com.reown.foundation.network.model.RelayDTO_Publish_Result_AcknowledgementJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$Publish$Result$Acknowledgement
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$Publish$Result$Acknowledgement {
+    public synthetic <init>(long,java.lang.String,boolean,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Publish.Result.Acknowledgement.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.util.jwt.JwtHeader.pro
+-keepnames class com.reown.foundation.util.jwt.JwtHeader
+-if class com.reown.foundation.util.jwt.JwtHeader
+-keep class com.reown.foundation.util.jwt.JwtHeaderJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.util.jwt.JwtHeader
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.util.jwt.JwtHeader {
+    public synthetic <init>(java.lang.String,java.lang.String,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.util.jwt.JwtHeader.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ProposeSession.Request.Params.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$ProposeSession$Request$Params
+-if class com.reown.foundation.network.model.RelayDTO$ProposeSession$Request$Params
+-keep class com.reown.foundation.network.model.RelayDTO_ProposeSession_Request_ParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.ProposeSession.Request.Params.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Unsubscribe.Request.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Request
+-if class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Request
+-keep class com.reown.foundation.network.model.RelayDTO_Unsubscribe_RequestJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Request
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Request {
+    public synthetic <init>(long,java.lang.String,java.lang.String,com.reown.foundation.network.model.RelayDTO$Unsubscribe$Request$Params,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Unsubscribe.Request.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscribe.Request.Params.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Subscribe$Request$Params
+-if class com.reown.foundation.network.model.RelayDTO$Subscribe$Request$Params
+-keep class com.reown.foundation.network.model.RelayDTO_Subscribe_Request_ParamsJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Subscribe.Request.Params.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Unsubscribe.Result.JsonRpcError.pro
+-keepnames class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Result$JsonRpcError
+-if class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Result$JsonRpcError
+-keep class com.reown.foundation.network.model.RelayDTO_Unsubscribe_Result_JsonRpcErrorJsonAdapter {
+    public <init>(com.squareup.moshi.Moshi);
+}
+-if class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Result$JsonRpcError
+-keepnames class kotlin.jvm.internal.DefaultConstructorMarker
+-keepclassmembers class com.reown.foundation.network.model.RelayDTO$Unsubscribe$Result$JsonRpcError {
+    public synthetic <init>(java.lang.String,com.reown.foundation.network.model.RelayDTO$Error,long,int,kotlin.jvm.internal.DefaultConstructorMarker);
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/bb1db8231d26856b0ad1daef61a1b240/transformed/rules/lib/META-INF/proguard/moshi-com.reown.foundation.network.model.RelayDTO.Unsubscribe.Result.JsonRpcError.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/7f3affb9ab2c5e7aa5bc374982e17378/transformed/rules/lib/META-INF/com.android.tools/r8/coroutines.pro
+# When editing this file, update the following files as well:
+# - META-INF/proguard/coroutines.pro
+# - META-INF/com.android.tools/proguard/coroutines.pro
+
+# Most of volatile fields are updated with AFU and should not be mangled
+-keepclassmembers class kotlinx.coroutines.** {
+    volatile <fields>;
+}
+
+# Same story for the standard library's SafeContinuation that also uses AtomicReferenceFieldUpdater
+-keepclassmembers class kotlin.coroutines.SafeContinuation {
+    volatile <fields>;
+}
+
+# These classes are only required by kotlinx.coroutines.debug.internal.AgentPremain, which is only loaded when
+# kotlinx-coroutines-core is used as a Java agent, so these are not needed in contexts where ProGuard is used.
+-dontwarn java.lang.instrument.ClassFileTransformer
+-dontwarn sun.misc.SignalHandler
+-dontwarn java.lang.instrument.Instrumentation
+-dontwarn sun.misc.Signal
+
+# Only used in `kotlinx.coroutines.internal.ExceptionsConstructor`.
+# The case when it is not available is hidden in a `try`-`catch`, as well as a check for Android.
+-dontwarn java.lang.ClassValue
+
+# An annotation used for build tooling, won't be directly accessed.
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/7f3affb9ab2c5e7aa5bc374982e17378/transformed/rules/lib/META-INF/com.android.tools/r8/coroutines.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/c9b4bf118c2484440e193c2c3feede85/transformed/play-services-tasks-18.1.0/proguard.txt
+
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/c9b4bf118c2484440e193c2c3feede85/transformed/play-services-tasks-18.1.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/699b9523df2d9b1e018dd18dde297951/transformed/play-services-basement-18.3.0/proguard.txt
+# Needed when building against pre-Marshmallow SDK.
+-dontwarn android.security.NetworkSecurityPolicy
+
+# Needed when building against Marshmallow SDK.
+-dontwarn android.app.Notification
+
+# Protobuf has references not on the Android boot classpath
+-dontwarn sun.misc.Unsafe
+-dontwarn libcore.io.Memory
+
+# Annotations used during internal SDK shrinking.
+-dontwarn com.google.android.apps.common.proguard.UsedBy*
+-dontwarn com.google.android.apps.common.proguard.SideEffectFree
+
+# Annotations referenced by the SDK but whose definitions are contained in
+# non-required dependencies.
+-dontwarn javax.annotation.**
+-dontwarn org.checkerframework.**
+-dontwarn com.google.errorprone.annotations.**
+-dontwarn org.jspecify.nullness.NullMarked
+
+# Annotations no longer exist. Suppression prevents ProGuard failures in
+# SDKs which depend on earlier versions of play-services-basement.
+-dontwarn com.google.android.gms.common.util.VisibleForTesting
+
+# Proguard flags for consumers of the Google Play services SDK
+# https://developers.google.com/android/guides/setup#add_google_play_services_to_your_project
+
+# Keep SafeParcelable NULL value, needed for reflection by DowngradeableSafeParcel
+-keepclassmembers public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {
+    public static final *** NULL;
+}
+
+# Needed for Parcelable/SafeParcelable classes & their creators to not get renamed, as they are
+# found via reflection.
+-keep class com.google.android.gms.common.internal.ReflectedParcelable
+-keepnames class * implements com.google.android.gms.common.internal.ReflectedParcelable
+-keepclassmembers class * implements android.os.Parcelable {
+  public static final *** CREATOR;
+}
+
+# Keep the classes/members we need for client functionality.
+-keep @interface android.support.annotation.Keep
+-keep @androidx.annotation.Keep class *
+-keepclasseswithmembers class * {
+  @androidx.annotation.Keep <fields>;
+}
+-keepclasseswithmembers class * {
+  @androidx.annotation.Keep <methods>;
+}
+
+# Keep androidX equivalent of above android.support to allow Jetification.
+-keep @interface androidx.annotation.Keep
+-keep @androidx.annotation.Keep class *
+-keepclasseswithmembers class * {
+  @androidx.annotation.Keep <fields>;
+}
+-keepclasseswithmembers class * {
+  @androidx.annotation.Keep <methods>;
+}
+
+# Keep the names of classes/members we need for client functionality.
+-keep @interface com.google.android.gms.common.annotation.KeepName
+-keepnames @com.google.android.gms.common.annotation.KeepName class *
+-keepclassmembernames class * {
+  @com.google.android.gms.common.annotation.KeepName *;
+}
+
+# Keep Dynamite API entry points
+-keep @interface com.google.android.gms.common.util.DynamiteApi
+-keep @com.google.android.gms.common.util.DynamiteApi public class * {
+  public <fields>;
+  public <methods>;
+}
+
+
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/699b9523df2d9b1e018dd18dde297951/transformed/play-services-basement-18.3.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/673251f716f51bea1d24b96bd65d9b62/transformed/fragment-1.8.8/proguard.txt
+# Copyright (C) 2020 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# The default FragmentFactory creates Fragment instances using reflection
+-if public class ** extends androidx.fragment.app.Fragment
+-keepclasseswithmembers,allowobfuscation public class <1> {
+    public <init>();
+}
+
+# FragmentTransition will reflectively lookup:
+# androidx.transition.FragmentTransitionSupport
+# We should ensure that we keep the constructor if the code using this is alive
+-if class androidx.fragment.app.FragmentTransition {
+   private static androidx.fragment.app.FragmentTransitionImpl resolveSupportImpl();
+}
+-keep class androidx.transition.FragmentTransitionSupport {
+    public <init>();
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/673251f716f51bea1d24b96bd65d9b62/transformed/fragment-1.8.8/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/541610f55ec6056eaefc38f98457fbbf/transformed/ui-release/proguard.txt
+# Copyright (C) 2020 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# We supply these as stubs and are able to link to them at runtime
+# because they are hidden public classes in Android. We don't want
+# R8 to complain about them not being there during optimization.
+-dontwarn android.view.RenderNode
+-dontwarn android.view.DisplayListCanvas
+-dontwarn android.view.HardwareCanvas
+
+-keepclassmembers class androidx.compose.ui.platform.ViewLayerContainer {
+    protected void dispatchGetDisplayList();
+}
+
+-keepclassmembers class androidx.compose.ui.platform.AndroidComposeView {
+    android.view.View findViewByAccessibilityIdTraversal(int);
+}
+
+# Users can create Modifier.Node instances that implement multiple Modifier.Node interfaces,
+# so we cannot tell whether two modifier.node instances are of the same type without using
+# reflection to determine the class type. See b/265188224 for more context.
+-keep,allowshrinking class * extends androidx.compose.ui.node.ModifierNodeElement
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/541610f55ec6056eaefc38f98457fbbf/transformed/ui-release/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/68dad8b7a275829f1768a1d6987244ad/transformed/vectordrawable-animated-1.1.0/proguard.txt
+# Copyright (C) 2016 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# keep setters in VectorDrawables so that animations can still work.
+-keepclassmembers class androidx.vectordrawable.graphics.drawable.VectorDrawableCompat$* {
+   void set*(***);
+   *** get*();
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/68dad8b7a275829f1768a1d6987244ad/transformed/vectordrawable-animated-1.1.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/17123d0907c17ef74310b324c4f37bad/transformed/graphics-path-1.0.1/proguard.txt
+-keepclasseswithmembers class androidx.graphics.path.** {
+    native <methods>;
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/17123d0907c17ef74310b324c4f37bad/transformed/graphics-path-1.0.1/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/2c5c6430c49ae2955f399f6f37d167fd/transformed/core-1.15.0/proguard.txt
+# Never inline methods, but allow shrinking and obfuscation.
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.view.ViewCompat$Api* {
+  <methods>;
+}
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.view.WindowInsetsCompat$*Impl* {
+  <methods>;
+}
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.app.NotificationCompat$*$Api*Impl {
+  <methods>;
+}
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.os.UserHandleCompat$Api*Impl {
+  <methods>;
+}
+-keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.widget.EdgeEffectCompat$Api*Impl {
+  <methods>;
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/2c5c6430c49ae2955f399f6f37d167fd/transformed/core-1.15.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/985a0763adefe9f8d621bae8b44167dc/transformed/timber-5.0.1/proguard.txt
+-dontwarn org.jetbrains.annotations.**
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/985a0763adefe9f8d621bae8b44167dc/transformed/timber-5.0.1/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/7efdd5cb034453a29063209352067380/transformed/rules/lib/META-INF/proguard/kethereum_crypto.pro
+-keep public class org.kethereum.crypto.impl.**
+ 
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/7efdd5cb034453a29063209352067380/transformed/rules/lib/META-INF/proguard/kethereum_crypto.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/752ce2ebc8e36385775fe131e90b6e14/transformed/monitor-1.6.1/proguard.txt
+# Proguard flags for the AndroidJUnitRunner library.
+
+# avoid obfuscation of the instrumentation runners and orchestrator
+-keepnames class androidx.test.**
+
+# Annotation classes accessed via reflection
+-keep class androidx.test.annotation.** { *; }
+
+# for 'can't find referenced method 'android.app.Instrumentation$ActivityResult execStartActivity' etc
+-dontwarn androidx.test.runner.MonitoringInstrumentation
+
+# for class com.google.errorprone.annotations.InlineMe is not in the runtime classpath
+-dontwarn com.google.errorprone.annotations.InlineMe
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/752ce2ebc8e36385775fe131e90b6e14/transformed/monitor-1.6.1/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/16ac2949138e2de0b7ace0b79c83ccee/transformed/annotation-experimental-1.5.0/proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/16ac2949138e2de0b7ace0b79c83ccee/transformed/annotation-experimental-1.5.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/cfc69663f8aa7f712dc45e38314de5ac/transformed/rules/lib/META-INF/proguard/moshi.pro
+# JSR 305 annotations are for embedding nullability information.
+-dontwarn javax.annotation.**
+
+-keepclasseswithmembers class * {
+    @com.squareup.moshi.* <methods>;
+}
+
+-keep @com.squareup.moshi.JsonQualifier @interface *
+
+# Enum field names are used by the integrated EnumJsonAdapter.
+# values() is synthesized by the Kotlin compiler and is used by EnumJsonAdapter indirectly
+# Annotate enums with @JsonClass(generateAdapter = false) to use them with Moshi.
+-keepclassmembers @com.squareup.moshi.JsonClass class * extends java.lang.Enum {
+    <fields>;
+    **[] values();
+}
+
+# Keep helper method to avoid R8 optimisation that would keep all Kotlin Metadata when unwanted
+-keepclassmembers class com.squareup.moshi.internal.Util {
+    private static java.lang.String getKotlinMetadataClassName();
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/cfc69663f8aa7f712dc45e38314de5ac/transformed/rules/lib/META-INF/proguard/moshi.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/1085819f0db20516f52fce5acb21f309/transformed/rules/lib/META-INF/proguard/retrofit2.pro
+# Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
+# EnclosingMethod is required to use InnerClasses.
+-keepattributes Signature, InnerClasses, EnclosingMethod
+
+# Retrofit does reflection on method and parameter annotations.
+-keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
+
+# Keep annotation default values (e.g., retrofit2.http.Field.encoded).
+-keepattributes AnnotationDefault
+
+# Retain service method parameters when optimizing.
+-keepclassmembers,allowshrinking,allowobfuscation interface * {
+    @retrofit2.http.* <methods>;
+}
+
+# Ignore annotation used for build tooling.
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+
+# Ignore JSR 305 annotations for embedding nullability information.
+-dontwarn javax.annotation.**
+
+# Guarded by a NoClassDefFoundError try/catch and only used when on the classpath.
+-dontwarn kotlin.Unit
+
+# Top-level functions that can only be used by Kotlin.
+-dontwarn retrofit2.KotlinExtensions
+-dontwarn retrofit2.KotlinExtensions$*
+
+# With R8 full mode, it sees no subtypes of Retrofit interfaces since they are created with a Proxy
+# and replaces all potential values with null. Explicitly keeping the interfaces prevents this.
+-if interface * { @retrofit2.http.* <methods>; }
+-keep,allowobfuscation interface <1>
+
+# Keep inherited services.
+-if interface * { @retrofit2.http.* <methods>; }
+-keep,allowobfuscation interface * extends <1>
+
+# With R8 full mode generic signatures are stripped for classes that are not
+# kept. Suspend functions are wrapped in continuations where the type argument
+# is used.
+-keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+
+# R8 full mode strips generic signatures from return types if not kept.
+-if interface * { @retrofit2.http.* public *** *(...); }
+-keep,allowoptimization,allowshrinking,allowobfuscation class <3>
+
+# With R8 full mode generic signatures are stripped for classes that are not kept.
+-keep,allowobfuscation,allowshrinking class retrofit2.Response
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/1085819f0db20516f52fce5acb21f309/transformed/rules/lib/META-INF/proguard/retrofit2.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/83a8dede82c5b54c236599a52a0eb3f4/transformed/okhttp-release/proguard.txt
+# JSR 305 annotations are for embedding nullability information.
+-dontwarn javax.annotation.**
+
+# Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
+-dontwarn org.codehaus.mojo.animal_sniffer.*
+
+# OkHttp platform used only on JVM and when Conscrypt and other security providers are available.
+# May be used with robolectric or deliberate use of Bouncy Castle on Android
+-dontwarn okhttp3.internal.platform.**
+-dontwarn org.conscrypt.**
+-dontwarn org.bouncycastle.**
+-dontwarn org.openjsse.**
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/83a8dede82c5b54c236599a52a0eb3f4/transformed/okhttp-release/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/3fb2e24d3bfb99ca34296a7ad76699eb/transformed/startup-runtime-1.2.0/proguard.txt
+# It's important that we preserve initializer names, given they are used in the AndroidManifest.xml.
+-keepnames class * extends androidx.startup.Initializer
+
+# These Proguard rules ensures that ComponentInitializers are are neither shrunk nor obfuscated,
+# and are a part of the primary dex file. This is because they are discovered and instantiated
+# during application startup.
+-keep class * extends androidx.startup.Initializer {
+    # Keep the public no-argument constructor while allowing other methods to be optimized.
+    <init>();
+}
+
+-assumenosideeffects class androidx.startup.StartupLogger { public static <methods>; }
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/3fb2e24d3bfb99ca34296a7ad76699eb/transformed/startup-runtime-1.2.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/958dcac0e1548fee8e2893602c9eef7d/transformed/versionedparcelable-1.1.1/proguard.txt
+-keep class * implements androidx.versionedparcelable.VersionedParcelable
+-keep public class android.support.**Parcelizer { *; }
+-keep public class androidx.**Parcelizer { *; }
+-keep public class androidx.versionedparcelable.ParcelImpl
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/958dcac0e1548fee8e2893602c9eef7d/transformed/versionedparcelable-1.1.1/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/e2c088d93c3701946a207815750f698b/transformed/rules/lib/META-INF/proguard/androidx-collection-collection-ktx.pro
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/e2c088d93c3701946a207815750f698b/transformed/rules/lib/META-INF/proguard/androidx-collection-collection-ktx.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/0a3abac7d414f6bc7f0216f8826ebf5b/transformed/sqlite-framework/proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/0a3abac7d414f6bc7f0216f8826ebf5b/transformed/sqlite-framework/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/ecc3fbdd9fce568716e55ee7393b85ea/transformed/sqlite/proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/ecc3fbdd9fce568716e55ee7393b85ea/transformed/sqlite/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/1ba64824cea22215c563e5d3d3ab3f33/transformed/firebase-components-18.0.0/proguard.txt
+-dontwarn com.google.firebase.components.Component$Instantiation
+-dontwarn com.google.firebase.components.Component$ComponentType
+
+-keep class * implements com.google.firebase.components.ComponentRegistrar
+-keep,allowshrinking interface com.google.firebase.components.ComponentRegistrar
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/1ba64824cea22215c563e5d3d3ab3f33/transformed/firebase-components-18.0.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/9509b52caa0945db08eb994221907bd7/transformed/transport-backend-cct-3.1.9/proguard.txt
+-dontwarn com.google.auto.value.AutoValue
+-dontwarn com.google.auto.value.AutoValue$Builder
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/9509b52caa0945db08eb994221907bd7/transformed/transport-backend-cct-3.1.9/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/a4267ed06a09f3fbeaa27c92d3c1ae44/transformed/firebase-encoders-json-18.0.0/proguard.txt
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/a4267ed06a09f3fbeaa27c92d3c1ae44/transformed/firebase-encoders-json-18.0.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/82883d2712caa01ecfab9458dd08db7c/transformed/transport-api-3.1.0/proguard.txt
+-dontwarn com.google.auto.value.AutoValue
+-dontwarn com.google.auto.value.AutoValue$Builder
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/82883d2712caa01ecfab9458dd08db7c/transformed/transport-api-3.1.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/665646e04115d8ccefd5fb0646bfb24c/transformed/rules/lib/META-INF/proguard/androidx-annotations.pro
+-keep,allowobfuscation @interface androidx.annotation.Keep
+-keep @androidx.annotation.Keep class * {*;}
+
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <methods>;
+}
+
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <fields>;
+}
+
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <init>(...);
+}
+
+-keepclassmembers,allowobfuscation class * {
+  @androidx.annotation.DoNotInline <methods>;
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/665646e04115d8ccefd5fb0646bfb24c/transformed/rules/lib/META-INF/proguard/androidx-annotations.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/48bc48e0538c4302c7b49ed30c395ae9/transformed/rules/lib/META-INF/com.android.tools/r8-from-1.6.0/kotlin-reflect.pro
+# When editing this file, update the following files as well:
+# - META-INF/com.android.tools/proguard/kotlin-reflect.pro
+# - META-INF/com.android.tools/r8-upto-1.6.0/kotlin-reflect.pro
+# - META-INF/proguard/kotlin-reflect.pro
+# Keep Metadata annotations so they can be parsed at runtime.
+-keep class kotlin.Metadata { *; }
+
+# Keep generic signatures and annotations at runtime.
+# R8 requires InnerClasses and EnclosingMethod if you keepattributes Signature.
+-keepattributes InnerClasses,Signature,RuntimeVisible*Annotations,EnclosingMethod
+
+# Don't note on API calls from different JVM versions as they're gated properly at runtime.
+-dontnote kotlin.internal.PlatformImplementationsKt
+
+# Don't note on internal APIs, as there is some class relocating that shrinkers may unnecessarily find suspicious.
+-dontwarn kotlin.reflect.jvm.internal.**
+
+# Statically guarded by try-catch block and not used on Android, see CacheByClass
+-dontwarn java.lang.ClassValue
+
+# Do not even execute try-catch block for ClassValue
+-assumenosideeffects class kotlin.reflect.jvm.internal.CacheByClassKt {
+    boolean useClassValue return false;
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/48bc48e0538c4302c7b49ed30c395ae9/transformed/rules/lib/META-INF/com.android.tools/r8-from-1.6.0/kotlin-reflect.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/c6bac4b5ad88e9c4de1bf8de4d489a57/transformed/core-viewtree-1.0.0/proguard.txt
+# Intentionally empty proguard rules to indicate this library is safe to shrink
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/c6bac4b5ad88e9c4de1bf8de4d489a57/transformed/core-viewtree-1.0.0/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/4824abdd47b15a8859dce32b3d5e66d4/transformed/rules/lib/META-INF/com.android.tools/r8/kotlinx-serialization-common.pro
+# Keep `Companion` object fields of serializable classes.
+# This avoids serializer lookup through `getDeclaredClasses` as done for named companion objects.
+-if @kotlinx.serialization.Serializable class **
+-keepclassmembers class <1> {
+    static <1>$Companion Companion;
+}
+
+# Keep `serializer()` on companion objects (both default and named) of serializable classes.
+-if @kotlinx.serialization.Serializable class ** {
+    static **$* *;
+}
+-keepclassmembers class <2>$<3> {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+# Keep `INSTANCE.serializer()` of serializable objects.
+-if @kotlinx.serialization.Serializable class ** {
+    public static ** INSTANCE;
+}
+-keepclassmembers class <1> {
+    public static <1> INSTANCE;
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+# @Serializable and @Polymorphic are used at runtime for polymorphic serialization.
+-keepattributes RuntimeVisibleAnnotations,AnnotationDefault
+
+# Don't print notes about potential mistakes or omissions in the configuration for kotlinx-serialization classes
+# See also https://github.com/Kotlin/kotlinx.serialization/issues/1900
+-dontnote kotlinx.serialization.**
+
+# Serialization core uses `java.lang.ClassValue` for caching inside these specified classes.
+# If there is no `java.lang.ClassValue` (for example, in Android), then R8/ProGuard will print a warning.
+# However, since in this case they will not be used, we can disable these warnings
+-dontwarn kotlinx.serialization.internal.ClassValueReferences
+
+# disable optimisation for descriptor field because in some versions of ProGuard, optimization generates incorrect bytecode that causes a verification error
+# see https://github.com/Kotlin/kotlinx.serialization/issues/2719
+-keepclassmembers public class **$$serializer {
+    private ** descriptor;
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/4824abdd47b15a8859dce32b3d5e66d4/transformed/rules/lib/META-INF/com.android.tools/r8/kotlinx-serialization-common.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/4824abdd47b15a8859dce32b3d5e66d4/transformed/rules/lib/META-INF/com.android.tools/r8/kotlinx-serialization-r8.pro
+# Rule to save runtime annotations on serializable class.
+# If the R8 full mode is used, annotations are removed from classes-files.
+#
+# For the annotation serializer, it is necessary to read the `Serializable` annotation inside the serializer<T>() function - if it is present,
+# then `SealedClassSerializer` is used, if absent, then `PolymorphicSerializer'.
+#
+# When using R8 full mode, all interfaces will be serialized using `PolymorphicSerializer`.
+#
+# see https://github.com/Kotlin/kotlinx.serialization/issues/2050
+
+ -if @kotlinx.serialization.Serializable class **
+ -keep, allowshrinking, allowoptimization, allowobfuscation, allowaccessmodification class <1>
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/4824abdd47b15a8859dce32b3d5e66d4/transformed/rules/lib/META-INF/com.android.tools/r8/kotlinx-serialization-r8.pro
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/be70b9e1e31c551ca2d82363d5a5e452/transformed/mobile-wallet-adapter-clientlib-2.0.3/proguard.txt
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/be70b9e1e31c551ca2d82363d5a5e452/transformed/mobile-wallet-adapter-clientlib-2.0.3/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/190ae55454d248016642845b766f0f20/transformed/mobile-wallet-adapter-common-2.0.3/proguard.txt
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/190ae55454d248016642845b766f0f20/transformed/mobile-wallet-adapter-common-2.0.3/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/d6db3d762377ee352202ba3aaf83a260/transformed/sqlcipher-android-4.6.1/proguard.txt
+-keep class net.zetetic.** {
+  native <methods>;
+  private native <methods>;
+  public <init>(...);
+  long mNativeHandle;
+}
+
+-keepclassmembers class net.zetetic.database.sqlcipher.SQLiteCustomFunction {
+  public java.lang.String name;
+  public int numArgs;
+  private void dispatchCallback(java.lang.String[]);
+}
+
+-keepclassmembers class net.zetetic.database.sqlcipher.SQLiteDebug$PagerStats {
+  public int largestMemAlloc;
+  public int memoryUsed;
+  public int pageCacheOverflow;
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/d6db3d762377ee352202ba3aaf83a260/transformed/sqlcipher-android-4.6.1/proguard.txt
+# The proguard configuration file for the following section is /Users/dovnar/.gradle/caches/8.9/transforms/8f54cce253d0c598ae96bfc9c2d1d0fc/transformed/rules/lib/META-INF/proguard/protobuf.pro
+# Recently Protobuf Javalite introduced a change that relies on reflection,
+# which doesn't work with Proguard. This rule keeps the reflection usages in
+# (shaded) Protobuf classes in Tink as-is.
+# The location of this file is determined by
+# - https://developer.android.com/studio/build/shrink-code#configuration-files
+# - https://docs.bazel.build/versions/master/be/java.html#java_library.resources
+# See also:
+# - https://github.com/google/tink/issues/361
+# - https://github.com/protocolbuffers/protobuf/issues/6463
+# WARNING: the shaded package name com.google.crypto.tink.shaded.protobuf must
+# be kept in sync with jar_jar_rules.txt.
+-keepclassmembers class * extends com.google.crypto.tink.shaded.protobuf.GeneratedMessageLite {
+  <fields>;
+}
+
+# End of content from /Users/dovnar/.gradle/caches/8.9/transforms/8f54cce253d0c598ae96bfc9c2d1d0fc/transformed/rules/lib/META-INF/proguard/protobuf.pro
+# The proguard configuration file for the following section is <unknown>
+
+# End of content from <unknown>

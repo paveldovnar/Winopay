@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.tron.TronTokenPolicyTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="isStablecoin returns false for null" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="getAllowedTokens returns empty set for blank string" classname="com.winopay.tron.TronTokenPolicyTest" time="0.001"/>
+  <testcase name="getAllowedTokens returns empty set for null" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="isStablecoin returns false for USDC contract - not supported on TRON" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="getAllowedTokens returns only USDT when USDT requested" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="getAllowedTokens returns only requested token for any contract" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="getWarningCode returns null - no dual acceptance on TRON" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="isDualAcceptanceEnabled returns false - TRON only supports USDT" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="isStablecoin returns true for USDT contract" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="getTokenSymbol returns TRC20 for unknown contract" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="isStablecoin returns false for empty string" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="getWarningCode returns null when tokens match" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="isStablecoin returns false for unknown contract" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="getTokenSymbol returns USDT for USDT contract" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <testcase name="getTokenSymbol returns TRX for null" classname="com.winopay.tron.TronTokenPolicyTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

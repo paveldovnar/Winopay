@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.payments.PaymentRailFactoryInstantiationTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.024">
+  <properties/>
+  <testcase name="SolanaPaymentRail can be instantiated directly" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.005"/>
+  <testcase name="getRailOrNull returns null for unsupported network" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.003"/>
+  <testcase name="isRailImplemented returns true for solana" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.001"/>
+  <testcase name="isDetecting returns false for unknown invoice" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.004"/>
+  <testcase name="getRail for Solana mainnet does not throw StackOverflowError" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.0"/>
+  <testcase name="isNetworkSupported returns true for devnet" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.0"/>
+  <testcase name="buildPaymentRequest works after instantiation" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.004"/>
+  <testcase name="getDefaultRail returns Solana rail" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.0"/>
+  <testcase name="derivePollingTargets works after instantiation" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.006"/>
+  <testcase name="generateReference works after instantiation" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.001"/>
+  <testcase name="getRail for Solana devnet does not throw StackOverflowError" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.0"/>
+  <testcase name="getRailByRailId for solana does not throw StackOverflowError" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.0"/>
+  <testcase name="isRailSupported returns true for solana" classname="com.winopay.payments.PaymentRailFactoryInstantiationTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

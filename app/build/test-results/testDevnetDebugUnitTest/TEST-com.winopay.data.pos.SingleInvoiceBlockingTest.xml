@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.data.pos.SingleInvoiceBlockingTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.002">
+  <properties/>
+  <testcase name="BlockedByActiveInvoice state contains invoice info" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <testcase name="Terminal invoice states should NOT trigger blocking" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.001"/>
+  <testcase name="BlockedByActiveInvoice is distinct PosState" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <testcase name="Only explicit cancel can transition to CANCELED" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <testcase name="restoreActiveInvoice should still work after restart" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <testcase name="Active invoice states that should trigger blocking" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <testcase name="BlockedByActiveInvoice supports PENDING status" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <testcase name="Resume blocked PENDING invoice should go to Pending state" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <testcase name="Active invoice should NOT be auto-expired" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <testcase name="Creating payment while restored invoice active should block" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <testcase name="After cancel, new invoice creation should work" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <testcase name="Cancel blocked invoice should transition to CANCELED status" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <testcase name="Resume blocked CREATED invoice should go to QR state" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <testcase name="Resume expired invoice should fail gracefully" classname="com.winopay.data.pos.SingleInvoiceBlockingTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

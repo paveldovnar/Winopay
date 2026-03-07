@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.payments.PaymentRailFactoryTest" tests="24" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.002">
+  <properties/>
+  <testcase name="SolanaPaymentRail RAIL_ID is solana" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="isRailImplemented returns true for solana" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="isNetworkSupported returns true for EVM chainIds" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="SolanaPaymentRail does not support ethereum" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="isNetworkSupported returns true for Solana networks" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="SolanaPaymentRail supports mainnet-beta" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="SolanaPaymentRail supports devnet" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="isRailSupported returns false for unknown rail" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="isRailSupported returns true for evm" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="SolanaPaymentRail supports mainnet" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="getSupportedNetworks includes all Solana, TRON, and EVM networks" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="isRailImplemented returns false for evm (stub only)" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="EVM SUPPORTED_NETWORKS is subset of factory list" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="SolanaPaymentRail does not support polygon" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="isNetworkSupported returns false for unsupported networks" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="getSupportedRails contains solana, tron and evm" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="getSupportedNetworks contains all Solana networks" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="SolanaPaymentRail does not support bsc" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="Solana SUPPORTED_NETWORKS is subset of factory list" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="isRailSupported returns true for solana" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="EvmPaymentRail RAIL_ID is evm" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.001"/>
+  <testcase name="SolanaPaymentRail supports testnet" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="getImplementedRails contains solana and tron" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <testcase name="SolanaPaymentRail does not support empty string" classname="com.winopay.payments.PaymentRailFactoryTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.solana.pay.AmountOnlyDetectionTest" tests="24" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.002">
+  <properties/>
+  <testcase name="PaymentDetectionResult Invalid contains rejection reason" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="Single-active-invoice concept - only one invoice allowed" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="PaymentDetectionResult Found indicates unconfirmed transaction" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="Underpayment by exactly 1 unit is allowed (rounding tolerance)" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="PaymentDetectionResult Found contains actualMintUsed and warningCode" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="Underpayment by more than 1 unit is invalid" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="Transaction predating invoice should be filtered out" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="ValidationParams accepts preferredProvider for RPC consistency" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="Invoice createdAt is used for transaction filtering" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="Exact amount match is valid" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="PaymentDetectionResult Error contains error message" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="PaymentDetectionResult Confirmed indicates success" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="ValidationParams accepts null mint for SOL payments" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="TransactionValidator Result Valid contains actualMintUsed and warningCode" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="PaymentDetectionResult Searching indicates active polling" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="TransactionValidator Result Valid is recognized correctly" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="Transaction after invoice creation should be considered" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="TransactionValidator Result Error contains message" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="PaymentDetectionResult Expired indicates timeout" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.001"/>
+  <testcase name="Overpayment is valid (merchant protection)" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="Creating new invoice should expire previous active invoice" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="PaymentDetectionResult Confirmed contains actualMintUsed and warningCode" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="TransactionValidator Result Invalid contains reason" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <testcase name="ValidationParams does not require reference" classname="com.winopay.solana.pay.AmountOnlyDetectionTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.winopay.app-mergeDevnetReleaseResources-72:/values-h720dp-v13/values-h720dp-v13.xml",
+            "map": [
+                {
+                    "source": "/Users/dovnar/.gradle/caches/8.9/transforms/d630c647ddba10cfed6af968098f2cd7/transformed/appcompat-1.7.1/res/values-h720dp-v13/values-h720dp-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
+                    }
+                }
+            ]
+        }
+    ]
+}

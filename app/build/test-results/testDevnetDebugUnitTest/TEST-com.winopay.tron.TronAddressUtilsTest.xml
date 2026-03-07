@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.tron.TronAddressUtilsTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="isValidAddress returns false for too short address" classname="com.winopay.tron.TronAddressUtilsTest" time="0.0"/>
+  <testcase name="toBase58Address returns null for invalid hex" classname="com.winopay.tron.TronAddressUtilsTest" time="0.0"/>
+  <testcase name="isValidAddress returns true for valid USDT contract" classname="com.winopay.tron.TronAddressUtilsTest" time="0.0"/>
+  <testcase name="toBase58Address returns null for hex without 41 prefix" classname="com.winopay.tron.TronAddressUtilsTest" time="0.0"/>
+  <testcase name="toHexAddress returns null for invalid address" classname="com.winopay.tron.TronAddressUtilsTest" time="0.001"/>
+  <testcase name="isValidAddress returns false for empty string" classname="com.winopay.tron.TronAddressUtilsTest" time="0.0"/>
+  <testcase name="formatForDisplay returns short address unchanged" classname="com.winopay.tron.TronAddressUtilsTest" time="0.0"/>
+  <testcase name="isValidAddress returns false for address not starting with T" classname="com.winopay.tron.TronAddressUtilsTest" time="0.0"/>
+  <testcase name="formatForDisplay truncates long address" classname="com.winopay.tron.TronAddressUtilsTest" time="0.0"/>
+  <testcase name="isValidAddress returns true for valid USDC contract" classname="com.winopay.tron.TronAddressUtilsTest" time="0.0"/>
+  <testcase name="isValidAddress returns false for null address" classname="com.winopay.tron.TronAddressUtilsTest" time="0.0"/>
+  <testcase name="isValidAddress returns false for invalid base58 characters" classname="com.winopay.tron.TronAddressUtilsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

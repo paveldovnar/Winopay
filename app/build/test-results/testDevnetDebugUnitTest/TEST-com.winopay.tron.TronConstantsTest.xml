@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.tron.TronConstantsTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.0">
+  <properties/>
+  <testcase name="getTokenSymbol returns USDC for USDC contract" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="supportsNetwork is case-insensitive" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="supportsNetwork returns true for tron-mainnet" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="token decimals are 6" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="supportsNetwork returns true for tron-nile" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="supportsNetwork returns false for solana networks" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="isKnownStablecoin returns true for USDC" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="isKnownStablecoin returns true for USDT" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="isKnownStablecoin returns false for unknown contract" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="getUsdcContract returns correct mainnet address" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="SUPPORTED_NETWORKS contains all networks" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="getUsdtContract returns nile testnet address" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="supportsNetwork returns true for tron-shasta" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="getTokenSymbol returns TRC20 for unknown" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="TRC20 transfer method ID is correct" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="getUsdtContract returns correct mainnet address" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="getTokenSymbol returns USDT for USDT contract" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <testcase name="getTokenSymbol returns TRX for null" classname="com.winopay.tron.TronConstantsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

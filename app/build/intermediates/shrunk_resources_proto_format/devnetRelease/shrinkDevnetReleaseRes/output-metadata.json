@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "SHRUNK_RESOURCES_PROTO_FORMAT",
+    "kind": "Directory"
+  },
+  "applicationId": "com.winopay.devnet",
+  "variantName": "devnetRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 2,
+      "versionName": "1.0.1-devnet",
+      "outputFile": "shrunk-resources-proto-format-devnet-release.ap_"
+    }
+  ],
+  "elementType": "File"
+}

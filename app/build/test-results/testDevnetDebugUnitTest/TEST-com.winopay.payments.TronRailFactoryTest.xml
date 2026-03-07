@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.payments.TronRailFactoryTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.002">
+  <properties/>
+  <testcase name="getRail returns TronPaymentRail for tron-mainnet" classname="com.winopay.payments.TronRailFactoryTest" time="0.001"/>
+  <testcase name="isRailSupported returns true for tron" classname="com.winopay.payments.TronRailFactoryTest" time="0.0"/>
+  <testcase name="isNetworkSupported returns true for TRON networks" classname="com.winopay.payments.TronRailFactoryTest" time="0.0"/>
+  <testcase name="getImplementedRails includes tron" classname="com.winopay.payments.TronRailFactoryTest" time="0.0"/>
+  <testcase name="getSupportedRails includes tron" classname="com.winopay.payments.TronRailFactoryTest" time="0.0"/>
+  <testcase name="isRailImplemented returns true for tron" classname="com.winopay.payments.TronRailFactoryTest" time="0.0"/>
+  <testcase name="getRail returns same instance for same network" classname="com.winopay.payments.TronRailFactoryTest" time="0.0"/>
+  <testcase name="getRailByRailId with networkId uses correct network" classname="com.winopay.payments.TronRailFactoryTest" time="0.0"/>
+  <testcase name="getRailByRailId returns TronPaymentRail for tron" classname="com.winopay.payments.TronRailFactoryTest" time="0.0"/>
+  <testcase name="getRail returns TronPaymentRail for tron-nile" classname="com.winopay.payments.TronRailFactoryTest" time="0.0"/>
+  <testcase name="getSupportedNetworks includes TRON networks" classname="com.winopay.payments.TronRailFactoryTest" time="0.0"/>
+  <testcase name="getRail returns TronPaymentRail for tron-shasta" classname="com.winopay.payments.TronRailFactoryTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

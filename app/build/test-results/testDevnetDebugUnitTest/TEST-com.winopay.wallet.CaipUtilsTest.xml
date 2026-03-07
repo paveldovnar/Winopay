@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.wallet.CaipUtilsTest" tests="56" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.006">
+  <properties/>
+  <testcase name="roundtrip toChainId and fromChainId for solana devnet" classname="com.winopay.wallet.CaipUtilsTest" time="0.003"/>
+  <testcase name="parseAccount extracts solana mainnet address correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="toChainId maps tron nile correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="fromChainId returns null for unknown chain reference" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="isValidChainId returns true for valid eip155 chain" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="roundtrip parseAccount and toCaip10" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="validateChainId returns invalid for non-numeric eip155" classname="com.winopay.wallet.CaipUtilsTest" time="0.001"/>
+  <testcase name="validateChainId returns valid for correct tron nile" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="parseAccount extracts tron nile address correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="isValidChainId returns true for valid solana chain" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="validateChainId returns valid for correct solana devnet" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="roundtrip toChainId and fromChainId for BSC" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="CaipAccount toCaip10 returns correct format" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="validateChainId returns invalid for bad namespace" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="toChainId returns null for unknown network" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="getEvmNetworkDisplayName returns generic name for unknown chain" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="getEvmNetworkDisplayName returns Ethereum for chain 1" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="toChainId maps BSC mainnet correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="all toChainId outputs are CAIP-2 valid" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="getEvmNetworkDisplayName returns BSC Testnet for chain 97" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="toChainId maps Sepolia correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="parseAccount extracts tron mainnet address correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="validateChainId returns valid for correct tron mainnet" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="roundtrip toChainId and fromChainId for tron mainnet" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="toChainId maps solana mainnet correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="getEvmNetworkDisplayName returns Sepolia for chain 11155111" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="toChainId maps Ethereum mainnet correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="toChainId maps solana devnet correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="parseAccount returns null for invalid format - no colons" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="fromChainId returns null for unknown namespace" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="parseAccount extracts evm BSC address correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="parseAccount extracts solana devnet address correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="parseAccount returns null for invalid format - only one colon" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="validateChainId returns invalid for bad solana reference" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="validateChainId returns invalid for incorrect format" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="fromChainId maps solana mainnet correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="getEvmNetworkDisplayName returns BSC for chain 56" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="CaipAccount fullChainId returns correct format" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="validateChainId returns valid for correct eip155" classname="com.winopay.wallet.CaipUtilsTest" time="0.001"/>
+  <testcase name="validateChainId returns invalid for non-hex tron" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="fromChainId maps solana devnet correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="fromChainId maps Ethereum mainnet correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="fromChainId returns null for invalid format" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="parseAccount extracts evm Ethereum address correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="fromChainId maps BSC mainnet correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="toChainId returns null for unknown rail" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="toChainId maps tron mainnet correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="toChainId maps BSC testnet correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="isValidChainId returns false for invalid namespace" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="isValidChainId returns false for invalid format" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="validateChainId returns valid for correct solana mainnet" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="parseAccount handles address with colons" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="parseAccount returns null for empty parts" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="fromChainId maps tron nile correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="buildChainId creates correct format" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <testcase name="fromChainId maps tron mainnet correctly" classname="com.winopay.wallet.CaipUtilsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

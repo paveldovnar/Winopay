@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.solana.MintConfigurationTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="devnet USDC mint is valid Solana address length" classname="com.winopay.solana.MintConfigurationTest" time="0.0"/>
+  <testcase name="devnet and mainnet USDC mints are different" classname="com.winopay.solana.MintConfigurationTest" time="0.0"/>
+  <testcase name="devnet USDC mint is Circle faucet address" classname="com.winopay.solana.MintConfigurationTest" time="0.0"/>
+  <testcase name="devnet USDC mint is NOT the old wrong mint" classname="com.winopay.solana.MintConfigurationTest" time="0.0"/>
+  <testcase name="mainnet USDC mint is Circle official address" classname="com.winopay.solana.MintConfigurationTest" time="0.0"/>
+  <testcase name="mainnet mints are valid Solana address lengths" classname="com.winopay.solana.MintConfigurationTest" time="0.0"/>
+  <testcase name="mainnet USDC and USDT mints are different" classname="com.winopay.solana.MintConfigurationTest" time="0.0"/>
+  <testcase name="mainnet USDT mint is Tether official address" classname="com.winopay.solana.MintConfigurationTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

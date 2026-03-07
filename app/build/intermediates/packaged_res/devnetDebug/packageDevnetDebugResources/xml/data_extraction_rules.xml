@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Android Auto Backup rules for Android 12+.
+
+    CLOUD BACKUP:
+    Merchant profile and settings backed up to user's Google account.
+    Best-effort restoration on reinstall (device-dependent).
+
+    DEVICE TRANSFER:
+    Full profile restoration when migrating to new device.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- Include DataStore files -->
+        <include domain="file" path="datastore/merchant_profile.preferences_pb" />
+        <include domain="file" path="datastore/wino_pay_prefs.preferences_pb" />
+
+        <!-- Include logo images -->
+        <include domain="file" path="profile_logos" />
+
+        <!-- Include Room database -->
+        <include domain="database" path="app_database" />
+
+        <!-- Exclude cache -->
+        <exclude domain="cache" path="." />
+    </cloud-backup>
+
+    <device-transfer>
+        <!-- Include DataStore files -->
+        <include domain="file" path="datastore/merchant_profile.preferences_pb" />
+        <include domain="file" path="datastore/wino_pay_prefs.preferences_pb" />
+
+        <!-- Include logo images -->
+        <include domain="file" path="profile_logos" />
+
+        <!-- Include Room database -->
+        <include domain="database" path="app_database" />
+    </device-transfer>
+</data-extraction-rules>

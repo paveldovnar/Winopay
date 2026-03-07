@@ -1,0 +1,25 @@
+# Android
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+*.ap_
+*.aab
+
+# Environment Variables - NEVER COMMIT!
+.env
+.env.local
+
+# Keystore files - NEVER COMMIT!
+*.jks
+*.keystore
+
+# Local configuration
+/app/release/
+/app/debug/

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.data.profile.MerchantProfileStoreTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.005">
+  <properties/>
+  <testcase name="MerchantProfile with logo path" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="RailConnection roundtrip with sessionId" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.002"/>
+  <testcase name="instance profileKey matches companion method" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.001"/>
+  <testcase name="RailConnection deserialize with empty sessionId is null" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="profileKey format is correct" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="MerchantProfile has correct defaults" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="MerchantProfile updatedAt is set on creation" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="profileKey for different accounts on same network differs" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="RailConnection deserialize with sessionId" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="profileKey for mainnet differs from devnet" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="RailConnection serialize without sessionId" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.001"/>
+  <testcase name="RailConnection deserialize invalid format returns null" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="RailConnection roundtrip without sessionId" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="Different rails have different keys" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="EVM profile key format" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="RailConnection deserialize without sessionId - backward compatible" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <testcase name="RailConnection serialize with sessionId" classname="com.winopay.data.profile.MerchantProfileStoreTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

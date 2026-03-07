@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.solana.SolanaAddressUtilsTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.003">
+  <properties/>
+  <testcase name="deriveAssociatedTokenAddress should match known good ATA" classname="com.winopay.solana.SolanaAddressUtilsTest" time="0.001"/>
+  <testcase name="deriveAssociatedTokenAddress should differ for different owners" classname="com.winopay.solana.SolanaAddressUtilsTest" time="0.001"/>
+  <testcase name="deriveAssociatedTokenAddress should be deterministic" classname="com.winopay.solana.SolanaAddressUtilsTest" time="0.0"/>
+  <testcase name="base58Encode should correctly encode bytes" classname="com.winopay.solana.SolanaAddressUtilsTest" time="0.0"/>
+  <testcase name="deriveAssociatedTokenAddress should differ for different mints" classname="com.winopay.solana.SolanaAddressUtilsTest" time="0.0"/>
+  <testcase name="isValidSolanaAddress should validate correctly" classname="com.winopay.solana.SolanaAddressUtilsTest" time="0.001"/>
+  <testcase name="base58 roundtrip should preserve address" classname="com.winopay.solana.SolanaAddressUtilsTest" time="0.0"/>
+  <testcase name="deriveAssociatedTokenAddress should produce valid 32-byte address" classname="com.winopay.solana.SolanaAddressUtilsTest" time="0.0"/>
+  <testcase name="base58Decode should correctly decode valid address" classname="com.winopay.solana.SolanaAddressUtilsTest" time="0.0"/>
+  <system-out><![CDATA[Derived ATA for verification:
+  Owner: 7EYnhQoR9YM3N7UoaKRoA44Uy8JeaZV3qyouov87awMs
+  Mint: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+  ATA: DiSfxNdYpm3DUbgkPsrSvy62Ac4LhQEjAXuoQHZQgRos
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

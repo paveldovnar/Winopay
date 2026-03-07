@@ -1,0 +1,31 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:viewportWidth="36"
+    android:viewportHeight="36">
+    <!-- China flag: Red background with 5 yellow stars -->
+    <!-- Red background -->
+    <path
+        android:fillColor="#E31D1C"
+        android:pathData="M0,0h36v36h-36z"/>
+    <!-- Large star -->
+    <path
+        android:fillColor="#FECA00"
+        android:pathData="M7.89,14.41L4.65,16.74L5.39,12.2L2.69,8.8L6.35,8.62L7.89,4.38L9.44,8.62H13.09L10.4,12.2L11.21,16.74L7.89,14.41Z"/>
+    <!-- Small star 1 (top) -->
+    <path
+        android:fillColor="#FECA00"
+        android:pathData="M16.89,6.82L15.76,7.74L16.02,5.95L15.07,4.62L16.35,4.54L16.89,2.88L17.43,4.54H18.71L17.77,5.95L18.05,7.74L16.89,6.82Z"/>
+    <!-- Small star 2 -->
+    <path
+        android:fillColor="#FECA00"
+        android:pathData="M19.14,12.82L18.01,13.74L18.27,11.95L17.32,10.62L18.6,10.54L19.14,8.88L19.68,10.54H20.96L20.02,11.95L20.3,13.74L19.14,12.82Z"/>
+    <!-- Small star 3 -->
+    <path
+        android:fillColor="#FECA00"
+        android:pathData="M18.02,18.82L16.88,19.74L17.14,17.95L16.19,16.62L17.48,16.54L18.02,14.88L18.56,16.54H19.84L18.89,17.95L19.18,19.74L18.02,18.82Z"/>
+    <!-- Small star 4 -->
+    <path
+        android:fillColor="#FECA00"
+        android:pathData="M14.64,23.32L13.51,24.24L13.77,22.45L12.82,21.12L14.1,21.04L14.64,19.38L15.18,21.04H16.46L15.52,22.45L15.8,24.24L14.64,23.32Z"/>
+</vector>

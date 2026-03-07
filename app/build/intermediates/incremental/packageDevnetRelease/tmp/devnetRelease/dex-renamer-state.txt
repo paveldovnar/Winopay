@@ -1,0 +1,4 @@
+#Sat Mar 07 16:04:37 ICT 2026
+base.0=/Users/dovnar/WinoPay/app/build/intermediates/dex/devnetRelease/minifyDevnetReleaseWithR8/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.data.pos.SoftExpireTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="EXTENSION_TIMEOUT_MS is 5 minutes" classname="com.winopay.data.pos.SoftExpireTest" time="0.0"/>
+  <testcase name="deadline calculation from now plus timeout" classname="com.winopay.data.pos.SoftExpireTest" time="0.0"/>
+  <testcase name="extendDeadline updates deadline" classname="com.winopay.data.pos.SoftExpireTest" time="0.0"/>
+  <testcase name="LAST_CHANCE_SWEEP_MS is 3 seconds" classname="com.winopay.data.pos.SoftExpireTest" time="0.0"/>
+  <testcase name="InvoiceEntity has deadlineAt field" classname="com.winopay.data.pos.SoftExpireTest" time="0.0"/>
+  <testcase name="deadline extension preserves status" classname="com.winopay.data.pos.SoftExpireTest" time="0.0"/>
+  <testcase name="DEFAULT_TIMEOUT_MS is 5 minutes" classname="com.winopay.data.pos.SoftExpireTest" time="0.001"/>
+  <testcase name="extension adds 5 minutes from current time" classname="com.winopay.data.pos.SoftExpireTest" time="0.0"/>
+  <testcase name="markExpired sets status to EXPIRED" classname="com.winopay.data.pos.SoftExpireTest" time="0.0"/>
+  <testcase name="withDeadline sets initial deadline" classname="com.winopay.data.pos.SoftExpireTest" time="0.0"/>
+  <testcase name="markCanceled sets status to CANCELED" classname="com.winopay.data.pos.SoftExpireTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

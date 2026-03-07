@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.data.pos.PosManagerConcurrencyTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.103">
+  <properties/>
+  <testcase name="WITHOUT Mutex - race condition allows multiple creations" classname="com.winopay.data.pos.PosManagerConcurrencyTest" time="0.036"/>
+  <testcase name="Mutex releases properly - second batch can create after reset" classname="com.winopay.data.pos.PosManagerConcurrencyTest" time="0.039"/>
+  <testcase name="with Mutex - sequential calls after first are all blocked" classname="com.winopay.data.pos.PosManagerConcurrencyTest" time="0.001"/>
+  <testcase name="with Mutex - 20 concurrent calls are stable (not flaky)" classname="com.winopay.data.pos.PosManagerConcurrencyTest" time="0.016"/>
+  <testcase name="with Mutex - 50 concurrent calls create exactly 1 invoice" classname="com.winopay.data.pos.PosManagerConcurrencyTest" time="0.005"/>
+  <testcase name="stress test - 100 concurrent calls" classname="com.winopay.data.pos.PosManagerConcurrencyTest" time="0.005"/>
+  <testcase name="Mutex protects against timing variations" classname="com.winopay.data.pos.PosManagerConcurrencyTest" time="0.001"/>
+  <system-out><![CDATA[Unsafe creator: 50 successes, 50 invoices created
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,39 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+    <!-- 8 dots arranged in circle with varying opacity to suggest rotation -->
+    <!-- Top dot (12 o'clock) - full opacity -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M16,6m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"/>
+    <!-- Top-right dot -->
+    <path
+        android:fillColor="#E0E0E0"
+        android:pathData="M23.07,8.93m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"/>
+    <!-- Right dot (3 o'clock) -->
+    <path
+        android:fillColor="#C0C0C0"
+        android:pathData="M26,16m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"/>
+    <!-- Bottom-right dot -->
+    <path
+        android:fillColor="#A0A0A0"
+        android:pathData="M23.07,23.07m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"/>
+    <!-- Bottom dot (6 o'clock) -->
+    <path
+        android:fillColor="#808080"
+        android:pathData="M16,26m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"/>
+    <!-- Bottom-left dot -->
+    <path
+        android:fillColor="#606060"
+        android:pathData="M8.93,23.07m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"/>
+    <!-- Left dot (9 o'clock) -->
+    <path
+        android:fillColor="#404040"
+        android:pathData="M6,16m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"/>
+    <!-- Top-left dot -->
+    <path
+        android:fillColor="#202020"
+        android:pathData="M8.93,8.93m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0"/>
+</vector>

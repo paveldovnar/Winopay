@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:viewportWidth="36"
+    android:viewportHeight="36">
+    <!-- Thailand flag: Red-White-Blue-White-Red horizontal stripes -->
+    <!-- Red top stripe -->
+    <path
+        android:fillColor="#F50101"
+        android:pathData="M0,0h36v7.2h-36z"/>
+    <!-- White upper stripe -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M0,7.2h36v7.2h-36z"/>
+    <!-- Blue center stripe (double width) -->
+    <path
+        android:fillColor="#3D58DB"
+        android:pathData="M0,14.4h36v7.2h-36z"/>
+    <!-- White lower stripe -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M0,21.6h36v7.2h-36z"/>
+    <!-- Red bottom stripe -->
+    <path
+        android:fillColor="#F50101"
+        android:pathData="M0,28.8h36v7.2h-36z"/>
+</vector>

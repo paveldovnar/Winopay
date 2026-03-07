@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.tron.TronProviderPaginationTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.003">
+  <properties/>
+  <testcase name="error types are correctly categorized" classname="com.winopay.tron.TronProviderPaginationTest" time="0.001"/>
+  <testcase name="pagination constants are reasonable" classname="com.winopay.tron.TronProviderPaginationTest" time="0.0"/>
+  <testcase name="stop condition 1 - candidate matcher returns true stops pagination" classname="com.winopay.tron.TronProviderPaginationTest" time="0.0"/>
+  <testcase name="createdAt handles edge case around midnight" classname="com.winopay.tron.TronProviderPaginationTest" time="0.0"/>
+  <testcase name="Trc20TransactionsPage holds correct data" classname="com.winopay.tron.TronProviderPaginationTest" time="0.0"/>
+  <testcase name="createdAt handles timezone-independent ms timestamps" classname="com.winopay.tron.TronProviderPaginationTest" time="0.0"/>
+  <testcase name="TronRpcResult success and failure states work correctly" classname="com.winopay.tron.TronProviderPaginationTest" time="0.0"/>
+  <testcase name="empty page with null fingerprint indicates end of data" classname="com.winopay.tron.TronProviderPaginationTest" time="0.0"/>
+  <testcase name="provider list is ordered correctly" classname="com.winopay.tron.TronProviderPaginationTest" time="0.0"/>
+  <testcase name="stop condition 3 - safety cap MAX_PAGES limits pagination" classname="com.winopay.tron.TronProviderPaginationTest" time="0.0"/>
+  <testcase name="createdAt gating rejects transactions before invoice creation" classname="com.winopay.tron.TronProviderPaginationTest" time="0.001"/>
+  <testcase name="stop condition 2 - transactions older than createdAt stops scanning" classname="com.winopay.tron.TronProviderPaginationTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

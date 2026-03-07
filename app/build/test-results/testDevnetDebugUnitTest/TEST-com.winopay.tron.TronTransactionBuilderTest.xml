@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.tron.TronTransactionBuilderTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.006">
+  <properties/>
+  <testcase name="encodeTransferParameter produces 128 char hex string" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="estimateEnergy returns reasonable value" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="buildTrc20Transfer fails with invalid recipient address" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.001"/>
+  <testcase name="TRC20_TRANSFER_SELECTOR is correct" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="buildTrc20Transfer fails with invalid owner address" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.001"/>
+  <testcase name="buildTrc20Transfer fails with negative amount" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="encodeTransferParameter pads address correctly" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="DEFAULT_FEE_LIMIT_SUN is 30 TRX" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="encodeTransferParameter encodes amount correctly" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="decodeTransferParameter roundtrip works correctly" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="buildTrc20Transfer fails with zero amount" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="calculateFeeLimit returns value covering energy cost" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="estimateBandwidth returns reasonable value" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="decodeTransferParameter returns null for invalid length" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.001"/>
+  <testcase name="decodeTransferParameter adds 41 prefix back" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="encodeTransferParameter handles large amounts" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.0"/>
+  <testcase name="buildTrc20Transfer succeeds with valid addresses" classname="com.winopay.tron.TronTransactionBuilderTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

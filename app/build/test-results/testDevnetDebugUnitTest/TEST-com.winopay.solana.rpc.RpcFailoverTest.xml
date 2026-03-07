@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.winopay.solana.rpc.RpcFailoverTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-03-07T13:20:16" hostname="Pavels-MacBook-Pro.local" time="0.005">
+  <properties/>
+  <testcase name="Provider 2 of 3 succeeds - stops after success" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.002"/>
+  <testcase name="SignatureInfo with error flag" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.0"/>
+  <testcase name="RpcCallResult Failure contains error details" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.0"/>
+  <testcase name="RpcErrorType covers all failure scenarios" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.0"/>
+  <testcase name="SignatureInfo contains all required fields" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.0"/>
+  <testcase name="Primary fails, fallback succeeds - failover works" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.001"/>
+  <testcase name="CONFIRMED and FINALIZED are considered confirmed" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.0"/>
+  <testcase name="RpcCallResult Failure with HTTP code" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.0"/>
+  <testcase name="Different error types preserved through failover" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.001"/>
+  <testcase name="Primary provider success - no failover needed" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.0"/>
+  <testcase name="ConfirmationStatus levels are ordered correctly" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.0"/>
+  <testcase name="All providers fail - returns failure with ALL provider name" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.0"/>
+  <testcase name="RpcCallResult Success contains data and provider name" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.0"/>
+  <testcase name="Providers tried in order" classname="com.winopay.solana.rpc.RpcFailoverTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

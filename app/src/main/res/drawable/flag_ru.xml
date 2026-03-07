@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:viewportWidth="36"
+    android:viewportHeight="36">
+    <!-- Russia flag: White-Blue-Red horizontal stripes -->
+    <!-- White top stripe -->
+    <path
+        android:fillColor="#F7FCFF"
+        android:pathData="M0,0h36v12h-36z"/>
+    <!-- Blue middle stripe -->
+    <path
+        android:fillColor="#3D58DB"
+        android:pathData="M0,12h36v12h-36z"/>
+    <!-- Red bottom stripe -->
+    <path
+        android:fillColor="#C51918"
+        android:pathData="M0,24h36v12h-36z"/>
+</vector>

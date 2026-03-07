@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wino Pay</string>
+
+    <!-- Common -->
+    <string name="close">Закрыть</string>
+    <string name="cancel">Отмена</string>
+    <string name="save">Сохранить</string>
+    <string name="save_changes">Сохранить изменения</string>
+    <string name="continue_btn">Продолжить</string>
+    <string name="try_again">Повторить</string>
+    <string name="loading">Загрузка...</string>
+    <string name="create">Создать</string>
+    <string name="done">Готово</string>
+
+    <!-- Business -->
+    <string name="verified_business">Подтверждённый бизнес</string>
+    <string name="unverified_business">Неподтверждённый бизнес</string>
+    <string name="business">Бизнес</string>
+
+    <!-- Connect Screen -->
+    <string name="connect_wallet_title">Подключить кошелёк</string>
+    <string name="connect_wallet_subtitle">Подключите Solana-кошелёк для приёма платежей</string>
+    <string name="select_a_wallet">Выберите кошелёк</string>
+    <string name="connect_solana_wallet">Подключить Solana-кошелёк</string>
+    <string name="wallet_supports_hint">Поддерживаются Phantom, Solflare и другие MWA-совместимые кошельки</string>
+    <string name="connecting_to_wallet">Подключение к кошельку...</string>
+    <string name="approve_connection_hint">Подтвердите подключение в приложении кошелька</string>
+    <string name="wallet_connected">Кошелёк подключён</string>
+    <string name="switch_wallet">Сменить кошелёк</string>
+    <string name="disconnect">Отключить</string>
+    <string name="connection_failed">Ошибка подключения</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Панель</string>
+    <string name="balance">Баланс</string>
+    <string name="today">Сегодня</string>
+    <string name="total">Всего</string>
+    <string name="transactions">Транзакции</string>
+    <string name="no_transactions">Пока нет транзакций</string>
+    <string name="pos_mode">Режим кассы</string>
+
+    <!-- POS Screen -->
+    <string name="you_will_receive">Вы получите</string>
+
+    <!-- Select Payment -->
+    <string name="select_payment_method">Выберите способ оплаты</string>
+    <string name="select_payment_subtitle">Выберите способ получения платежа</string>
+    <string name="pay_with_usdc">Оплатить USDC</string>
+    <string name="pay_with_usdt">Оплатить USDT</string>
+    <string name="usdt_coming_soon">USDT (Скоро)</string>
+    <string name="other_payment_methods">Другие способы оплаты</string>
+    <string name="revoke_invoice">Отменить счёт</string>
+
+    <!-- QR Screen -->
+    <string name="solana_network">Сеть Solana</string>
+    <string name="no_refund_warning">Wino не может отменить или вернуть платежи.</string>
+    <string name="pay_with_other_methods">Оплатить другим способом</string>
+    <string name="payment_qr_code">QR-код оплаты</string>
+    <string name="open_in_wallet">Открытие в кошельке...</string>
+    <string name="no_wallet_found">Приложение Solana-кошелька не найдено</string>
+
+    <!-- TX Status -->
+    <string name="payment_successful">Платёж выполнен</string>
+    <string name="payment_detected">Платёж обнаружен</string>
+    <string name="invoice_expired">Счёт истёк</string>
+    <string name="payment_failed">Ошибка платежа</string>
+    <string name="confirming_transaction">Подтверждение транзакции...</string>
+    <string name="invoice_expired_hint">Срок действия счёта истёк.</string>
+    <string name="please_try_again">Пожалуйста, попробуйте снова.</string>
+    <string name="paid_with">Оплачено...</string>
+    <string name="please_wait">Пожалуйста, подождите...</string>
+    <string name="create_new_invoice_hint">Создайте новый счёт для продолжения.</string>
+    <string name="something_went_wrong">Что-то пошло не так.</string>
+    <string name="new_payment">Новый платёж</string>
+
+    <!-- Invoice Detail -->
+    <string name="invoice_details">Детали счёта</string>
+    <string name="invoice_id">ID счёта</string>
+    <string name="reference">Ссылка</string>
+    <string name="status">Статус</string>
+    <string name="created">Создан</string>
+    <string name="confirmed">Подтверждён</string>
+    <string name="signature">Подпись</string>
+    <string name="failure_reason">Причина ошибки</string>
+    <string name="open_in_explorer">Открыть в Explorer</string>
+    <string name="status_timeline">История статуса</string>
+    <string name="awaiting_payment">Ожидание оплаты</string>
+    <string name="pending_confirmation">Ожидание подтверждения</string>
+    <string name="payment_detected_timeline">Платёж обнаружен</string>
+    <string name="awaiting_confirmation">Ожидание подтверждения</string>
+    <string name="failed">Ошибка</string>
+    <string name="expired">Истёк</string>
+
+    <!-- Invoice List -->
+    <string name="payment_received">Платёж получен</string>
+    <string name="invoice_pending">Счёт в обработке</string>
+    <string name="invoice_created">Счёт создан</string>
+    <string name="invoice_failed">Ошибка счёта</string>
+
+    <!-- Settings -->
+    <string name="settings">Настройки</string>
+    <string name="balance_currency">Валюта баланса</string>
+    <string name="language">Язык</string>
+    <string name="payment_methods">Способы оплаты</string>
+    <string name="appearance">Внешний вид</string>
+    <string name="get_help">Получить помощь</string>
+    <string name="faq">Частые вопросы</string>
+    <string name="app_info">О приложении</string>
+    <string name="connected_wallet">Подключённый кошелёк</string>
+    <string name="not_connected">Не подключён</string>
+    <string name="error">Ошибка</string>
+
+    <!-- Settings Language -->
+    <string name="select_language">Выберите язык</string>
+    <string name="select_language_subtitle">Выберите предпочитаемый язык</string>
+    <string name="language_english">Английский</string>
+    <string name="language_russian">Русский</string>
+    <string name="language_system">Системный</string>
+
+    <!-- Settings Business Profile -->
+    <string name="business_info_title">Бизнес-профиль</string>
+    <string name="business_info_subtitle">Ваш бизнес-профиль</string>
+    <string name="wallet_address">Адрес кошелька</string>
+    <string name="info_cannot_be_changed">Информацию нельзя изменить. Вы можете создать новую</string>
+    <string name="learn_more">Подробнее</string>
+    <string name="go_back">Назад</string>
+    <string name="log_out">Выйти</string>
+
+    <!-- Currency -->
+    <string name="select_currency">Выберите валюту</string>
+    <string name="currency_subtitle">Выберите валюту отображения</string>
+</resources>
