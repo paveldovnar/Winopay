@@ -66,7 +66,11 @@ object UpdateChecker {
 
             Log.d(TAG, "UPDATE|GITHUB|found_releases=${releases.length()}")
 
-            // Find latest devnetDebug release
+            // Build variant name: e.g., "mainnetDebug" or "devnetDebug"
+            val currentVariant = BuildConfig.FLAVOR + BuildConfig.BUILD_TYPE.replaceFirstChar { it.uppercase() }
+            Log.d(TAG, "UPDATE|GITHUB|looking_for=$currentVariant")
+
+            // Find latest release matching current build variant
             for (i in 0 until releases.length()) {
                 val release = releases.getJSONObject(i)
                 val tag = release.getString("tag_name")
@@ -75,9 +79,9 @@ object UpdateChecker {
 
                 Log.d(TAG, "UPDATE|GITHUB|checking|tag=$tag|name=$releaseName")
 
-                // Skip if not devnetDebug release
-                if (!tag.contains("devnetDebug") && !releaseName.contains("devnetDebug")) {
-                    Log.d(TAG, "UPDATE|GITHUB|skip|not_devnet")
+                // Skip if not matching current build variant
+                if (!tag.contains(currentVariant) && !releaseName.contains(currentVariant)) {
+                    Log.d(TAG, "UPDATE|GITHUB|skip|not_$currentVariant")
                     continue
                 }
 
