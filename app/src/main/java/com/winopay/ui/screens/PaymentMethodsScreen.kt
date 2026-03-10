@@ -34,7 +34,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.winopay.data.profile.MerchantProfileStore
 import com.winopay.data.profile.RailConnection
@@ -80,6 +85,7 @@ fun PaymentMethodsScreen(
     val colors = WinoTheme.colors
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    val uriHandler = LocalUriHandler.current
 
     // SINGLE SOURCE OF TRUTH: MerchantProfileStore
     val profileStore = remember { MerchantProfileStore(context) }
@@ -309,6 +315,14 @@ fun PaymentMethodsScreen(
             )
 
             Spacer(modifier = Modifier.height(WinoSpacing.LG))
+
+            // ━━━━━ TON SECTION (Coming Soon) ━━━━━
+            ComingSoonRailSection(
+                railName = "TON",
+                railId = "ton"
+            )
+
+            Spacer(modifier = Modifier.height(WinoSpacing.LG))
         }
 
         // Bottom
@@ -316,24 +330,56 @@ fun PaymentMethodsScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .navigationBarsPadding()
-                .padding(horizontal = WinoSpacing.LG)
+                .padding(WinoSpacing.LG),
+            verticalArrangement = Arrangement.spacedBy(WinoSpacing.SM)
         ) {
-            // Helper text
-            Text(
-                text = "Connect wallets to enable more payment methods.",
-                style = WinoTypography.small,
-                color = colors.textSecondary,
-                modifier = Modifier.padding(vertical = WinoSpacing.XS)
+            // Helper text with link
+            val helperText = buildAnnotatedString {
+                append("Learn more about payment methods at ")
+                pushStringAnnotation(tag = "URL", annotation = "https://winobank.com/payments")
+                withStyle(
+                    style = SpanStyle(
+                        color = colors.brandPrimary,
+                        textDecoration = TextDecoration.Underline
+                    )
+                ) {
+                    append("winobank.com")
+                }
+                pop()
+            }
+
+            androidx.compose.foundation.text.ClickableText(
+                text = helperText,
+                style = WinoTypography.small.copy(color = colors.textSecondary),
+                onClick = { offset ->
+                    helperText.getStringAnnotations(tag = "URL", start = offset, end = offset)
+                        .firstOrNull()?.let {
+                            uriHandler.openUri(it.item)
+                        }
+                }
             )
 
-            // Button
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = WinoSpacing.SM)
-            ) {
+            if (isOnboarding) {
+                // Two buttons for onboarding
+                WinoButton(
+                    text = "Continue",
+                    onClick = onContinue,
+                    modifier = Modifier.fillMaxWidth(),
+                    variant = WinoButtonVariant.Secondary,
+                    size = WinoButtonSize.Large
+                )
+
+                WinoButton(
+                    text = "Set all and skip",
+                    onClick = onContinue,
+                    modifier = Modifier.fillMaxWidth(),
+                    variant = WinoButtonVariant.Primary,
+                    size = WinoButtonSize.Large
+                )
+            } else {
+                // Single button for settings
                 WinoPrimaryButton(
-                    text = if (isOnboarding) "Continue" else "Done",
+                    text = "Done",
                     onClick = onContinue
                 )
             }
@@ -482,6 +528,66 @@ private fun RailSection(
                         size = WinoButtonSize.Large
                     )
                 }
+            }
+        }
+    }
+}
+
+/**
+ * Section for a coming soon rail (TON, etc).
+ */
+@Composable
+private fun ComingSoonRailSection(
+    railName: String,
+    railId: String
+) {
+    val colors = WinoTheme.colors
+
+    Column(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        // Section header
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = WinoSpacing.SM),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(WinoSpacing.SM)
+        ) {
+            // Rail icon
+            Box(
+                modifier = Modifier
+                    .size(32.dp)
+                    .clip(CircleShape)
+                    .background(colors.bgSurfaceAlt),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = railId.first().uppercase(),
+                    style = WinoTypography.smallMedium,
+                    color = colors.textMuted
+                )
+            }
+
+            Text(
+                text = railName,
+                style = WinoTypography.h3Medium,
+                color = colors.textTertiary,
+                modifier = Modifier.weight(1f)
+            )
+
+            // Coming Soon badge
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(WinoRadius.SM))
+                    .background(colors.bgSurfaceAlt)
+                    .padding(horizontal = WinoSpacing.XS, vertical = 2.dp)
+            ) {
+                Text(
+                    text = "Coming Soon",
+                    style = WinoTypography.micro,
+                    color = colors.textMuted
+                )
             }
         }
     }

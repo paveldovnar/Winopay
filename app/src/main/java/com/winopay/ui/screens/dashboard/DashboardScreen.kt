@@ -42,13 +42,11 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.winopay.WinoPayApplication
 import com.winopay.data.CurrencyConverter
-import com.winopay.data.DashboardStats
 import com.winopay.solana.balance.BalanceModel
 import com.winopay.solana.balance.BalanceWarning
 import com.winopay.ui.components.InvoiceList
 import com.winopay.ui.components.PhosphorIcons
 import com.winopay.ui.components.WinoPrimaryButton
-import com.winopay.ui.components.WinoStatCard
 import com.winopay.ui.theme.WinoRadius
 import com.winopay.ui.theme.WinoSpacing
 import com.winopay.ui.theme.WinoTheme
@@ -82,15 +80,6 @@ fun DashboardScreen(
     val balanceModel by app.balanceRepository.balance.collectAsState(initial = BalanceModel.empty())
     val balance = balanceModel.totalStablecoinBalanceDouble
     val balanceWarning = balanceModel.warning
-
-    // Collect real stats from database
-    val stats by app.statsRepository.observeStats().collectAsState(initial = DashboardStats.EMPTY)
-
-    // Log stats changes
-    LaunchedEffect(stats) {
-        Log.d(TAG, "Stats updated: totalRevenue=${stats.totalRevenue}, revenueToday=${stats.revenueToday}, " +
-            "invoiceCount=${stats.invoiceCount}, confirmedCount=${stats.confirmedCount}")
-    }
 
     // Refresh balance when screen loads
     LaunchedEffect(Unit) {
@@ -211,7 +200,7 @@ fun DashboardScreen(
                     .padding(WinoSpacing.LG),
                 verticalArrangement = Arrangement.spacedBy(WinoSpacing.LG)
             ) {
-                // "Balance block" (793:9245): gap=XXS(4dp), p=XS(8dp)
+                // Balance block
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -224,7 +213,7 @@ fun DashboardScreen(
                     val formattedBalance = String.format("%,.2f", displayBalance)
                     val parts = formattedBalance.split(".")
 
-                    // Balance amount — Display (36/44 SemiBold -3%), textPrimary
+                    // Balance amount (primary) - in selected currency
                     Text(
                         text = buildAnnotatedString {
                             withStyle(SpanStyle(
@@ -244,13 +233,14 @@ fun DashboardScreen(
                         color = colors.textPrimary
                     )
 
-                    // USD equivalent — Body, textSecondary
-                    // balance is already in USD (stablecoins)
-                    Text(
-                        text = "= $${String.format("%,.2f", balance)} USD",
-                        style = WinoTypography.body,
-                        color = colors.textSecondary
-                    )
+                    // USD equivalent (secondary) - only show if currency is NOT USD
+                    if (currency != "USD") {
+                        Text(
+                            text = "= $${String.format("%,.2f", balance)} USD",
+                            style = WinoTypography.body,
+                            color = colors.textSecondary
+                        )
+                    }
                 }
 
                 // Mint mismatch warning banner
@@ -286,36 +276,6 @@ fun DashboardScreen(
                             }
                         }
                     }
-                }
-
-                // Stats cards row (793:9248): gap=SM(12dp)
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(WinoSpacing.SM)
-                ) {
-                    // "Today" card (793:9249) - shows revenue today from Room
-                    val todayProgress = if (stats.totalRevenue > 0) {
-                        (stats.revenueToday / stats.totalRevenue).toFloat().coerceIn(0f, 1f)
-                    } else 0f
-
-                    WinoStatCard(
-                        label = "Today",
-                        value = stats.formatRevenueToday(2),
-                        unit = "USD",
-                        suffix = "${stats.confirmedCountToday} tx",
-                        progress = todayProgress,
-                        modifier = Modifier.weight(1f)
-                    )
-
-                    // "Total" card - shows total confirmed revenue from Room
-                    WinoStatCard(
-                        label = "Total",
-                        value = stats.formatTotalRevenue(2),
-                        unit = "USD",
-                        suffix = "${stats.confirmedCount} tx",
-                        progress = 1f,
-                        modifier = Modifier.weight(1f)
-                    )
                 }
             }
 
@@ -379,11 +339,9 @@ fun DashboardScreen(
     if (showLogoutDialog) {
         LogoutConfirmDialog(
             onConfirm = {
-                scope.launch {
-                    app.dataStoreManager.clearAllData()
-                    showLogoutDialog = false
-                    onLogout()
-                }
+                showLogoutDialog = false
+                // Data clearing is handled by Navigation.kt via app.logout()
+                onLogout()
             },
             onDismiss = { showLogoutDialog = false }
         )

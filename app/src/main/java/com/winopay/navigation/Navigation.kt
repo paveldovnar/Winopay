@@ -6,8 +6,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavHostController
+import com.winopay.WinoPayApplication
+import kotlinx.coroutines.launch
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,6 +21,7 @@ import com.winopay.ui.screens.onboarding.AllSetScreen
 import com.winopay.ui.screens.onboarding.BusinessProfileSetupScreen
 import com.winopay.ui.screens.onboarding.ConnectScreen
 import com.winopay.ui.screens.onboarding.CurrencySetupScreen
+import com.winopay.ui.screens.onboarding.ReviewBusinessProfileScreen
 import com.winopay.ui.screens.onboarding.TronConnectScreen
 import com.winopay.ui.screens.onboarding.LoadingScreen
 import com.winopay.ui.screens.PaymentMethodsScreen
@@ -32,6 +36,7 @@ import com.winopay.ui.screens.settings.SettingsScreen
 import com.winopay.ui.screens.invoice.InvoiceDetailScreen
 import com.winopay.ui.screens.status.TxStatusScreen
 import com.winopay.ui.screens.welcome.WelcomeScreen
+import com.winopay.ui.screens.debug.RpcMonitorScreen
 
 sealed class Screen(val route: String) {
     // Onboarding
@@ -43,6 +48,7 @@ sealed class Screen(val route: String) {
     data object BusinessProfileSetup : Screen("profile/setup/{publicKey}") {
         fun createRoute(publicKey: String) = "profile/setup/$publicKey"
     }
+    data object ReviewBusinessProfile : Screen("profile/review")
 
     data object PaymentMethodsSetup : Screen("setup/payment_methods")
     data object CurrencySetup : Screen("setup/currency")
@@ -69,6 +75,9 @@ sealed class Screen(val route: String) {
     data object SettingsLanguage : Screen("settings/language")
     data object SettingsAppearance : Screen("settings/appearance")
     data object SettingsAppInfo : Screen("settings/app_info")
+
+    // Debug
+    data object RpcMonitor : Screen("debug/rpc_monitor")
 }
 
 @Composable
@@ -133,6 +142,18 @@ fun WinoNavHost(
             BusinessProfileSetupScreen(
                 publicKey = publicKey,
                 onContinue = {
+                    // Go to review screen before payment methods
+                    navController.navigate(Screen.ReviewBusinessProfile.route)
+                },
+                onBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(Screen.ReviewBusinessProfile.route) {
+            ReviewBusinessProfileScreen(
+                onContinue = {
                     navController.navigate(Screen.PaymentMethodsSetup.route) {
                         popUpTo(Screen.Connect.route) { inclusive = true }
                     }
@@ -193,6 +214,9 @@ fun WinoNavHost(
         // ==================== MAIN APP ====================
 
         composable(Screen.Dashboard.route) {
+            val scope = rememberCoroutineScope()
+            val app = WinoPayApplication.instance
+
             DashboardScreen(
                 onNewPayment = {
                     navController.navigate(Screen.PosFlow.route)
@@ -204,8 +228,11 @@ fun WinoNavHost(
                     navController.navigate(Screen.InvoiceDetail.createRoute(invoiceId))
                 },
                 onLogout = {
-                    navController.navigate(Screen.Welcome.route) {
-                        popUpTo(Screen.Dashboard.route) { inclusive = true }
+                    scope.launch {
+                        app.logout()
+                        navController.navigate(Screen.Welcome.route) {
+                            popUpTo(Screen.Dashboard.route) { inclusive = true }
+                        }
                     }
                 }
             )
@@ -235,7 +262,6 @@ fun WinoNavHost(
             val invoiceId = backStackEntry.arguments?.getString("invoiceId") ?: ""
             InvoiceDetailScreen(
                 invoiceId = invoiceId,
-                activityResultSender = activityResultSender,
                 onBack = { navController.popBackStack() }
             )
         }
@@ -272,6 +298,8 @@ fun WinoNavHost(
         // ==================== SETTINGS ====================
 
         composable(Screen.Settings.route) {
+            val scope = rememberCoroutineScope()
+            val app = WinoPayApplication.instance
             val updateViewModel: com.winopay.update.UpdateViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
             val updateInfo by updateViewModel.updateInfo.collectAsState()
             val isChecking by updateViewModel.isChecking.collectAsState()
@@ -293,9 +321,13 @@ fun WinoNavHost(
                         chatUsername = com.winopay.BuildConfig.TG_CHAT_ID
                     )
                 },
+                onRpcMonitorClick = { navController.navigate(Screen.RpcMonitor.route) },
                 onLogout = {
-                    navController.navigate(Screen.Welcome.route) {
-                        popUpTo(Screen.Dashboard.route) { inclusive = true }
+                    scope.launch {
+                        app.logout()
+                        navController.navigate(Screen.Welcome.route) {
+                            popUpTo(Screen.Dashboard.route) { inclusive = true }
+                        }
                     }
                 }
             )
@@ -320,11 +352,17 @@ fun WinoNavHost(
         }
 
         composable(Screen.SettingsBusinessInfo.route) {
+            val scope = rememberCoroutineScope()
+            val app = WinoPayApplication.instance
+
             SettingsBusinessInfoScreen(
                 onBack = { navController.popBackStack() },
                 onLogout = {
-                    navController.navigate(Screen.Welcome.route) {
-                        popUpTo(Screen.Dashboard.route) { inclusive = true }
+                    scope.launch {
+                        app.logout()
+                        navController.navigate(Screen.Welcome.route) {
+                            popUpTo(Screen.Dashboard.route) { inclusive = true }
+                        }
                     }
                 }
             )
@@ -378,6 +416,14 @@ fun WinoNavHost(
 
         composable(Screen.SettingsAppInfo.route) {
             SettingsAppInfoScreen(
+                onBack = { navController.popBackStack() }
+            )
+        }
+
+        // ==================== DEBUG ====================
+
+        composable(Screen.RpcMonitor.route) {
+            RpcMonitorScreen(
                 onBack = { navController.popBackStack() }
             )
         }

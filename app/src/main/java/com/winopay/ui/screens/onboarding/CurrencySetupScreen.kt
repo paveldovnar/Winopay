@@ -3,6 +3,7 @@ package com.winopay.ui.screens.onboarding
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,19 +17,35 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.winopay.R
 import com.winopay.WinoPayApplication
+import com.winopay.ui.components.PhosphorIcons
+import com.winopay.ui.components.WinoButton
+import com.winopay.ui.components.WinoButtonSize
+import com.winopay.ui.components.WinoButtonVariant
+import com.winopay.ui.theme.WinoRadius
 import com.winopay.ui.theme.WinoSpacing
 import com.winopay.ui.theme.WinoTheme
 import com.winopay.ui.theme.WinoTypography
@@ -59,6 +76,17 @@ fun CurrencySetupScreen(
     val colors = WinoTheme.colors
     val app = WinoPayApplication.instance
     val scope = rememberCoroutineScope()
+    val uriHandler = LocalUriHandler.current
+
+    // Selected currency state (default to USD)
+    var selectedCurrency by remember { mutableStateOf("USD") }
+
+    fun saveAndContinue() {
+        scope.launch {
+            app.dataStoreManager.setCurrency(selectedCurrency)
+            onContinue()
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -66,8 +94,7 @@ fun CurrencySetupScreen(
             .background(colors.bgCanvas)
             .statusBarsPadding()
     ) {
-        // "Text" frame — title + subtitle
-        // padding: top=MD(16dp), bottom=MD(16dp), horizontal=LG(24dp), gap=XXS(4dp)
+        // Title + subtitle
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -79,41 +106,78 @@ fun CurrencySetupScreen(
                 ),
             verticalArrangement = Arrangement.spacedBy(WinoSpacing.XXS)
         ) {
-            // "title" — H1 Medium, text/primary
             Text(
                 text = "Select balance currency",
                 style = WinoTypography.h1Medium,
                 color = colors.textPrimary
             )
 
-            // "subtitle" — Body, text/secondary
             Text(
-                text = "Blah blah",
+                text = "Your balance will be displayed in this currency",
                 style = WinoTypography.body,
                 color = colors.textSecondary
             )
         }
 
-        // Currency list — scrollable, px=LG(24dp)
+        // Currency list — scrollable
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
                 .verticalScroll(rememberScrollState())
-                .navigationBarsPadding()
                 .padding(horizontal = WinoSpacing.LG)
         ) {
             currencies.forEach { currency ->
                 CurrencyRow(
                     currency = currency,
-                    onClick = {
-                        scope.launch {
-                            app.dataStoreManager.setCurrency(currency.code)
-                            onContinue()
-                        }
-                    }
+                    isSelected = currency.code == selectedCurrency,
+                    onClick = { selectedCurrency = currency.code }
                 )
             }
+        }
+
+        // Bottom section with helper and continue button
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .navigationBarsPadding()
+                .padding(WinoSpacing.LG),
+            verticalArrangement = Arrangement.spacedBy(WinoSpacing.SM)
+        ) {
+            // Helper text with link
+            val helperText = buildAnnotatedString {
+                append("Learn more about currencies at ")
+                pushStringAnnotation(tag = "URL", annotation = "https://winobank.com/currencies")
+                withStyle(
+                    style = SpanStyle(
+                        color = colors.brandPrimary,
+                        textDecoration = TextDecoration.Underline
+                    )
+                ) {
+                    append("winobank.com")
+                }
+                pop()
+            }
+
+            ClickableText(
+                text = helperText,
+                style = WinoTypography.small.copy(color = colors.textSecondary),
+                onClick = { offset ->
+                    helperText.getStringAnnotations(tag = "URL", start = offset, end = offset)
+                        .firstOrNull()?.let {
+                            uriHandler.openUri(it.item)
+                        }
+                }
+            )
+
+            // Continue button
+            WinoButton(
+                text = "Continue",
+                onClick = { saveAndContinue() },
+                modifier = Modifier.fillMaxWidth(),
+                variant = WinoButtonVariant.Primary,
+                size = WinoButtonSize.Large
+            )
         }
     }
 }
@@ -121,16 +185,26 @@ fun CurrencySetupScreen(
 @Composable
 private fun CurrencyRow(
     currency: CurrencyOption,
+    isSelected: Boolean,
     onClick: () -> Unit
 ) {
     val colors = WinoTheme.colors
 
-    // Row: py=MD(16dp), gap=MD(16dp), items-center, clickable
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .clip(RoundedCornerShape(WinoRadius.MD))
+            .then(
+                if (isSelected) {
+                    Modifier
+                        .background(colors.bgAccentSoft)
+                        .border(2.dp, colors.brandPrimary, RoundedCornerShape(WinoRadius.MD))
+                } else {
+                    Modifier
+                }
+            )
             .clickable { onClick() }
-            .padding(vertical = WinoSpacing.MD),
+            .padding(WinoSpacing.MD),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(WinoSpacing.MD)
     ) {
@@ -144,7 +218,7 @@ private fun CurrencyRow(
             contentScale = ContentScale.Crop
         )
 
-        // Currency name: H3 Medium, text/primary, flex-1, single line, ellipsis
+        // Currency name
         Text(
             text = currency.name,
             style = WinoTypography.h3Medium,
@@ -154,11 +228,15 @@ private fun CurrencyRow(
             modifier = Modifier.weight(1f)
         )
 
-        // Currency code: bodyMedium, text/tertiary
-        Text(
-            text = currency.code,
-            style = WinoTypography.bodyMedium,
-            color = colors.textTertiary
-        )
+        // Currency code or checkmark
+        if (isSelected) {
+            PhosphorIcons.CheckCircle(size = 24.dp, color = colors.brandPrimary)
+        } else {
+            Text(
+                text = currency.code,
+                style = WinoTypography.bodyMedium,
+                color = colors.textTertiary
+            )
+        }
     }
 }

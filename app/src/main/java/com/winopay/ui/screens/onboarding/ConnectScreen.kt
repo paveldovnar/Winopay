@@ -2,6 +2,8 @@ package com.winopay.ui.screens.onboarding
 
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,9 +19,12 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -32,8 +37,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.solana.mobilewalletadapter.clientlib.ActivityResultSender
 import com.winopay.R
@@ -77,6 +87,14 @@ fun ConnectScreen(
     var connectionError by remember { mutableStateOf<String?>(null) }
     var connectionResult by remember { mutableStateOf<ConnectionResult?>(null) }
     var isOnboardingCompleted by remember { mutableStateOf<Boolean?>(null) }
+    var termsAccepted by remember { mutableStateOf(false) }
+
+    val uriHandler = LocalUriHandler.current
+
+    // Wallet change detection state
+    var showWalletChangeDialog by remember { mutableStateOf(false) }
+    var pendingConnectionResult by remember { mutableStateOf<ConnectionResult?>(null) }
+    var isClearingData by remember { mutableStateOf(false) }
 
     val isReownAvailable = remember { ReownManager.isAvailable() }
 
@@ -86,6 +104,25 @@ fun ConnectScreen(
         Log.d(TAG, "ONBOARD|INIT|completed=$isOnboardingCompleted")
     }
 
+    // Handle late session approval (after timeout)
+    // When session becomes Connected even after showing an error, recover and proceed
+    LaunchedEffect(wcSessionState) {
+        if (wcSessionState is UnifiedWalletConnector.SessionState.Connected && connectionError != null) {
+            val connected = wcSessionState as UnifiedWalletConnector.SessionState.Connected
+            Log.i(TAG, "WC|LATE_CONNECT|Recovering from timeout|rails=${connected.connectedRails.keys}")
+
+            // Clear error and set success
+            connectionError = null
+            isConnecting = false
+            connectionResult = ConnectionResult(
+                success = true,
+                walletName = connected.walletName,
+                connectedRails = connected.connectedRails
+            )
+            isOnboardingCompleted = profileStore.isOnboardingCompleted()
+        }
+    }
+
     // Common result handler (must be defined first for other functions to use)
     fun handleConnectResult(result: UnifiedWalletConnector.ConnectResult, wasOnboarded: Boolean) {
         when (result) {
@@ -93,25 +130,60 @@ fun ConnectScreen(
                 Log.i(TAG, "WC|CONNECT|SUCCESS|rails=${result.connectedRails.keys}|wallet=${result.walletName}")
                 Log.i(TAG, "CONFIG|CONNECTED_RAILS|solana=${result.connectedRails["solana"]?.accountId?.take(8)}|tron=${result.connectedRails["tron"]?.accountId?.take(8)}|evm=${result.connectedRails["evm"]?.accountId?.take(10)}")
 
-                connectionResult = ConnectionResult(
-                    success = true,
-                    walletName = result.walletName,
-                    connectedRails = result.connectedRails,
-                    failedRails = emptyList()
-                )
-                isOnboardingCompleted = wasOnboarded
+                // Check if wallet changed - show confirmation if addresses differ
+                scope.launch {
+                    val (hasExisting, addressesChanged) = unifiedConnector.checkWalletChange(result.connectedRails)
+                    Log.i(TAG, "WC|WALLET_CHECK|hasExisting=$hasExisting|changed=$addressesChanged|wasOnboarded=$wasOnboarded")
+
+                    if (hasExisting && addressesChanged && wasOnboarded) {
+                        // Different wallet - show confirmation dialog
+                        Log.i(TAG, "WC|WALLET_CHANGE|SHOW_DIALOG")
+                        pendingConnectionResult = ConnectionResult(
+                            success = true,
+                            walletName = result.walletName,
+                            connectedRails = result.connectedRails
+                        )
+                        showWalletChangeDialog = true
+                    } else {
+                        // Same wallet or new setup - proceed normally
+                        connectionResult = ConnectionResult(
+                            success = true,
+                            walletName = result.walletName,
+                            connectedRails = result.connectedRails
+                        )
+                        isOnboardingCompleted = wasOnboarded
+                    }
+                }
             }
             is UnifiedWalletConnector.ConnectResult.PartialSuccess -> {
-                Log.w(TAG, "WC|CONNECT|PARTIAL|connected=${result.connectedRails.keys}|failed=${result.failedRails}")
+                // Partial success: required rails connected, some optional rails (like TRON) may be missing
+                Log.i(TAG, "WC|CONNECT|PARTIAL|rails=${result.connectedRails.keys}|failed=${result.failedRails}|wallet=${result.walletName}")
                 Log.i(TAG, "CONFIG|CONNECTED_RAILS|solana=${result.connectedRails["solana"]?.accountId?.take(8)}|tron=${result.connectedRails["tron"]?.accountId?.take(8)}|evm=${result.connectedRails["evm"]?.accountId?.take(10)}")
 
-                connectionResult = ConnectionResult(
-                    success = true,
-                    walletName = result.walletName,
-                    connectedRails = result.connectedRails,
-                    failedRails = result.failedRails
-                )
-                isOnboardingCompleted = wasOnboarded
+                // Check if wallet changed
+                scope.launch {
+                    val (hasExisting, addressesChanged) = unifiedConnector.checkWalletChange(result.connectedRails)
+                    Log.i(TAG, "WC|WALLET_CHECK|hasExisting=$hasExisting|changed=$addressesChanged|wasOnboarded=$wasOnboarded")
+
+                    if (hasExisting && addressesChanged && wasOnboarded) {
+                        // Different wallet - show confirmation dialog
+                        Log.i(TAG, "WC|WALLET_CHANGE|SHOW_DIALOG")
+                        pendingConnectionResult = ConnectionResult(
+                            success = true,
+                            walletName = result.walletName,
+                            connectedRails = result.connectedRails
+                        )
+                        showWalletChangeDialog = true
+                    } else {
+                        // Same wallet or new setup - proceed normally
+                        connectionResult = ConnectionResult(
+                            success = true,
+                            walletName = result.walletName,
+                            connectedRails = result.connectedRails
+                        )
+                        isOnboardingCompleted = wasOnboarded
+                    }
+                }
             }
             is UnifiedWalletConnector.ConnectResult.Failure -> {
                 Log.e(TAG, "WC|CONNECT|FAIL|error=${result.error}")
@@ -119,57 +191,65 @@ fun ConnectScreen(
             }
             is UnifiedWalletConnector.ConnectResult.CryptoError -> {
                 Log.e(TAG, "WC|CONNECT|CRYPTO_ERROR|error=${result.error}|needsReset=${result.needsHealthReset}")
-                // Show error with suggestion to retry
                 connectionError = "${result.error} Tap 'Connect Wallet' to retry."
             }
         }
     }
 
-    // Connect EVM only (staged connect - step 1)
-    fun connectEvmOnly() {
+    // Handle wallet change confirmation
+    fun confirmWalletChange() {
         scope.launch {
-            Log.i(TAG, "WC|CONNECT|START|stage=EVM")
+            Log.i(TAG, "WC|WALLET_CHANGE|CONFIRMED|clearing_data")
+            isClearingData = true
+
+            try {
+                // Clear all previous data via logout
+                app.logout()
+                Log.i(TAG, "WC|WALLET_CHANGE|DATA_CLEARED")
+
+                // Proceed with new connection
+                connectionResult = pendingConnectionResult
+                isOnboardingCompleted = false  // Force through onboarding with new wallet
+                pendingConnectionResult = null
+                showWalletChangeDialog = false
+            } catch (e: Exception) {
+                Log.e(TAG, "WC|WALLET_CHANGE|ERROR|${e.message}")
+                connectionError = "Failed to clear data: ${e.message}"
+                showWalletChangeDialog = false
+            } finally {
+                isClearingData = false
+            }
+        }
+    }
+
+    // Cancel wallet change - disconnect new session
+    fun cancelWalletChange() {
+        scope.launch {
+            Log.i(TAG, "WC|WALLET_CHANGE|CANCELED|disconnecting_new_session")
+            showWalletChangeDialog = false
+
+            // Disconnect the new session
+            pendingConnectionResult?.connectedRails?.values?.firstOrNull()?.sessionId?.let { sessionId ->
+                unifiedConnector.disconnect(sessionId)
+            }
+            pendingConnectionResult = null
+
+            // Show message
+            connectionError = "Connection canceled. Your previous wallet data was preserved."
+        }
+    }
+
+    // Connect ALL chains at once (Solana + TRON + EVM)
+    fun connectAll() {
+        scope.launch {
+            Log.i(TAG, "WC|CONNECT|START|mode=ALL")
             isConnecting = true
             connectionError = null
             connectionResult = null
 
             val wasOnboarded = profileStore.isOnboardingCompleted()
 
-            val result = unifiedConnector.connectEvmOnly()
-
-            isConnecting = false
-
-            handleConnectResult(result, wasOnboarded)
-        }
-    }
-
-    // Add Solana to existing session (staged connect - step 2)
-    fun addSolana() {
-        scope.launch {
-            Log.i(TAG, "WC|CONNECT|START|stage=SOLANA")
-            isConnecting = true
-            connectionError = null
-
-            val wasOnboarded = profileStore.isOnboardingCompleted()
-
-            val result = unifiedConnector.addNamespace(UnifiedWalletConnector.ConnectStage.SOLANA)
-
-            isConnecting = false
-
-            handleConnectResult(result, wasOnboarded)
-        }
-    }
-
-    // Add TRON to existing session (staged connect - step 3)
-    fun addTron() {
-        scope.launch {
-            Log.i(TAG, "WC|CONNECT|START|stage=TRON")
-            isConnecting = true
-            connectionError = null
-
-            val wasOnboarded = profileStore.isOnboardingCompleted()
-
-            val result = unifiedConnector.addNamespace(UnifiedWalletConnector.ConnectStage.TRON)
+            val result = unifiedConnector.connectAll()
 
             isConnecting = false
 
@@ -188,6 +268,16 @@ fun ConnectScreen(
             Log.i(TAG, "ONBOARD|NAV|action=continue_onboarding|reason=new_user")
             onConnected(solanaAddress)
         }
+    }
+
+    // Wallet change confirmation dialog
+    if (showWalletChangeDialog) {
+        WalletChangeConfirmationDialog(
+            newWalletName = pendingConnectionResult?.walletName,
+            isClearing = isClearingData,
+            onConfirm = { confirmWalletChange() },
+            onCancel = { cancelWalletChange() }
+        )
     }
 
     Column(
@@ -254,22 +344,15 @@ fun ConnectScreen(
             // Show connection result or connect button
             if (connectionResult != null) {
                 // Connection successful - show what's connected
-                val canAddSolana = !connectionResult!!.connectedRails.containsKey("solana")
-                val canAddTron = !connectionResult!!.connectedRails.containsKey("tron")
-
                 ConnectionResultCard(
                     result = connectionResult!!,
-                    onContinue = { proceedAfterConnect() },
-                    onAddSolana = { addSolana() },
-                    onAddTron = { addTron() },
-                    canAddSolana = canAddSolana,
-                    canAddTron = canAddTron
+                    onContinue = { proceedAfterConnect() }
                 )
             } else if (isConnecting) {
                 // Connecting state
                 ConnectingState()
             } else {
-                // Initial state - show connect button
+                // Initial state - show terms checkbox and buttons
                 if (!isReownAvailable) {
                     // Reown not configured
                     Row(
@@ -297,27 +380,35 @@ fun ConnectScreen(
                     }
                 }
 
-                // Networks info card
-                NetworksInfoCard()
+                Spacer(modifier = Modifier.weight(1f))
 
-                Spacer(modifier = Modifier.height(WinoSpacing.MD))
+                // Terms checkbox with link
+                TermsCheckbox(
+                    checked = termsAccepted,
+                    onCheckedChange = { termsAccepted = it },
+                    onLinkClick = { uriHandler.openUri("https://winobank.com/terms") }
+                )
 
-                // Main connect button (EVM first - staged connect)
+                Spacer(modifier = Modifier.height(WinoSpacing.LG))
+
+                // Two buttons: How to get started (secondary) + Connect (primary)
                 WinoButton(
-                    text = "Connect Wallet",
-                    onClick = { connectEvmOnly() },
+                    text = "How to get started",
+                    onClick = { uriHandler.openUri("https://winobank.com/guide") },
+                    modifier = Modifier.fillMaxWidth(),
+                    variant = WinoButtonVariant.Secondary,
+                    size = WinoButtonSize.Large
+                )
+
+                Spacer(modifier = Modifier.height(WinoSpacing.SM))
+
+                WinoButton(
+                    text = "Connect",
+                    onClick = { connectAll() },
                     modifier = Modifier.fillMaxWidth(),
                     variant = WinoButtonVariant.Primary,
                     size = WinoButtonSize.Large,
-                    enabled = isReownAvailable
-                )
-
-                Text(
-                    text = "Connect BSC first, then add more networks",
-                    style = WinoTypography.micro,
-                    color = colors.textMuted,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
+                    enabled = isReownAvailable && termsAccepted
                 )
             }
         }
@@ -325,67 +416,67 @@ fun ConnectScreen(
 }
 
 /**
- * Card showing supported networks before connecting.
+ * Terms checkbox with clickable link.
  */
 @Composable
-private fun NetworksInfoCard() {
-    val colors = WinoTheme.colors
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(WinoRadius.LG))
-            .background(colors.bgSurface)
-            .padding(WinoSpacing.MD),
-        verticalArrangement = Arrangement.spacedBy(WinoSpacing.SM)
-    ) {
-        Text(
-            text = "Supported Networks",
-            style = WinoTypography.h3Medium,
-            color = colors.textPrimary
-        )
-
-        NetworkRow(name = "Solana", description = "USDC, USDT")
-        NetworkRow(name = "TRON", description = "USDT")
-        NetworkRow(name = "BSC", description = "USDT, USDC")
-    }
-}
-
-@Composable
-private fun NetworkRow(name: String, description: String) {
+private fun TermsCheckbox(
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+    onLinkClick: () -> Unit
+) {
     val colors = WinoTheme.colors
 
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onCheckedChange(!checked) },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(WinoSpacing.SM)
     ) {
+        // Custom checkbox
         Box(
             modifier = Modifier
-                .size(32.dp)
-                .clip(CircleShape)
-                .background(colors.bgSurfaceAlt),
+                .size(24.dp)
+                .clip(RoundedCornerShape(WinoRadius.XS))
+                .background(if (checked) colors.brandPrimary else colors.bgSurface)
+                .border(
+                    width = 2.dp,
+                    color = if (checked) colors.brandPrimary else colors.borderDefault,
+                    shape = RoundedCornerShape(WinoRadius.XS)
+                ),
             contentAlignment = Alignment.Center
         ) {
-            Text(
-                text = name.first().toString(),
-                style = WinoTypography.smallMedium,
-                color = colors.textSecondary
-            )
+            if (checked) {
+                PhosphorIcons.Check(size = 16.dp, color = colors.textOnBrand)
+            }
         }
 
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = name,
-                style = WinoTypography.bodyMedium,
-                color = colors.textPrimary
-            )
-            Text(
-                text = description,
-                style = WinoTypography.micro,
-                color = colors.textMuted
-            )
+        // Text with clickable link
+        val annotatedString = buildAnnotatedString {
+            append("I agree to the ")
+            pushStringAnnotation(tag = "TERMS", annotation = "https://winobank.com/terms")
+            withStyle(
+                style = SpanStyle(
+                    color = colors.brandPrimary,
+                    textDecoration = TextDecoration.Underline
+                )
+            ) {
+                append("Terms and Conditions")
+            }
+            pop()
         }
+
+        ClickableText(
+            text = annotatedString,
+            style = WinoTypography.small.copy(color = colors.textSecondary),
+            onClick = { offset ->
+                annotatedString.getStringAnnotations(tag = "TERMS", start = offset, end = offset)
+                    .firstOrNull()?.let {
+                        onLinkClick()
+                    }
+            },
+            modifier = Modifier.weight(1f)
+        )
     }
 }
 
@@ -428,11 +519,7 @@ private fun ConnectingState() {
 @Composable
 private fun ConnectionResultCard(
     result: ConnectionResult,
-    onContinue: () -> Unit,
-    onAddSolana: () -> Unit = {},
-    onAddTron: () -> Unit = {},
-    canAddSolana: Boolean = false,
-    canAddTron: Boolean = false
+    onContinue: () -> Unit
 ) {
     val colors = WinoTheme.colors
 
@@ -505,43 +592,6 @@ private fun ConnectionResultCard(
             )
         }
 
-        // Staged connect buttons for missing networks
-        if (canAddSolana || canAddTron) {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(WinoSpacing.XS)
-            ) {
-                Text(
-                    text = "Add more networks:",
-                    style = WinoTypography.smallMedium,
-                    color = colors.textSecondary
-                )
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(WinoSpacing.SM)
-                ) {
-                    if (canAddSolana) {
-                        WinoButton(
-                            text = "+ Solana",
-                            onClick = onAddSolana,
-                            modifier = Modifier.weight(1f),
-                            variant = WinoButtonVariant.Secondary,
-                            size = WinoButtonSize.Small
-                        )
-                    }
-                    if (canAddTron) {
-                        WinoButton(
-                            text = "+ TRON",
-                            onClick = onAddTron,
-                            modifier = Modifier.weight(1f),
-                            variant = WinoButtonVariant.Secondary,
-                            size = WinoButtonSize.Small
-                        )
-                    }
-                }
-            }
-        }
-
         // Continue button
         WinoButton(
             text = "Continue",
@@ -612,6 +662,88 @@ private fun formatAddress(address: String): String {
 private data class ConnectionResult(
     val success: Boolean,
     val walletName: String?,
-    val connectedRails: Map<String, RailConnection>,
-    val failedRails: List<String>
+    val connectedRails: Map<String, RailConnection>
 )
+
+/**
+ * Confirmation dialog when connecting a different wallet.
+ * Warns user that all previous transaction data will be deleted.
+ */
+@Composable
+private fun WalletChangeConfirmationDialog(
+    newWalletName: String?,
+    isClearing: Boolean,
+    onConfirm: () -> Unit,
+    onCancel: () -> Unit
+) {
+    val colors = WinoTheme.colors
+
+    AlertDialog(
+        onDismissRequest = { /* BLOCKING - cannot dismiss during clearing */ },
+        containerColor = colors.bgSurface,
+        titleContentColor = colors.textPrimary,
+        textContentColor = colors.textSecondary,
+        icon = {
+            PhosphorIcons.Warning(size = 32.dp, color = colors.stateWarning)
+        },
+        title = {
+            Text(
+                text = "Different wallet detected",
+                style = WinoTypography.h3Medium
+            )
+        },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(WinoSpacing.SM)) {
+                Text(
+                    text = "You are connecting a different wallet${newWalletName?.let { " ($it)" } ?: ""}.",
+                    style = WinoTypography.body
+                )
+                Text(
+                    text = "This will delete all previous transaction history and payment data.",
+                    style = WinoTypography.bodyMedium,
+                    color = colors.stateError
+                )
+                Text(
+                    text = "Are you sure you want to continue?",
+                    style = WinoTypography.body
+                )
+            }
+        },
+        confirmButton = {
+            if (isClearing) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(WinoSpacing.XS),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(16.dp),
+                        color = colors.brandPrimary,
+                        strokeWidth = 2.dp
+                    )
+                    Text(
+                        text = "Clearing...",
+                        style = WinoTypography.bodyMedium,
+                        color = colors.textSecondary
+                    )
+                }
+            } else {
+                TextButton(onClick = onConfirm) {
+                    Text(
+                        text = "Delete & Continue",
+                        color = colors.stateError
+                    )
+                }
+            }
+        },
+        dismissButton = {
+            if (!isClearing) {
+                TextButton(onClick = onCancel) {
+                    Text(
+                        text = "Cancel",
+                        color = colors.textSecondary
+                    )
+                }
+            }
+        }
+    )
+}

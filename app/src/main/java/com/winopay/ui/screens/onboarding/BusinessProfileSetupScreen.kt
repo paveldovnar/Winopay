@@ -101,13 +101,11 @@ fun BusinessProfileSetupScreen(
             )
 
             // SINGLE SOURCE: Save business profile to MerchantProfileStore
+            // Note: onboarding completed will be marked after review screen
             profileStore.saveBusinessProfile(
                 businessName = businessName,
                 logoUri = logoUri
             )
-
-            // SINGLE SOURCE: Mark onboarding completed
-            profileStore.setOnboardingCompleted(true)
 
             onContinue()
         }
