@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface InvoiceDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(invoice: InvoiceEntity)
 
     @Update
@@ -45,6 +45,59 @@ interface InvoiceDao {
 
     @Query("SELECT * FROM invoices WHERE status IN ('CREATED', 'PENDING') ORDER BY createdAt DESC")
     suspend fun getPendingInvoices(): List<InvoiceEntity>
+
+    // ==================== Wallet-Filtered Queries ====================
+    // These queries filter invoices by recipientAddress (merchant wallet).
+    // Use these to show only invoices for the currently connected wallet.
+
+    /**
+     * Observe all invoices for a specific wallet address.
+     */
+    @Query("SELECT * FROM invoices WHERE recipientAddress = :walletAddress ORDER BY createdAt DESC")
+    fun observeAllForWallet(walletAddress: String): Flow<List<InvoiceEntity>>
+
+    /**
+     * Observe recent invoices for a specific wallet address.
+     */
+    @Query("SELECT * FROM invoices WHERE recipientAddress = :walletAddress ORDER BY createdAt DESC LIMIT :limit")
+    fun observeRecentForWallet(walletAddress: String, limit: Int): Flow<List<InvoiceEntity>>
+
+    /**
+     * Get pending invoices for a specific wallet address.
+     */
+    @Query("SELECT * FROM invoices WHERE recipientAddress = :walletAddress AND status IN ('CREATED', 'PENDING') ORDER BY createdAt DESC")
+    suspend fun getPendingInvoicesForWallet(walletAddress: String): List<InvoiceEntity>
+
+    /**
+     * Get active invoice count for a specific wallet.
+     */
+    @Query("SELECT COUNT(*) FROM invoices WHERE recipientAddress = :walletAddress AND status IN ('CREATED', 'PENDING')")
+    suspend fun getActiveInvoiceCountForWallet(walletAddress: String): Int
+
+    /**
+     * Get the single active invoice for a specific wallet (if any).
+     */
+    @Query("SELECT * FROM invoices WHERE recipientAddress = :walletAddress AND status IN ('CREATED', 'PENDING') ORDER BY createdAt DESC LIMIT 1")
+    suspend fun getActiveInvoiceForWallet(walletAddress: String): InvoiceEntity?
+
+    /**
+     * Observe recent invoices for multiple wallet addresses (multichain support).
+     * Use this when merchant has multiple rails connected (Solana + TRON + EVM).
+     *
+     * Includes:
+     * 1. All invoices where merchant is recipient (payments received)
+     * 2. All REFUND_SENT invoices whose original invoice belongs to merchant (refunds sent)
+     */
+    @Query("""
+        SELECT * FROM invoices
+        WHERE recipientAddress IN (:walletAddresses)
+           OR (status = 'REFUND_SENT' AND linkedInvoiceId IN (
+               SELECT id FROM invoices WHERE recipientAddress IN (:walletAddresses)
+           ))
+        ORDER BY createdAt DESC
+        LIMIT :limit
+    """)
+    fun observeRecentForWallets(walletAddresses: List<String>, limit: Int): Flow<List<InvoiceEntity>>
 
     /**
      * Get count of active invoices (CREATED or PENDING).
@@ -110,4 +163,30 @@ interface InvoiceDao {
      */
     @Query("SELECT COUNT(*) FROM invoices WHERE status = 'CONFIRMED' AND createdAt >= :startOfDay")
     fun observeConfirmedCountToday(startOfDay: Long): Flow<Int>
+
+    // ==================== Wallet-Filtered Statistics ====================
+
+    /**
+     * Total revenue for a specific wallet.
+     */
+    @Query("SELECT COALESCE(SUM(amount), 0) FROM invoices WHERE recipientAddress = :walletAddress AND status = 'CONFIRMED'")
+    fun observeTotalRevenueForWallet(walletAddress: String): Flow<Long>
+
+    /**
+     * Revenue today for a specific wallet.
+     */
+    @Query("SELECT COALESCE(SUM(amount), 0) FROM invoices WHERE recipientAddress = :walletAddress AND status = 'CONFIRMED' AND createdAt >= :startOfDay")
+    fun observeRevenueTodayForWallet(walletAddress: String, startOfDay: Long): Flow<Long>
+
+    /**
+     * Invoice count for a specific wallet.
+     */
+    @Query("SELECT COUNT(*) FROM invoices WHERE recipientAddress = :walletAddress")
+    fun observeInvoiceCountForWallet(walletAddress: String): Flow<Int>
+
+    /**
+     * Confirmed invoice count for a specific wallet.
+     */
+    @Query("SELECT COUNT(*) FROM invoices WHERE recipientAddress = :walletAddress AND status = 'CONFIRMED'")
+    fun observeConfirmedCountForWallet(walletAddress: String): Flow<Int>
 }

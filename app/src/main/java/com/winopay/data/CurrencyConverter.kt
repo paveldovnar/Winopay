@@ -25,26 +25,26 @@ object CurrencyConverter {
     // BigDecimal scale for intermediate calculations (8 decimals for precision)
     private const val CALC_SCALE = 8
 
-    // Final USDC display scale (1 decimal place for clean customer-facing amounts)
-    private const val USDC_DISPLAY_SCALE = 1
+    // Final stablecoin display scale (2 decimal places for precise amounts)
+    // Applies to both USDC and USDT equally (1:1 with USD)
+    private const val STABLECOIN_DISPLAY_SCALE = 2
 
     /**
-     * Round a USDC amount UP (CEILING) to 1 decimal place.
+     * Round a stablecoin amount UP (CEILING) to 2 decimal places.
      *
      * This ensures merchant-favorable rounding for customer-facing amounts:
-     * - 123.41 → 123.5
-     * - 123.45 → 123.5
-     * - 123.49 → 123.5
-     * - 123.50 → 123.5
-     * - 123.51 → 123.6
+     * - 0.109 → 0.11
+     * - 0.121 → 0.13
+     * - 0.120 → 0.12
      *
      * IMPORTANT: This is applied AFTER all FX conversion and slippage calculations.
+     * Works for both USDC and USDT since both are 1:1 with USD.
      *
-     * @param amount The precise USDC amount (e.g., 123.456789)
-     * @return The rounded amount (e.g., 123.5)
+     * @param amount The precise USD/stablecoin amount (e.g., 123.456789)
+     * @return The rounded amount (e.g., 123.46)
      */
-    fun roundUpToOneDecimal(amount: BigDecimal): BigDecimal {
-        return amount.setScale(USDC_DISPLAY_SCALE, RoundingMode.CEILING)
+    fun roundUpToTwoDecimals(amount: BigDecimal): BigDecimal {
+        return amount.setScale(STABLECOIN_DISPLAY_SCALE, RoundingMode.CEILING)
     }
 
     // Current rates snapshot (null if not loaded)
@@ -69,8 +69,8 @@ object CurrencyConverter {
         val fiatAmountMinor: Long,           // Original amount in minor units (e.g., kopeks)
         val fiatCurrency: String,            // Currency code (e.g., "RUB")
         val fiatDecimals: Int,               // Decimal places (e.g., 2)
-        // Output (USDC)
-        val usdcMinor: Long,                 // Final USDC in minor units (6 decimals)
+        // Output (stablecoin - USDC or USDT, both 1:1 with USD)
+        val usdcMinor: Long,                 // Final stablecoin in minor units (6 decimals)
         // Rate (stored as exact string)
         val rateUsed: String,                // BigDecimal.toPlainString() for exact storage
         val rateDirection: String,           // e.g., "1 USD = 76.65 RUB"
@@ -264,7 +264,7 @@ object CurrencyConverter {
     }
 
     /**
-     * Convert fiat minor units to USDC minor units with full transparency.
+     * Convert fiat minor units to stablecoin (USDC/USDT) minor units with full transparency.
      *
      * STRICT BIGDECIMAL PIPELINE:
      * 1. fiatMinor (Long) → BigDecimal
@@ -274,7 +274,7 @@ object CurrencyConverter {
      * 5. usdcMinorPrecise = usdAmount × 1_000_000
      * 6. usdcMinor = CEILING to Long (ONLY rounding in entire pipeline)
      *
-     * USD MERCHANTS: No FX, no slippage, 1 USD = 1 USDC
+     * USD MERCHANTS: No FX, no slippage, 1 USD = 1 stablecoin (USDC or USDT)
      *
      * @param fiatAmountMinor Amount in minor units (e.g., kopeks for RUB)
      * @param fiatCurrency Currency code (e.g., "RUB")
@@ -286,6 +286,8 @@ object CurrencyConverter {
         fiatCurrency: String,
         fiatDecimals: Int
     ): ConversionResult? {
+        require(fiatAmountMinor > 0) { "Amount must be positive, got: $fiatAmountMinor" }
+
         val snapshot = currentSnapshot
 
         // ━━━━━ USD MERCHANT FAST PATH ━━━━━
@@ -299,9 +301,9 @@ object CurrencyConverter {
             val usdAmount = centsBD.divide(BigDecimal(100), CALC_SCALE, RoundingMode.UNNECESSARY)
             Log.d(TAG, "  USD_AMOUNT (precise): $usdAmount")
 
-            // Round UP to 1 decimal place for clean customer-facing amount
-            val usdcRounded = roundUpToOneDecimal(usdAmount)
-            Log.d(TAG, "  USDC_ROUNDED (1 decimal): $usdcRounded")
+            // Round UP to 2 decimal places for precise amount
+            val usdcRounded = roundUpToTwoDecimals(usdAmount)
+            Log.d(TAG, "  USDC_ROUNDED (2 decimals): $usdcRounded")
 
             // Convert to minor units (× 1,000,000) - exact, no further rounding needed
             val usdcMinor = usdcRounded.multiply(BigDecimal(1_000_000)).longValueExact()
@@ -321,7 +323,7 @@ object CurrencyConverter {
                 rateFetchedAt = System.currentTimeMillis(),
                 usdPrecise = usdAmount.toPlainString(),
                 slippageApplied = false,
-                roundingMode = "CEILING_1_DECIMAL"
+                roundingMode = "CEILING_2_DECIMALS"
             )
         }
 
@@ -341,7 +343,7 @@ object CurrencyConverter {
             return null
         }
 
-        Log.d(TAG, "━━━━━ USDC CONVERSION ━━━━━")
+        Log.d(TAG, "━━━━━ STABLECOIN CONVERSION ━━━━━")
         Log.d(TAG, "  INPUT: $fiatAmountMinor minor units ($fiatCurrency, $fiatDecimals decimals)")
         Log.d(TAG, "  RATE: 1 USD = $rate $fiatCurrency")
         Log.d(TAG, "  PROVIDER: ${snapshot.provider}")
@@ -365,14 +367,26 @@ object CurrencyConverter {
         val usdWithSlippage = usdAmount.multiply(slippageMultiplier)
         Log.d(TAG, "  USD_WITH_SLIPPAGE (+2.5%): $usdWithSlippage")
 
-        // Step 5: Round UP to 1 decimal place for clean customer-facing amount
-        val usdcRounded = roundUpToOneDecimal(usdWithSlippage)
-        Log.d(TAG, "  USDC_ROUNDED (1 decimal): $usdcRounded")
+        // Step 5: Round UP to 2 decimal places for precise amount
+        val usdcRounded = roundUpToTwoDecimals(usdWithSlippage)
+        Log.d(TAG, "  USDC_ROUNDED (2 decimals): $usdcRounded")
+
+        // Merchant is already protected by:
+        // 1) 2.5% slippage (step 4 above)
+        // 2) CEILING rounding (step 5 above)
+        // Both bias in merchant's favor. No additional guard needed.
+        //
+        // NOTE: A previous guard compared usdcRounded (USD) with fiatMajor (local currency).
+        // This was WRONG for currencies weaker than USD (THB, RUB, INR, etc.)
+        // because fiatMajor >> usdcRounded numerically, causing massive overcharges.
+        // Example: 1000 THB → 28.88 USDC correct, but guard forced 1000 USDC (35x overcharge).
+        val finalUsdc = usdcRounded
+        Log.d(TAG, "  USDC_FINAL: $finalUsdc")
 
         // Step 6: Convert to minor units (× 1,000,000) - exact, no further rounding needed
-        val usdcMinor = usdcRounded.multiply(BigDecimal(1_000_000)).longValueExact()
+        val usdcMinor = finalUsdc.multiply(BigDecimal(1_000_000)).longValueExact()
         Log.d(TAG, "  USDC_MINOR (final): $usdcMinor")
-        Log.d(TAG, "  ROUNDING: CEILING to 1 decimal (protects merchant)")
+        Log.d(TAG, "  ROUNDING: CEILING to 2 decimals (protects merchant)")
         Log.d(TAG, "━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
         return ConversionResult(
@@ -387,12 +401,12 @@ object CurrencyConverter {
             rateFetchedAt = snapshot.lastUpdated,
             usdPrecise = usdAmount.toPlainString(),
             slippageApplied = true,
-            roundingMode = "CEILING_1_DECIMAL"
+            roundingMode = "CEILING_2_DECIMALS_MERCHANT_PROTECTED"
         )
     }
 
     /**
-     * Convert to USDC minor units (simplified method).
+     * Convert to stablecoin minor units (simplified method).
      * Returns null if conversion impossible.
      *
      * @param fiatAmountMinor Amount in minor units (e.g., cents, kopeks)
@@ -408,7 +422,7 @@ object CurrencyConverter {
      * Check if a currency requires FX rates for conversion.
      *
      * CRITICAL: USD merchants NEVER need FX rates.
-     * 1 USD = 1 USDC exactly, no conversion needed.
+     * 1 USD = 1 stablecoin (USDC/USDT) exactly, no conversion needed.
      *
      * @param currency Currency code
      * @return true if rates are required, false for USD

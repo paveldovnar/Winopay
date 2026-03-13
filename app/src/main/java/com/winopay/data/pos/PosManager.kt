@@ -2,14 +2,17 @@ package com.winopay.data.pos
 
 import android.content.Context
 import android.util.Log
+import androidx.work.WorkInfo
 import com.winopay.BuildConfig
 import com.winopay.WinoPayApplication
 import com.winopay.data.CurrencyConverter
 import com.winopay.data.local.InvoiceEntity
+import com.winopay.data.local.InvoiceIdGenerator
 import com.winopay.data.local.InvoiceStatus
 import com.winopay.data.local.PaymentCurrency
 import com.winopay.data.profile.MerchantProfileStore
 import com.winopay.data.worker.DetectionScheduler
+import com.winopay.data.worker.InvoiceDetectionWorker
 import com.winopay.payments.DetectionResult
 import com.winopay.payments.PaymentRail
 import com.winopay.payments.PaymentRailFactory
@@ -25,6 +28,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
+import java.math.BigDecimal
+import java.math.RoundingMode
 import kotlinx.coroutines.sync.withLock
 import java.util.UUID
 
@@ -70,6 +75,7 @@ class PosManager(private val context: Context) {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     private val profileStore = MerchantProfileStore(context)
+    private val invoiceIdGenerator = InvoiceIdGenerator(context)
 
     /**
      * Payment rail abstraction. Dynamically selects based on active rail in profile store.
@@ -138,23 +144,27 @@ class PosManager(private val context: Context) {
      * NOTE: This doesn't check for active invoices (that's done in selectPaymentMethod).
      * If an active invoice exists, selectPaymentMethod will block and transition
      * to BlockedByActiveInvoice state.
+     *
+     * The actual invoice ID (format: A00001-Z99999) is generated in selectPaymentMethod()
+     * when the invoice is saved to the database. A temporary placeholder is used here.
      */
     fun createInvoice(amount: Double): String {
         Log.d(TAG, "createInvoice() called with amount: $amount")
         cancelJobs()
 
-        val invoiceId = UUID.randomUUID().toString().take(8)
-        Log.d(TAG, "Generated invoiceId: $invoiceId")
+        // Temporary placeholder - real ID generated in selectPaymentMethod()
+        val tempInvoiceId = "PENDING"
+        Log.d(TAG, "Created temp invoice placeholder for amount: $amount")
 
         val newState = PosState.SelectPayment(
             amount = amount,
-            invoiceId = invoiceId
+            invoiceId = tempInvoiceId
         )
         Log.d(TAG, "Transitioning state: ${_state.value} -> $newState")
         _state.value = newState
 
-        Log.d(TAG, "Created invoice: $invoiceId for amount: $amount, current state: ${_state.value}")
-        return invoiceId
+        Log.d(TAG, "Created invoice placeholder for amount: $amount, current state: ${_state.value}")
+        return tempInvoiceId
     }
 
     /**
@@ -250,7 +260,11 @@ class PosManager(private val context: Context) {
         // Convert display amount to minor units
         // All currencies use 2 decimal places for now (cents, kopeks, etc.)
         val fiatDecimals = 2
-        val fiatAmountMinor = (inputAmount * 100).toLong()
+        val fiatAmountMinor = BigDecimal(inputAmount.toString())
+            .movePointRight(fiatDecimals)
+            .setScale(0, RoundingMode.HALF_UP)
+            .longValueExact()
+        require(fiatAmountMinor > 0) { "Amount must be positive" }
         Log.d(TAG, "Converted $inputAmount $merchantCurrency -> $fiatAmountMinor minor units")
 
         // Get conversion result with full metadata (immutable FX snapshot)
@@ -340,7 +354,13 @@ class PosManager(private val context: Context) {
             }
         }
 
+        // ━━━━━━━━━━ GENERATE SEQUENTIAL INVOICE ID ━━━━━━━━━━
+        // Format: A00001 -> Z99999 (2.6 million invoices capacity)
+        val realInvoiceId = invoiceIdGenerator.nextId()
+        Log.d(TAG, "Generated sequential invoice ID: $realInvoiceId (format: #$realInvoiceId)")
+
         Log.d(TAG, "━━━━━ INVOICE PREPARED ━━━━━")
+        Log.d(TAG, "  INVOICE_ID: $realInvoiceId")
         Log.d(TAG, "  CLUSTER: ${BuildConfig.SOLANA_CLUSTER}")
         Log.d(TAG, "  FIAT_INPUT: $inputAmount $merchantCurrency")
         Log.d(TAG, "  FIAT_MINOR: ${conversionResult.fiatAmountMinor} ($fiatDecimals decimals)")
@@ -357,7 +377,7 @@ class PosManager(private val context: Context) {
         // Create invoice entity with IMMUTABLE FX rate snapshot
         Log.d(TAG, "Creating InvoiceEntity with immutable FX snapshot...")
         val preparedInvoice = InvoiceEntity.create(
-            id = invoiceId,
+            id = realInvoiceId,
             reference = reference,
             recipientAddress = recipientPublicKey,
             recipientTokenAccount = recipientTokenAccount,  // ATA for SPL, null for SOL
@@ -529,6 +549,7 @@ class PosManager(private val context: Context) {
             amount = inputAmount,
             usdcAmount = usdcDisplayAmount,
             method = method,
+            recipientAddress = recipientPublicKey,
             qrData = currentQrData!!,
             expiresAt = expiresAt
         )
@@ -652,11 +673,16 @@ class PosManager(private val context: Context) {
             currentQrData = paymentRail.buildPaymentRequest(invoice)
 
             val elapsedSeconds = (elapsedMs / 1000).toInt()
+            val method = PaymentMethod.fromCurrency(invoice.currency, invoice.railId, invoice.splTokenMint ?: "")
             _state.value = PosState.ExpiredAwaitingDecision(
                 invoiceId = invoice.id,
                 amount = invoice.getDisplayAmount(),
+                usdcAmount = invoice.getDisplayAmount(),
+                method = method,
+                recipientAddress = invoice.recipientAddress,
                 elapsedSeconds = elapsedSeconds,
-                qrData = currentQrData ?: ""
+                qrData = currentQrData ?: "",
+                expiresAt = invoice.createdAt + invoiceTimeoutMs
             )
             return true
         }
@@ -673,6 +699,7 @@ class PosManager(private val context: Context) {
                     amount = invoice.getDisplayAmount(),
                     usdcAmount = invoice.getDisplayAmount(),
                     method = PaymentMethod.fromCurrency(invoice.currency, invoice.railId, invoice.splTokenMint ?: ""),
+                    recipientAddress = invoice.recipientAddress,
                     qrData = currentQrData!!,
                     expiresAt = expiresAt
                 )
@@ -760,11 +787,16 @@ class PosManager(private val context: Context) {
             // Timeout already passed - show soft-expire dialog (don't auto-expire!)
             Log.d(TAG, "Active invoice timeout passed - showing soft-expire")
             val elapsedSeconds = (elapsedMs / 1000).toInt()
+            val method = PaymentMethod.fromCurrency(activeInvoice.currency, activeInvoice.railId, activeInvoice.splTokenMint ?: "")
             _state.value = PosState.ExpiredAwaitingDecision(
                 invoiceId = activeInvoice.id,
                 amount = activeInvoice.getDisplayAmount(),
+                usdcAmount = activeInvoice.getDisplayAmount(),
+                method = method,
+                recipientAddress = activeInvoice.recipientAddress,
                 elapsedSeconds = elapsedSeconds,
-                qrData = currentQrData ?: ""
+                qrData = currentQrData ?: "",
+                expiresAt = activeInvoice.createdAt + invoiceTimeoutMs
             )
             return true
         }
@@ -779,6 +811,7 @@ class PosManager(private val context: Context) {
                     amount = activeInvoice.getDisplayAmount(),
                     usdcAmount = activeInvoice.getDisplayAmount(),
                     method = PaymentMethod.fromCurrency(activeInvoice.currency, activeInvoice.railId, activeInvoice.splTokenMint ?: ""),
+                    recipientAddress = activeInvoice.recipientAddress,
                     qrData = currentQrData!!,
                     expiresAt = expiresAt
                 )
@@ -878,10 +911,23 @@ class PosManager(private val context: Context) {
                 if (currentState !is PosState.Success) {
                     Log.d(TAG, "Room sync: CONFIRMED - transitioning to Success")
                     cancelJobs()
+                    val method = PaymentMethod.fromCurrency(invoice.currency, invoice.railId, invoice.splTokenMint ?: "")
                     _state.value = PosState.Success(
                         invoiceId = invoice.id,
                         amount = invoice.getDisplayAmount(),
-                        signature = invoice.foundSignature ?: ""
+                        usdcAmount = invoice.getDisplayAmount(),
+                        signature = invoice.foundSignature ?: "",
+                        method = method,
+                        fiatCurrency = invoice.fiatCurrency ?: "USD",
+                        paymentWarningCode = invoice.paymentWarningCode,
+                        expectedToken = method.symbol,
+                        actualToken = invoice.actualMintUsed?.let { mint ->
+                            when {
+                                mint == BuildConfig.USDC_MINT -> "USDC"
+                                mint == BuildConfig.USDT_MINT -> "USDT"
+                                else -> mint.take(8) + "..."
+                            }
+                        }
                     )
                     DetectionScheduler.cancelDetection(WinoPayApplication.instance, invoice.id)
                 }
@@ -930,6 +976,12 @@ class PosManager(private val context: Context) {
                     cancelJobs()
                     reset()
                 }
+            }
+            InvoiceStatus.REFUND_SENT -> {
+                // Refund invoices are handled separately - no POS state transition needed
+            }
+            InvoiceStatus.REFUND_FAILED -> {
+                // Failed refund invoices are handled separately - no POS state transition needed
             }
         }
     }
@@ -1010,10 +1062,23 @@ class PosManager(private val context: Context) {
 
                 // Transition to success
                 cancelJobs()
+                val method = PaymentMethod.fromCurrency(invoice.currency, invoice.railId, invoice.splTokenMint ?: "")
                 _state.value = PosState.Success(
                     invoiceId = invoiceId,
                     amount = invoice.getDisplayAmount(),
-                    signature = result.transactionId
+                    usdcAmount = invoice.getDisplayAmount(),
+                    signature = result.transactionId,
+                    method = method,
+                    fiatCurrency = invoice.fiatCurrency ?: "USD",
+                    paymentWarningCode = result.warningCode,
+                    expectedToken = method.symbol,
+                    actualToken = result.actualTokenUsed?.let { mint ->
+                        when {
+                            mint == BuildConfig.USDC_MINT -> "USDC"
+                            mint == BuildConfig.USDT_MINT -> "USDT"
+                            else -> mint.take(8) + "..."
+                        }
+                    }
                 )
 
                 WinoPayApplication.instance.invoiceRepository.confirmInvoice(
@@ -1057,10 +1122,23 @@ class PosManager(private val context: Context) {
 
                 // Transition to success
                 cancelJobs()
+                val confirmedMethod = PaymentMethod.fromCurrency(invoice.currency, invoice.railId, invoice.splTokenMint ?: "")
                 _state.value = PosState.Success(
                     invoiceId = invoiceId,
                     amount = invoice.getDisplayAmount(),
-                    signature = result.transactionId
+                    usdcAmount = invoice.getDisplayAmount(),
+                    signature = result.transactionId,
+                    method = confirmedMethod,
+                    fiatCurrency = invoice.fiatCurrency ?: "USD",
+                    paymentWarningCode = result.warningCode,
+                    expectedToken = confirmedMethod.symbol,
+                    actualToken = result.actualTokenUsed?.let { mint ->
+                        when {
+                            mint == BuildConfig.USDC_MINT -> "USDC"
+                            mint == BuildConfig.USDT_MINT -> "USDT"
+                            else -> mint.take(8) + "..."
+                        }
+                    }
                 )
 
                 // Cancel background worker since payment confirmed
@@ -1134,11 +1212,21 @@ class PosManager(private val context: Context) {
                 // Transition to soft-expire state (detection continues)
                 // NOTE: We do NOT cancel detection or mark as expired yet
                 Log.i(TAG, "SOFT_EXPIRE|FOREGROUND|${invoiceId.take(8)}|SOFT_EXPIRE_DIALOG_SHOWN")
+                val invoice = currentInvoice
+                val method = if (invoice != null) {
+                    PaymentMethod.fromCurrency(invoice.currency, invoice.railId, invoice.splTokenMint ?: "")
+                } else {
+                    PaymentMethod.USDC // Fallback
+                }
                 _state.value = PosState.ExpiredAwaitingDecision(
                     invoiceId = invoiceId,
-                    amount = currentInvoice?.getDisplayAmount() ?: 0.0,
+                    amount = invoice?.getDisplayAmount() ?: 0.0,
+                    usdcAmount = invoice?.getDisplayAmount() ?: 0.0,
+                    method = method,
+                    recipientAddress = invoice?.recipientAddress ?: "",
                     elapsedSeconds = elapsedSeconds,
-                    qrData = currentQrData ?: ""
+                    qrData = currentQrData ?: "",
+                    expiresAt = expiresAt
                 )
             }
         }
@@ -1224,8 +1312,9 @@ class PosManager(private val context: Context) {
         _state.value = PosState.Qr(
             invoiceId = invoice.id,
             amount = currentState.amount,
-            usdcAmount = currentState.amount,
-            method = PaymentMethod.fromCurrency(invoice.currency, invoice.railId, invoice.splTokenMint ?: ""),
+            usdcAmount = currentState.usdcAmount,
+            method = currentState.method,
+            recipientAddress = currentState.recipientAddress,
             qrData = currentState.qrData,
             expiresAt = newDeadline
         )
@@ -1269,6 +1358,100 @@ class PosManager(private val context: Context) {
             invoiceId = invoiceId,
             amount = currentState.amount
         )
+    }
+
+    /**
+     * Handle hard expiry from background worker.
+     *
+     * Called when the background worker hits its absolute time limit (30 minutes).
+     * Worker stopped gracefully - invoice status NOT changed.
+     * Shows dialog to merchant: "Check manually" or "Cancel invoice".
+     *
+     * HARD EXPIRY vs SOFT EXPIRY:
+     * - Soft expiry: UI timeout reached, merchant can extend
+     * - Hard expiry: Worker absolute limit, no more automatic detection
+     */
+    fun handleHardExpiry(
+        invoiceId: String,
+        runtimeSeconds: Long,
+        pollCount: Int
+    ) {
+        val invoice = currentInvoice
+        if (invoice == null || invoice.id != invoiceId) {
+            Log.w(TAG, "Hard expiry for unknown/different invoice: $invoiceId")
+            return
+        }
+
+        Log.w(TAG, "HARD_EXPIRY|FOREGROUND|${invoiceId.take(8)}|SHOWING_DIALOG|runtime=${runtimeSeconds}s|polls=$pollCount")
+
+        // Cancel foreground detection
+        cancelJobs()
+
+        // Transition to hard expiry state
+        _state.value = PosState.HardExpiredAwaitingDecision(
+            invoiceId = invoiceId,
+            amount = invoice.getDisplayAmount(),
+            totalRuntimeSeconds = runtimeSeconds,
+            pollCount = pollCount,
+            qrData = currentQrData ?: ""
+        )
+    }
+
+    /**
+     * Cancel invoice after hard expiry.
+     *
+     * Called when merchant chooses "Cancel invoice" from hard expiry dialog.
+     * Marks invoice as CANCELED and resets to EnterAmount.
+     */
+    fun cancelHardExpiredInvoice() {
+        val currentState = _state.value
+        if (currentState !is PosState.HardExpiredAwaitingDecision) {
+            Log.w(TAG, "Cannot cancel: not in HardExpiredAwaitingDecision state")
+            return
+        }
+
+        val invoiceId = currentState.invoiceId
+
+        Log.i(TAG, "HARD_EXPIRY|FOREGROUND|${invoiceId.take(8)}|CANCEL_CLICKED")
+
+        // Mark as CANCELED in database
+        scope.launch(Dispatchers.IO) {
+            WinoPayApplication.instance.invoiceRepository.cancelInvoice(invoiceId)
+            Log.i(TAG, "HARD_EXPIRY|DB|${invoiceId.take(8)}|MARK_CANCELED")
+        }
+
+        // Reset to allow new payment
+        reset()
+    }
+
+    /**
+     * Check worker result for hard expiry.
+     *
+     * Parses the WorkInfo list and handles hard expiry if detected.
+     * Should be called from UI when observing DetectionScheduler.observeDetectionWork().
+     *
+     * @return true if hard expiry was detected and handled
+     */
+    fun checkWorkerResultForHardExpiry(workInfoList: List<WorkInfo>?): Boolean {
+        val result = DetectionScheduler.parseWorkResult(workInfoList)
+
+        if (result is DetectionScheduler.DetectionWorkResult.HardExpired) {
+            val invoice = currentInvoice ?: return false
+
+            // Only handle if we're in QR or Pending state
+            val currentState = _state.value
+            if (currentState is PosState.Qr || currentState is PosState.Pending ||
+                currentState is PosState.ExpiredAwaitingDecision) {
+                handleHardExpiry(
+                    invoiceId = invoice.id,
+                    runtimeSeconds = result.runtimeSeconds,
+                    pollCount = result.pollCount
+                )
+                return true
+            }
+        }
+
+        return false
     }
 
     private fun cancelJobs() {
