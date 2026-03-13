@@ -57,8 +57,8 @@ android {
         applicationId = "com.winopay"
         minSdk = 26
         targetSdk = 35
-        versionCode = 6
-        versionName = "1.0.5"
+        versionCode = 10
+        versionName = "1.0.9"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -79,6 +79,12 @@ android {
         val tgChatId = getPropertyOrEnv("TG_CHAT_ID") ?: ""
         buildConfigField("String", "TG_BOT_TOKEN", "\"$tgBotToken\"")
         buildConfigField("String", "TG_CHAT_ID", "\"$tgChatId\"")
+
+        // Helius RPC API key for Solana mainnet (optional fallback provider)
+        // Get from https://dev.helius.xyz/ - set in local.properties or env
+        // If empty, Helius provider will not be added to fallback chain
+        val heliusApiKey = getPropertyOrEnv("HELIUS_API_KEY") ?: ""
+        buildConfigField("String", "HELIUS_API_KEY", "\"$heliusApiKey\"")
     }
 
     buildTypes {
@@ -177,6 +183,48 @@ android {
         abortOnError = false
         checkReleaseBuilds = false
     }
+
+    // Build-time validation: Warn if mainnet release without backup RPC
+    applicationVariants.all {
+        val variant = this
+        if (variant.name.contains("mainnet", ignoreCase = true) &&
+            variant.name.contains("release", ignoreCase = true)) {
+
+            val primaryRpc = getPropertyOrEnv("SOLANA_RPC_URL_MAINNET")
+            val backupRpc = getPropertyOrEnv("SOLANA_RPC_URL_BACKUP")
+            val heliusKey = getPropertyOrEnv("HELIUS_API_KEY")
+
+            // Check if backup RPC is configured and different from primary
+            val hasBackup = !backupRpc.isNullOrBlank() && backupRpc != primaryRpc
+            val hasHelius = !heliusKey.isNullOrBlank()
+
+            if (!hasBackup && !hasHelius) {
+                logger.warn("═══════════════════════════════════════════════════════════")
+                logger.warn("⚠️ MAINNET RELEASE: Limited RPC redundancy configured!")
+                logger.warn("  Primary RPC: ${primaryRpc?.take(50) ?: "(default public)"}")
+                logger.warn("  Backup RPC:  ${if (hasBackup) "configured" else "NOT CONFIGURED (same as primary)"}")
+                logger.warn("  Helius:      ${if (hasHelius) "enabled" else "NOT CONFIGURED"}")
+                logger.warn("")
+                logger.warn("  Recommend setting for production reliability:")
+                logger.warn("    SOLANA_RPC_URL_MAINNET=https://your-primary-rpc.com")
+                logger.warn("    SOLANA_RPC_URL_BACKUP=https://your-backup-rpc.com")
+                logger.warn("    HELIUS_API_KEY=your-helius-api-key (optional)")
+                logger.warn("═══════════════════════════════════════════════════════════")
+            }
+
+            // TRON API key warning
+            val tronGridKey = getPropertyOrEnv("TRONGRID_API_KEY")
+            if (tronGridKey.isNullOrBlank()) {
+                logger.warn("═══════════════════════════════════════════════════════════")
+                logger.warn("⚠️ MAINNET RELEASE: TronGrid API key not configured!")
+                logger.warn("  TRON rate limits may apply without API key")
+                logger.warn("")
+                logger.warn("  Set TRONGRID_API_KEY for higher rate limits:")
+                logger.warn("    TRONGRID_API_KEY=your-trongrid-api-key")
+                logger.warn("═══════════════════════════════════════════════════════════")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -193,6 +241,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.security.crypto)
     implementation(libs.zxing.core)
     implementation(libs.coil.compose)
     implementation(libs.solana.mwa.clientlib)
