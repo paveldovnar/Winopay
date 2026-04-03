@@ -1,0 +1,378 @@
+{
+  "app": {
+    "name": "Wino Pay"
+  },
+
+  "common": {
+    "continue": "Continue",
+    "cancel": "Cancel",
+    "close": "Close",
+    "confirm": "Confirm",
+    "done": "Done",
+    "back": "Back",
+    "retry": "Try again",
+    "delete": "Delete",
+    "deleting": "Deleting...",
+    "soon": "Soon",
+    "connect": "Connect",
+    "connecting": "Connecting",
+    "logout": "Log out",
+    "read": "Read",
+    "learn_more": "Learn more",
+    "save_changes": "Save changes",
+    "go_home": "Go home",
+    "ok": "OK"
+  },
+
+  "welcome": {
+    "title": "Wino Pay",
+    "subtitle": "Fast, clear, and easy crypto checkout.",
+    "get_started": "Let's get started"
+  },
+
+  "onboarding": {
+    "connect_wallet": {
+      "title": "Connect wallet",
+      "subtitle": "Connect a wallet to start. You keep the keys — Wino never takes custody.",
+      "terms_agree": "I agree to the ",
+      "terms_link": "Terms of Service, Privacy Policy, Risk Disclosure",
+      "help_link": "How to get started"
+    },
+    "connecting": {
+      "title": "Connecting",
+      "subtitle": "Approve the connection request in your wallet.",
+      "helper": "This may take up to 90 seconds."
+    },
+    "connected": {
+      "title": "Wallet connected"
+    },
+    "timeout": {
+      "title": "Connection timed out",
+      "subtitle": "Could not connect to the wallet service. This may be caused by network restrictions or unstable connection. Try using a VPN or switching networks.",
+      "tip": "Tip: Make sure you have a stable internet connection"
+    },
+    "error": {
+      "title": "Connection failed",
+      "subtitle": "Could not establish connection. Check your internet, try a VPN, or switch to a different network.",
+      "helper": "Contact support if this continues",
+      "get_help": "Get help"
+    },
+    "session_expired": {
+      "title": "Session expired",
+      "subtitle": "Your wallet connection expired. Please reconnect to continue.",
+      "reconnect": "Reconnect Wallet"
+    },
+    "different_wallet": {
+      "title": "Different wallet detected",
+      "subtitle": "You're connecting a new wallet.",
+      "tron_address": "Tron address",
+      "solana_address": "Solana address",
+      "warning_delete": "This will DELETE",
+      "warning_history": "All transaction history",
+      "warning_deleted": "Will be deleted",
+      "warning_invoices": "All payment invoices",
+      "warning_settings": "All saved settings",
+      "warning_irreversible": "This action cannot be undone."
+    },
+    "review_profile": {
+      "title": "Review Business profile",
+      "subtitle": "Check how your business will appear to customers during checkout.",
+      "back": "Get back"
+    },
+    "payment_methods": {
+      "title_setup": "Set Payment methods",
+      "title_settings": "Payment Methods",
+      "subtitle_setup": "If you're not sure, enable more options — it increases the chance customers can pay.",
+      "subtitle_settings": "Enable payment methods for your customers",
+      "tron_label": "on Tron (TRC-20)",
+      "solana_label": "on Solana",
+      "other": "Other",
+      "disclaimer": "Crypto payments are irreversible. Tips and refunds aren't automated — refunds must be sent back manually as a new transaction.",
+      "skip": "Set all and skip"
+    },
+    "currency_setup": {
+      "title": "Select balance currency",
+      "subtitle": "Pick a fiat currency to display totals, rates, and analytics. Clients still pay in stablecoins.",
+      "disclaimer": "Rates are shown for reference only. The underlying amount and settlement are USD-based and recorded on-chain."
+    },
+    "tron_connect": {
+      "title": "Connect Tron wallet",
+      "subtitle": "Paste your TRON wallet address to receive TRC20 payments",
+      "placeholder": "Paste your TRON address (starts with T)",
+      "invalid": "Invalid TRON address",
+      "warning": "Make sure you enter the correct TRON address. Payments sent to wrong addresses cannot be recovered.",
+      "button": "Connect"
+    },
+    "tron_connected": {
+      "title": "Tron connected"
+    },
+    "all_set": {
+      "title": "All set",
+      "subtitle": "With no banks. With no custody."
+    },
+    "business_profile": {
+      "title": "Enter Business info",
+      "subtitle": "Your business name and logo may be displayed to customers and may appear in payment records. Make sure it's correct.",
+      "name_placeholder": "Business name",
+      "upload_logo": "Upload logo",
+      "logo_selected": "Logo selected",
+      "select": "Select",
+      "change": "Change",
+      "back": "Get back",
+      "saving": "Saving..."
+    }
+  },
+
+  "legal": {
+    "title": "Legal documents",
+    "terms": "Terms of use",
+    "privacy": "Privacy policy",
+    "risk": "Risk disclosure"
+  },
+
+  "dashboard": {
+    "rates_unavailable": "Rates unavailable",
+    "showing_usd": "Showing in USD",
+    "mint_mismatch": "Token Mint Mismatch",
+    "no_transactions": "No transactions yet",
+    "no_transactions_subtitle": "Your received payments will appear here",
+    "logout_title": "Log out?",
+    "logout_subtitle": "This will clear all local data including your wallet keys."
+  },
+
+  "pos": {
+    "you_receive": "You'll receive",
+    "rate_unavailable": "Currency rate not available",
+    "create": "Create",
+    "other_methods": "Pay with other methods",
+    "disclaimer": "Wino cannot reverse or refund transactions.",
+    "select_method": "Select payment method",
+    "no_methods": "No payment methods available",
+    "no_methods_hint": "Connect a wallet and enable payment methods in Settings.",
+    "popular": "Popular",
+    "helper_text": "Estimated total in local currency shown for reference only – customers pay in stablecoins. Always verify the network and amount.",
+    "revoke_invoice": "Revoke invoice",
+    "revoke_title": "Revoke invoice?",
+    "revoke_subtitle": "Are you sure you want to cancel this payment? Customer may have already sent funds.",
+    "revoke": "Revoke",
+    "keep_active": "Keep Active",
+    "blocked_title": "Payment in progress",
+    "blocked_subtitle": "You have an active payment that must be completed or canceled first.",
+    "go_to_payment": "Go to payment",
+    "cancel_payment": "Cancel payment",
+    "cancel_title": "Cancel payment?",
+    "cancel_subtitle": "This payment is still pending. Canceling will stop detection and the customer will need to scan a new QR code.",
+    "keep_waiting": "Keep waiting",
+    "detection_stopped": "Detection stopped",
+    "detection_stopped_after": "Background detection has stopped after {minutes} minutes.",
+    "check_wallet_manually": "If the customer made a payment, check your wallet manually.",
+    "cancel_invoice": "Cancel invoice"
+  },
+
+  "qr": {
+    "pay_with": "Pay with {network}",
+    "opening_wallet": "Opening in wallet...",
+    "failed": "Failed: {error}",
+    "no_wallet": "No Solana wallet app found",
+    "bad_connection": "Bad connection",
+    "bad_connection_desc": "We can't verify this payment right now. Don't accept screenshots — only confirm payment when it appears as Paid.",
+    "deadline_passed": "Invoice deadline passed",
+    "deadline_passed_desc": "The 15-minute deadline has passed, but payment detection is still running in case the transaction was sent before the deadline.",
+    "thank_you": "Thank you",
+    "paid_amount": "Paid {amount} {currency}",
+    "wrong_asset": "Paid with wrong asset"
+  },
+
+  "payment": {
+    "success": {
+      "title": "Payment successful",
+      "subtitle": "Paid with..."
+    },
+    "pending": {
+      "title": "Payment detected",
+      "subtitle": "Confirming transaction...",
+      "helper": "Please wait...",
+      "cancel": "Cancel payment"
+    },
+    "expired": {
+      "title": "Invoice expired",
+      "subtitle": "The invoice has expired.",
+      "helper": "Create a new invoice to continue.",
+      "new_payment": "New payment"
+    },
+    "failed": {
+      "title": "Payment failed",
+      "subtitle": "Please try again.",
+      "helper": "Something went wrong."
+    }
+  },
+
+  "soft_expire": {
+    "title": "Payment timeout",
+    "invoice_label": "Invoice #{id}",
+    "elapsed": "Elapsed: {minutes} {unit}",
+    "minute": "minute",
+    "minutes": "minutes",
+    "time_expired": "Time expired",
+    "no_payment": "No payment detected after {minutes} {unit}.",
+    "helper": "The customer may still be completing the transaction. Would you like to wait longer?",
+    "detection_continues": "Detection continues in background",
+    "wait_more": "Wait 5 more minutes",
+    "revoke": "Revoke invoice"
+  },
+
+  "refund": {
+    "check_details": {
+      "title": "Check refund details",
+      "subtitle": "Check the amount and destination before sending the refund. Refunds are processed as a new payment."
+    },
+    "to": "Refund to",
+    "method": "Refund method",
+    "amount": "Refund amount",
+    "disclaimer": "Refunds are sent as a new transaction. Once sent, it can't be reversed.",
+    "success": {
+      "title": "Refund sent",
+      "subtitle": "It may take some time to reflect in the recipient's wallet"
+    },
+    "failed": {
+      "title": "Refund failed",
+      "subtitle": "Something went wrong while processing the refund"
+    },
+    "manual": {
+      "title": "Manual refund",
+      "subtitle": "Send this refund manually from your wallet app (TronLink, OKX, etc). Copy the address and amount below."
+    },
+    "redirect": {
+      "title": "Redirecting",
+      "subtitle": "Please sign transaction in wallet to send refund"
+    }
+  },
+
+  "settings": {
+    "title": "Settings",
+    "merchant_name": "Merchant name",
+    "business_info": {
+      "title": "Business info",
+      "subtitle": "Manage how your business appears during checkout."
+    },
+    "account": {
+      "title": "Account",
+      "payment_methods": "Payment methods",
+      "export": "Export transactions"
+    },
+    "app": {
+      "title": "App settings",
+      "language": "Language",
+      "currency": "Balance currency",
+      "appearance": "Appearance",
+      "app_info": "App info"
+    },
+    "language_select": {
+      "title": "Select language",
+      "subtitle": "Choose your preferred language for the app interface."
+    },
+    "appearance": {
+      "subtitle": "Choose how the app looks on your device.",
+      "system": "Same as system",
+      "dark": "Dark",
+      "light": "Light"
+    },
+    "app_info": {
+      "version": "v{version} ({build})",
+      "update": "Update",
+      "checking": "Checking...",
+      "check_updates": "Check for updates",
+      "android_version": "Android version",
+      "device_name": "Device name",
+      "device_ip": "Device IP",
+      "member_since": "Wino Pay member",
+      "solana_address": "Solana address",
+      "tron_address": "Tron address",
+      "evm_address": "EVM address"
+    },
+    "logout": {
+      "title": "Logout?",
+      "subtitle": "Are you sure you want to log out from Wino Pay?"
+    },
+    "help": {
+      "title": "Get help",
+      "support": "Support"
+    }
+  },
+
+  "update": {
+    "title": "Update required",
+    "subtitle": "A new version of Wino Pay is available.\nUpdate to continue using all features.",
+    "remind_later": "Remind in hour",
+    "download": "Download",
+    "downloading": "Downloading... {percent}%",
+    "installing": "Opening installer...",
+    "waiting_permission": "Please enable installation from this source and return to the app",
+    "error": "Error: {message}"
+  },
+
+  "transaction": {
+    "details": "Transactions details",
+    "amount": "Amount",
+    "status": "Status",
+    "date": "Date",
+    "network": "Network",
+    "signature": "Signature",
+    "view_explorer": "View in explorer",
+    "explorer": "Explorer",
+    "refund": "Refund",
+    "receipt": "Receipt",
+    "payment_method": "Payment method",
+    "exchange_rate": "Exchange rate",
+    "invoice_id": "Invoice ID",
+    "payer_address": "Payer address",
+    "refunded_to": "Refunded to",
+    "processing_refund": "Processing refund...",
+    "refund_failed_dialog": "Refund Failed",
+    "refund_sent_dialog": "Refund Sent",
+    "refund_sent_success": "The refund has been sent successfully.",
+    "transaction_label": "Transaction: {id}...",
+    "open_explorer": "Open in explorer",
+    "status_payment_received": "Payment received",
+    "status_refund_completed": "Refund completed",
+    "status_refunding": "Refunding...",
+    "status_canceled": "Canceled",
+    "status_expired": "Expired",
+    "status_failed": "Payment detection failed",
+    "status_refund_failed": "Refund failed",
+    "status_network_error": "Network connection issue",
+    "status_loading": "Loading...",
+    "status_refund_received": "Refund received",
+    "status_canceled_desc": "This invoice was manually cancelled before payment was received.",
+    "status_expired_desc": "Expired at 14:32. Checking for late payment...",
+    "warning_wrong_asset": "Paid with wrong asset",
+    "warning_overpayment": "Overpayment received",
+    "footer_helper": "Wino does not custody funds and cannot reverse transactions. Refunds, if any, are sent manually as a new transaction."
+  },
+
+  "status": {
+    "paid": "Paid",
+    "pending": "Pending",
+    "expired": "Expired",
+    "failed": "Failed",
+    "refunded": "Refunded"
+  },
+
+  "currency": {
+    "usd": "US Dollar",
+    "eur": "Euro",
+    "gbp": "British Pound",
+    "thb": "Thai Baht",
+    "egp": "Egyptian Pound",
+    "rub": "Russian Ruble",
+    "cny": "Chinese Yuan"
+  },
+
+  "language": {
+    "en": "English",
+    "es": "Spanish",
+    "ru": "Russian",
+    "th": "Thai",
+    "zh": "Chinese"
+  }
+}
